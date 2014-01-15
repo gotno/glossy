@@ -1,0 +1,10 @@
+<div>
+  <ul class="flash">
+  <% if flash[:success] %>
+    <li class="success"><%= flash[:success] %></li>
+  <% end %>
+  <% flash[:error].try(:each) do |msg| %>
+    <li class="error"><%= msg %></li>
+  <% end %>
+  </ul>
+</div>

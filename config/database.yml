@@ -1,0 +1,14 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: glossy_dev
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: glossy_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: glossy_production
