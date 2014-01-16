@@ -1,0 +1,9 @@
+<article>
+  <% if @article.show_title %>
+    <h1><%= @article.title %></h1>
+  <% end %>
+
+  <% if @article.show_body %>
+    <p><%= @article.body %></p>
+  <% end %>
+</article>

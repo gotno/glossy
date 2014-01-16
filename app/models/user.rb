@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
 
   before_validation :reset_session_token
 
+  has_many :articles
+
   def password=(pw)
     @password = pw
     self.password_digest = BCrypt::Password.create(pw)

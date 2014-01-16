@@ -4,7 +4,7 @@ class CreateSections < ActiveRecord::Migration
       t.string :title
       t.boolean :show_title, default: false
       t.integer :article_id, null: false
-      t.integer :ord
+      t.integer :ord, null: false
 
       t.timestamps
     end
