@@ -15,6 +15,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'rails_12factor'
+end
+
 gem 'jquery-rails'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
