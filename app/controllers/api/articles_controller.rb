@@ -2,18 +2,20 @@ class Api::ArticlesController < ApplicationController
   before_filter :require_logged_in_user
 
   def create
-    @article = current_user.articles.build(params[:article])
-
+    @article = current_user.articles.build(params[:article]);
     if @article.save
-      flash[:success] = "new article saved"
-      redirect_to article_url(@article)
+      render json: @article
     else
-      flash.now[:error] = @article.errors.full_messages
-      render :new
+      render json: @article.errors.full_messages, status: 422
     end
   end
 
   def destroy
+  end
+
+  def index
+    @articles = current_user.articles
+    render :index
   end
 
   def show

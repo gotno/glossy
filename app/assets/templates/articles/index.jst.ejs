@@ -1,0 +1,11 @@
+<a class="new-article" href="#">New Article</a>
+<% articles.each(function(article) { %>
+  <article>
+  <% if (article.get('show_title')) { %>
+    <h1><%= article.escape('title') %></h1>
+  <% } %>
+  <% if (article.get('show_body')) { %>
+    <p><%= article.escape('body') %></p>
+  <% } %>
+  </article>
+<% }) %>
