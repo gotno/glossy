@@ -1,5 +1,5 @@
 class Article < ActiveRecord::Base
-  attr_accessible :body, :show_body, :title, :show_title, :user_id
+  attr_accessible :body, :show_body, :title, :show_title, :user_id, :sections_attributes
 
   validates :user_id, presence: true
 
