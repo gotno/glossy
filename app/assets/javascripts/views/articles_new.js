@@ -2,7 +2,12 @@ Glossy.Views.ArticlesNew = Backbone.View.extend({
   template: JST['articles/form'],
 
   events: {
-    'submit': 'submit'
+    'submit': 'submit',
+    'click a.add-section': 'addSection'
+  },
+
+  initialize: function() {
+    this.sectionOrder = 0;
   },
 
   render: function() {
@@ -12,12 +17,22 @@ Glossy.Views.ArticlesNew = Backbone.View.extend({
 
   submit: function(event) {
     event.preventDefault();
-    var newArticle = new Glossy.Models.Article($(event.target).serializeJSON());
+    var formData = $(event.target).serializeJSON();
+    var newArticle = new Glossy.Models.Article(formData);
     newArticle.save({}, {
       success: function(model) {
         Glossy.articles.add(model);
         Backbone.history.navigate('', { trigger: true });
       }
     });
+  },
+
+  addSection: function(event) {
+    event.preventDefault();
+
+    var newSectionView = new Glossy.Views.SectionsNew;
+    var $submit = this.$el.find('submit');
+    $submit.before(newSectionView.render(this.sectionOrder).$el);
+    this.sectionOrder++;
   }
 });

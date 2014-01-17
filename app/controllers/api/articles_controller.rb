@@ -14,11 +14,14 @@ class Api::ArticlesController < ApplicationController
   end
 
   def index
-    @articles = current_user.articles
+    @articles = current_user.articles.includes(:sections)
     render :index
   end
 
   def show
+    #this doesn't appear to reduce the number of queries...
+    #@article = Article.includes(:sections).find(params[:id])
+    
     @article = Article.find(params[:id])
     render :show
   end

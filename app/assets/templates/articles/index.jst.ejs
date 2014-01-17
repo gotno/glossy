@@ -7,5 +7,15 @@
   <% if (article.get('show_body')) { %>
     <p><%= article.escape('body') %></p>
   <% } %>
+
+  <% if (article.get('sections').length !== 0) { %>
+    <% article.get('sections').each(function(section) { %>
+      <section>
+        <% if (section.get('show_title')) { %>
+          <h3><%= section.escape('title') %></h3>
+        <% } %>
+      </section>
+    <% }) %>
+  <% } %>
   </article>
 <% }) %>
