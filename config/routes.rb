@@ -9,6 +9,10 @@ Glossy::Application.routes.draw do
     resources :articles, except: [:new, :edit] do
       resources :sections, only: [:create]
     end
+
+    resources :sections, except: [:create]
+    resources :section_widgets
+    resources :text_widgets
   end
 
   root to: 'root#root'

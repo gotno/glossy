@@ -19,9 +19,6 @@ class Api::ArticlesController < ApplicationController
   end
 
   def show
-    #this doesn't appear to reduce the number of queries...
-    #@article = Article.includes(:sections).find(params[:id])
-    
     @article = Article.find(params[:id])
     render :show
   end

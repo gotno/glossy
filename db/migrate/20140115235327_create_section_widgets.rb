@@ -1,6 +1,6 @@
-class CreateWidgetContainers < ActiveRecord::Migration
+class CreateSectionWidgets < ActiveRecord::Migration
   def change
-    create_table :widget_containers do |t|
+    create_table :section_widgets do |t|
       t.integer :section_id, null: false
       t.integer :ord, null: false
       t.integer :widget_id, null: false
@@ -9,7 +9,7 @@ class CreateWidgetContainers < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :widget_containers, :section_id
-    add_index :widget_containers, :widget_id
+    add_index :section_widgets, :section_id
+    add_index :section_widgets, :widget_id
   end
 end

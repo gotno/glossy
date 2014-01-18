@@ -29,7 +29,6 @@ Glossy.Views.ArticlesNew = Backbone.View.extend({
 
   addSection: function(event) {
     event.preventDefault();
-    console.log("in addSection");
 
     var newSectionView = new Glossy.Views.SectionsNew;
     var $submit = this.$el.find(':submit');

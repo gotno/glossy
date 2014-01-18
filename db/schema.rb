@@ -11,32 +11,65 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115235327) do
+ActiveRecord::Schema.define(:version => 20140117233354) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
-    t.string   "body"
-    t.boolean  "show_title", :default => false
-    t.boolean  "show_body",  :default => false
-    t.integer  "user_id",                       :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.text     "body"
+    t.boolean  "show_title", :default => true
+    t.boolean  "show_body",  :default => true
+    t.integer  "user_id",                      :null => false
+    t.boolean  "draft",      :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "articles", ["title"], :name => "index_articles_on_title"
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
+  create_table "image_widgets", :force => true do |t|
+    t.string   "title"
+    t.date     "date"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "image_widgets", ["title"], :name => "index_image_widgets_on_title"
+
+  create_table "section_widgets", :force => true do |t|
+    t.integer  "section_id",  :null => false
+    t.integer  "ord",         :null => false
+    t.integer  "widget_id",   :null => false
+    t.integer  "widget_type", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "section_widgets", ["section_id"], :name => "index_section_widgets_on_section_id"
+  add_index "section_widgets", ["widget_id"], :name => "index_section_widgets_on_widget_id"
+
   create_table "sections", :force => true do |t|
     t.string   "title"
-    t.boolean  "show_title", :default => false
-    t.integer  "article_id",                    :null => false
-    t.integer  "ord"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.boolean  "show_title", :default => true
+    t.integer  "article_id",                   :null => false
+    t.integer  "ord",                          :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "sections", ["article_id"], :name => "index_sections_on_article_id"
   add_index "sections", ["title"], :name => "index_sections_on_title"
+
+  create_table "text_widgets", :force => true do |t|
+    t.string   "title"
+    t.boolean  "show_title", :default => true
+    t.text     "body"
+    t.boolean  "show_body",  :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  add_index "text_widgets", ["title"], :name => "index_text_widgets_on_title"
 
   create_table "users", :force => true do |t|
     t.string   "username",        :null => false
@@ -50,17 +83,5 @@ ActiveRecord::Schema.define(:version => 20140115235327) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["session_token"], :name => "index_users_on_session_token"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
-
-  create_table "widget_containers", :force => true do |t|
-    t.integer  "section_id",  :null => false
-    t.integer  "ord",         :null => false
-    t.integer  "widget_id",   :null => false
-    t.integer  "widget_type", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "widget_containers", ["section_id"], :name => "index_widget_containers_on_section_id"
-  add_index "widget_containers", ["widget_id"], :name => "index_widget_containers_on_widget_id"
 
 end
