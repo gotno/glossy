@@ -1,0 +1,28 @@
+<form>
+  <input type="text"
+         name="article[title]"
+         value="<%= article.escape('title') %>">
+  <label for="show_title">show title?</label>
+  <input type="checkbox"
+         name="article[show_title]"
+         id="show_title"
+         <% if (article.get('show_title')) { %>
+         checked
+         <% } %>
+         >
+  <br>
+
+  <textarea name="article[body]"><%= article.escape('body') %></textarea>
+  <label for="show_body">show body?</label>
+  <input type="checkbox"
+         name="article[show_body]"
+         id="show_body"
+         <% if (article.get('show_body')) { %>
+         checked
+         <% } %>
+         >
+  <br>
+  
+  <input type="submit" value="update article">
+<form>
+<a href="#" class="add-section">add section</a>

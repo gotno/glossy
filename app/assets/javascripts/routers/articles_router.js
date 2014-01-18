@@ -1,28 +1,21 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
-    '': 'index',
-    'new': 'new'
-  },
-
-  index: function() {
-    var router = this;
-
-    Glossy.articles = new Glossy.Collections.Articles;
-
-    Glossy.articles.fetch({
-      success: function() {
-        var articlesView = new Glossy.Views.ArticlesIndex({
-          collection: Glossy.articles
-        });
-
-        router._swapViews(articlesView);
-      }
-    });
+    '': 'new',
+    'edit': 'edit'
   },
 
   new: function() {
-    var newArticleView = new Glossy.Views.ArticlesNew;
+    var newArticleView = new Glossy.Views.ArticlesNew({
+      model: Glossy.article
+    });
     this._swapViews(newArticleView);
+  },
+
+  edit: function() {
+    var editArticleView = new Glossy.Views.ArticlesEdit({
+      model: Glossy.article
+    });
+    this._swapViews(editArticleView);
   },
 
   _swapViews: function(view) {

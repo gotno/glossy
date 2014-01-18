@@ -1,5 +1,5 @@
-Glossy.Views.ArticlesNew = Backbone.View.extend({
-  template: JST['articles/new'],
+Glossy.Views.ArticlesEdit = Backbone.View.extend({
+  template: JST['articles/edit'],
 
   events: {
     'submit': 'submit',
@@ -11,7 +11,20 @@ Glossy.Views.ArticlesNew = Backbone.View.extend({
   },
 
   render: function() {
-    this.$el.html(this.template());
+    var view = this;
+
+    this.$el.html(this.template({
+      article: this.model
+    }));
+
+    this.model.get('sections').each(function(section) {
+      var sectView = new Glossy.Views.SectionsEdit({
+        model: section
+      });
+
+      view.$el.find(':submit').before(sectView.render().$el);
+      view.sectionOrder++;
+    });
     return this;
   },
 

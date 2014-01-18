@@ -1,0 +1,15 @@
+<% var ord = section.escape('ord') %>
+<input type="text"
+       name="article[sections_attributes][<%= ord %>][title]"
+       value="<%= section.escape('title') %>">
+<label for="show_title<%= ord %>">show title?</label>
+<input type="checkbox"
+       id="show_title<%= ord %>"
+       name="article[sections_attributes][<%= ord %>][show_title]"
+       <% if (section.get('show_title')) { %>
+       checked
+       <% } %>
+       >
+<input type="hidden"
+       name="article[sections_attributes][<%= ord %>][ord]"
+       value="<%= ord %>">

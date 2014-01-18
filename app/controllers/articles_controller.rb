@@ -17,6 +17,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article_id = params[:id]
+  end
+
   def show
     @article = Article.find(params[:id])
   end
