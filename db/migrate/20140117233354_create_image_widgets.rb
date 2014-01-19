@@ -3,6 +3,7 @@ class CreateImageWidgets < ActiveRecord::Migration
     create_table :image_widgets do |t|
       t.string :title
       t.date :date
+      t.integer :ord
 
       t.timestamps
     end

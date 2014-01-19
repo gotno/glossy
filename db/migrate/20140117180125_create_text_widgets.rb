@@ -5,6 +5,7 @@ class CreateTextWidgets < ActiveRecord::Migration
       t.boolean :show_title, default: true
       t.text :body
       t.boolean :show_body, default: true
+      t.integer :ord
 
       t.timestamps
     end

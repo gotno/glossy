@@ -7,6 +7,9 @@ gem 'rails', '3.2.15'
 gem 'pg'
 gem 'backbone-on-rails'
 gem 'jbuilder'
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :development do
   gem 'better_errors'

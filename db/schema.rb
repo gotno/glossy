@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140117233354) do
+ActiveRecord::Schema.define(:version => 20140119010133) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -30,23 +30,29 @@ ActiveRecord::Schema.define(:version => 20140117233354) do
   create_table "image_widgets", :force => true do |t|
     t.string   "title"
     t.date     "date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
   add_index "image_widgets", ["title"], :name => "index_image_widgets_on_title"
 
-  create_table "section_widgets", :force => true do |t|
-    t.integer  "section_id",  :null => false
-    t.integer  "ord",         :null => false
-    t.integer  "widget_id",   :null => false
-    t.integer  "widget_type", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+  create_table "section_image_widgets", :force => true do |t|
+    t.integer  "section_id"
+    t.integer  "widget_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "section_widgets", ["section_id"], :name => "index_section_widgets_on_section_id"
-  add_index "section_widgets", ["widget_id"], :name => "index_section_widgets_on_widget_id"
+  create_table "section_text_widgets", :force => true do |t|
+    t.integer  "section_id"
+    t.integer  "widget_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "sections", :force => true do |t|
     t.string   "title"
