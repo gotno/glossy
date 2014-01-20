@@ -1,6 +1,6 @@
 class Section < ActiveRecord::Base
   attr_accessible :article_id, :ord, :show_title, :title,
-                  :images_widgets_attributes,
+                  :image_widgets_attributes,
                   :text_widgets_attributes
 
   validates :ord, presence: true
@@ -34,8 +34,11 @@ class Section < ActiveRecord::Base
 #    end
 #
 #    @widgets.sort_by { |hsh| hsh[:ord] }
-    self.text_widgets
-      .concat(self.image_widgets)
-      .sort_by { |hsh| hsh[:ord] }
+    @widgets = self.text_widgets + 
+               self.image_widgets
+               .sort_by { |hsh| hsh[:ord] }
+#    self.text_widgets.concat(self.image_widgets)
+#      .sort_by { |hsh| hsh[:ord] }
+    @widgets
   end
 end

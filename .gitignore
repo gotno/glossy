@@ -9,6 +9,7 @@
 /tmp
 
 *.fuse_hidden*
+*.swp
 
 # Ignore application configuration
 /config/application.yml

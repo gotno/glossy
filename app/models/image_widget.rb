@@ -1,5 +1,5 @@
 class ImageWidget < ActiveRecord::Base
-  attr_accessible :date, :title, :img
+  attr_accessible :date, :title, :img, :ord
 
   has_attached_file :img, styles: {
     :big => "600x600>", # (> = scale)

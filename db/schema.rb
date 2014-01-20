@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20140119010133) do
   create_table "image_widgets", :force => true do |t|
     t.string   "title"
     t.date     "date"
+    t.integer  "ord"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.string   "img_file_name"
@@ -41,17 +42,17 @@ ActiveRecord::Schema.define(:version => 20140119010133) do
   add_index "image_widgets", ["title"], :name => "index_image_widgets_on_title"
 
   create_table "section_image_widgets", :force => true do |t|
-    t.integer  "section_id"
-    t.integer  "widget_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "section_id",      :null => false
+    t.integer  "image_widget_id", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   create_table "section_text_widgets", :force => true do |t|
-    t.integer  "section_id"
-    t.integer  "widget_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "section_id",     :null => false
+    t.integer  "text_widget_id", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "sections", :force => true do |t|
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140119010133) do
     t.boolean  "show_title", :default => true
     t.text     "body"
     t.boolean  "show_body",  :default => true
+    t.integer  "ord"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
