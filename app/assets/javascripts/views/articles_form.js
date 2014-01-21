@@ -25,7 +25,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }));
 
     this.model.get('sections').each(function(section) {
-      var editSectionView = new Glossy.Views.SectionsEdit({
+      var editSectionView = new Glossy.Views.SectionsForm({
         model: section
       });
 
@@ -63,13 +63,13 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   renderSection: function() {
     var $submit = this.$el.find(':submit');
     
-    var editSectionView = new Glossy.Views.SectionsNew({
+    var sectionView = new Glossy.Views.SectionsForm({
       model: Glossy.article.get('sections').last()
     });
 
-    this.sectionViews.push(newSectionView);
+    this.sectionViews.push(sectionView);
 
-    $submit.before(editSectionView.render().$el);
+    $submit.before(sectionView.render().$el);
   },
 
   collect: function() {

@@ -1,5 +1,5 @@
-Glossy.Views.SectionsEdit = Backbone.View.extend({
-  template: JST['sections/edit'],
+Glossy.Views.SectionsForm = Backbone.View.extend({
+  template: JST['sections/form'],
 
   tagName: 'section',
 
@@ -10,9 +10,6 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
 
   initialize: function() {
     var view = this;
-
-    this.widgetOrder = 0;
-    this.widgetViews = [];
 
     if (!this.model.get('textWidgets')) {
       this.model.set('textWidgets', new Glossy.Collections.TextWidgets());
@@ -28,9 +25,17 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
   },
 
   render: function() {
+    this.widgetOrder = 0;
+    this.widgetViews = [];
+
     this.$el.html(this.template({
       section: this.model
     }));
+
+    var view = this;
+    this.model.get('textWidgets').each(function(widget) {
+      view.renderWidget('Text', widget);
+    });
 
     return this;
   },
@@ -51,6 +56,7 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
     });
 
     this.widgetViews.push(newWidgetView);
+    this.widgetOrder++;
 
     this.$el.append(newWidgetView.render().$el);
   },

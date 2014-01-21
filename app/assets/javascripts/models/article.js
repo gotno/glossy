@@ -10,14 +10,16 @@ Glossy.Models.Article = Backbone.Model.extend({
         if (section.get('text_widgets')) {
           var textWidgets = section.get('text_widgets');
 
-          section.set('text_widgets', 
+          section.set('textWidgets', 
                       new Glossy.Collections.TextWidgets(textWidgets));
+
+          section.unset('text_widgets');
         }
 
         if (section.get('image_widgets')) {
           var imageWidgets = section.get('image_widgets');
 
-          section.set('image_widgets',
+          section.set('imageWidgets',
                       new Glossy.Collections.ImageWidgets(imageWidgets));
         }
       });
