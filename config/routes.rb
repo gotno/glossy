@@ -7,9 +7,7 @@ Glossy::Application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :articles, except: [:new, :edit]
-
     resources :sections, only: [:create, :update, :destroy]
-
     resources :text_widgets, only: [:create, :update, :destroy]
     resources :image_widgets, only: [:create, :update, :destroy]
   end

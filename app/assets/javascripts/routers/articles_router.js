@@ -7,14 +7,14 @@ Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   new: function() {
     Glossy.article = new Glossy.Models.Article();
 
-    var newArticleView = new Glossy.Views.ArticlesNew({
+    var newArticleView = new Glossy.Views.ArticlesForm({
       model: Glossy.article
     });
     this._swapViews(newArticleView);
   },
 
   edit: function() {
-    var editArticleView = new Glossy.Views.ArticlesEdit({
+    var editArticleView = new Glossy.Views.ArticlesForm({
       model: Glossy.article
     });
     this._swapViews(editArticleView);

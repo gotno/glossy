@@ -29,7 +29,10 @@ Glossy.Models.Article = Backbone.Model.extend({
   toJSON: function() {
     var json = _.clone(this.attributes);
 
-    json.sections_attributes = this.get('sections').toJSON();
+    if (this.get('sections').length !== 0) {
+      json.sections_attributes = this.get('sections').toJSON();
+    }
+    delete json.sections;
     
     return json;
   }

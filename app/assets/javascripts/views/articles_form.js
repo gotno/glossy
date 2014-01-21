@@ -1,5 +1,5 @@
-Glossy.Views.ArticlesEdit = Backbone.View.extend({
-  template: JST['articles/edit'],
+Glossy.Views.ArticlesForm = Backbone.View.extend({
+  template: JST['articles/form'],
 
   events: {
     'submit': 'submit',
@@ -9,6 +9,10 @@ Glossy.Views.ArticlesEdit = Backbone.View.extend({
   initialize: function() {
     this.sectionOrder = 0;
     this.sectionViews = [];
+
+    if (!Glossy.article.get('sections')) {
+      Glossy.article.set('sections', new Glossy.Collections.Sections());
+    }
 
     this.listenTo(Glossy.article.get('sections'), 'add', this.renderSection);
   },

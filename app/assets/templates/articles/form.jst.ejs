@@ -1,7 +1,10 @@
 <form>
   <input type="text"
          id="article_title"
-         value="<%= article.escape('title') %>">
+         <% if (article.get('title')) { %>
+           value="<%= article.escape('title') %>"
+         <% } %>
+         >
   <label for="show_title">show title?</label>
   <input type="checkbox"
          id="show_title"
@@ -11,7 +14,7 @@
          >
   <br>
 
-  <textarea id="article_body"><%= article.escape('body') %></textarea>
+    <textarea id="article_body"><% if (article.get('body')) { %><%= article.escape('body') %><% } %></textarea>
   <label for="show_body">show body?</label>
   <input type="checkbox"
          id="show_body"
@@ -21,6 +24,10 @@
          >
   <br>
   
-  <input type="submit" value="update article">
+  <% if (article.id) { %>
+    <input type="submit" value="update article">
+  <% } else { %>
+    <input type="submit" value="save article">
+  <% } %>
 <form>
 <a href="#" class="add-section">add section</a>
