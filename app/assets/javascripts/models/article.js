@@ -4,9 +4,7 @@ Glossy.Models.Article = Backbone.Model.extend({
   parse: function (data) {
     if (data.sections) {
       var sections = data.sections;
-      data.sections = new Glossy.Collections.Sections(sections, {
-        article_id: data.id
-      });
+      data.sections = new Glossy.Collections.Sections(sections);
 
       data.sections.each(function(section) {
         if (section.get('text_widgets')) {
@@ -24,6 +22,7 @@ Glossy.Models.Article = Backbone.Model.extend({
         }
       });
     }
+
     return data;
   },
 

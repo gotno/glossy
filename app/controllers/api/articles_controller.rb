@@ -10,6 +10,16 @@ class Api::ArticlesController < ApplicationController
     end
   end
 
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update_attributes(params[:article])
+      render json: @article
+    else
+      render json: @article.errors.full_messages, status: 422
+    end
+  end
+
   def destroy
   end
 

@@ -8,6 +8,9 @@ Glossy.Views.ArticlesEdit = Backbone.View.extend({
 
   initialize: function() {
     this.sectionOrder = 0;
+    this.sectionViews = [];
+
+    this.listenTo(Glossy.article.get('sections'), 'add', this.renderSection);
   },
 
   render: function() {
@@ -18,35 +21,61 @@ Glossy.Views.ArticlesEdit = Backbone.View.extend({
     }));
 
     this.model.get('sections').each(function(section) {
-      var sectView = new Glossy.Views.SectionsEdit({
+      var editSectionView = new Glossy.Views.SectionsEdit({
         model: section
       });
 
-      view.$el.find(':submit').before(sectView.render().$el);
+      view.$el.find(':submit').before(editSectionView.render().$el);
       view.sectionOrder++;
+      view.sectionViews.push(editSectionView);
     });
+
     return this;
   },
 
   submit: function(event) {
     event.preventDefault();
-    var formData = $(event.target).serializeJSON();
-    console.log(formData);
-//    var newArticle = new Glossy.Models.Article(formData);
-//    newArticle.save({}, {
-//      success: function(model) {
-//        Glossy.articles.add(model);
-//        Backbone.history.navigate('', { trigger: true });
-//      }
-//    });
+
+    this.collect();
+
+    Glossy.article.save({}, {
+      success: function() {
+        console.log('successfully saved');
+      }
+    });
   },
 
   addSection: function(event) {
     event.preventDefault();
 
-    var newSectionView = new Glossy.Views.SectionsNew;
-    var $submit = this.$el.find(':submit');
-    $submit.before(newSectionView.render(this.sectionOrder).$el);
+    var section = new Glossy.Models.Section({
+      ord: this.sectionOrder
+    });
+    Glossy.article.get('sections').add(section);
+
     this.sectionOrder++;
+  },
+
+  renderSection: function() {
+    var $submit = this.$el.find(':submit');
+    
+    var editSectionView = new Glossy.Views.SectionsNew({
+      model: Glossy.article.get('sections').last()
+    });
+
+    this.sectionViews.push(newSectionView);
+
+    $submit.before(editSectionView.render().$el);
+  },
+
+  collect: function() {
+    this.model.set('title', this.$('#article_title').val());
+    this.model.set('body', this.$('#article_body').val());
+    this.model.set('show_title', this.$('#show_title').val());
+    this.model.set('show_body', this.$('#show_body').val());
+
+    this.sectionViews.forEach(function(view) {
+      view.collect();
+    });
   }
 });
