@@ -6,6 +6,7 @@ class CreateTextWidgets < ActiveRecord::Migration
       t.text :body
       t.boolean :show_body, default: true
       t.integer :ord
+      t.string :widget_type, default: "Text"
 
       t.timestamps
     end

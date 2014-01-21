@@ -1,5 +1,4 @@
 <% if (widget.has('image_url_thumb')) { %>
-  <% console.log(widget.escape('image_url_thumb')) %>
   <img src="<%= widget.escape('image_url_thumb') %>">
 <% } %>
 
@@ -11,12 +10,29 @@
        <% if (widget.has('title')) { %>
          value="<%= widget.escape('title') %>"
        <% } %>
+       >
+
+<label for="iw_show_title<%= ord %>">show title?</label>
+<input type="checkbox"
+       id="iw_show_title<%= ord %>"
+       <% if (widget.get('show_title')) { %>
+         checked
+       <% } %>
        ><br>
+
 <input type="date"
        id="iw_date<%= ord %>"
        <% if (widget.has('date')) { %>
          value="<%= widget.escape('date') %>"
        <% } %>
        >
+
+<label for="iw_show_date<%= ord %>">show date?</label>
+<input type="checkbox"
+       id="iw_show_date<%= ord %>"
+       <% if (widget.get('show_date')) { %>
+         checked
+       <% } %>
+       ><br>
 
 <a href="#" class="image-widget-remove">remove image</a>

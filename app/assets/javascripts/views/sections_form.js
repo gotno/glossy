@@ -9,21 +9,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   initialize: function() {
-    var view = this;
-
-    if (!this.model.get('textWidgets')) {
-      this.model.set('textWidgets', new Glossy.Collections.TextWidgets());
-    }
-    this.listenTo(this.model.get('textWidgets'), 'add', function() {
-      view.renderWidget('Text', view.model.get('textWidgets').last());
-    });
-
-    if (!this.model.get('imageWidgets')) {
-      this.model.set('imageWidgets', new Glossy.Collections.ImageWidgets());
-    }
-    this.listenTo(this.model.get('imageWidgets'), 'add', function() {
-      view.renderWidget('Image', view.model.get('imageWidgets').last());
-    });
+    this.setupWidgets();
   },
 
   render: function() {
@@ -34,13 +20,9 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       section: this.model
     }));
 
-    // THIS DOES NOT RESPECT ORD. FIX.
     var view = this;
-    this.model.get('textWidgets').each(function(widget) {
-      view.renderWidget('Text', widget);
-    });
-    this.model.get('imageWidgets').each(function(widget) {
-      view.renderWidget('Image', widget);
+    this.getSortedWidgets().forEach(function(widget) {
+      view.renderWidget(widget.get('widget_type'), widget);
     });
 
     return this;
@@ -53,7 +35,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       ord: this.widgetOrder
     });
 
-    this.model.get('textWidgets').add(textWidget);
+    this.textWidgets.add(textWidget);
   },
 
   addImageWidget: function(event) {
@@ -63,7 +45,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       ord: this.widgetOrder
     });
 
-    this.model.get('imageWidgets').add(imageWidget);
+    this.imageWidgets.add(imageWidget);
   },
 
   renderWidget: function(type, widget) {
@@ -77,6 +59,41 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.$el.append(newWidgetView.render().$el);
   },
 
+  getSortedWidgets: function() {
+    var widgets = this.textWidgets.models.concat(
+      this.imageWidgets.models
+    );
+
+    return widgets.sort(function(a, b) {
+      var x = a.attributes['ord']; var y = b.attributes['ord'];
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
+  },
+
+  setupWidgets: function() {
+    var view = this;
+
+    // text widgets
+    if (!this.model.get('textWidgets')) {
+      this.model.set('textWidgets', new Glossy.Collections.TextWidgets());
+    }
+    this.textWidgets = this.model.get('textWidgets');
+
+    this.listenTo(this.textWidgets, 'add', function() {
+      view.renderWidget('Text', view.textWidgets.last());
+    });
+
+    // image widgets
+    if (!this.model.get('imageWidgets')) {
+      this.model.set('imageWidgets', new Glossy.Collections.ImageWidgets());
+    }
+    this.imageWidgets = this.model.get('imageWidgets');
+
+    this.listenTo(this.imageWidgets, 'add', function() {
+      view.renderWidget('Image', view.imageWidgets.last());
+    });
+  },
+
   collect: function() {
     var ord = this.model.get('ord');
     this.model.set({
@@ -84,8 +101,8 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       show_title: this.$('#show_title' + ord).val()
     });
 
-    this.widgetViews.forEach(function(widget) {
-      widget.collect();
+    this.widgetViews.forEach(function(widgetView) {
+      widgetView.collect();
     });
   }
 });

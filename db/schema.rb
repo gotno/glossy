@@ -29,10 +29,13 @@ ActiveRecord::Schema.define(:version => 20140119010133) do
 
   create_table "image_widgets", :force => true do |t|
     t.string   "title"
+    t.boolean  "show_title",       :default => true
     t.date     "date"
+    t.boolean  "show_date",        :default => true
     t.integer  "ord"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "widget_type",      :default => "Image"
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "img_file_name"
     t.string   "img_content_type"
     t.integer  "img_file_size"
@@ -69,12 +72,13 @@ ActiveRecord::Schema.define(:version => 20140119010133) do
 
   create_table "text_widgets", :force => true do |t|
     t.string   "title"
-    t.boolean  "show_title", :default => true
+    t.boolean  "show_title",  :default => true
     t.text     "body"
-    t.boolean  "show_body",  :default => true
+    t.boolean  "show_body",   :default => true
     t.integer  "ord"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.string   "widget_type", :default => "Text"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   add_index "text_widgets", ["title"], :name => "index_text_widgets_on_title"
