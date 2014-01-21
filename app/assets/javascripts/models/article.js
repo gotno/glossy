@@ -21,6 +21,7 @@ Glossy.Models.Article = Backbone.Model.extend({
 
           section.set('imageWidgets',
                       new Glossy.Collections.ImageWidgets(imageWidgets));
+          section.unset('image_widgets');
         }
       });
     }

@@ -3,7 +3,7 @@ Glossy.Views.TextWidgetForm = Backbone.View.extend({
 
   render: function() {
     this.$el.html(this.template({
-      tw: this.model
+      widget: this.model
     }));
 
     return this;
@@ -11,9 +11,11 @@ Glossy.Views.TextWidgetForm = Backbone.View.extend({
 
   collect: function() {
     var ord = this.model.get('ord');
-    this.model.set('title',      this.$('#tw_title' + ord).val());
-    this.model.set('show_title', this.$('#tw_show_title' + ord).val());
-    this.model.set('body',       this.$('#tw_body' + ord).val());
-    this.model.set('show_body',  this.$('#tw_show_title' + ord).val());
+    this.model.set({ 
+      title:      this.$('#tw_title' + ord).val(),
+      show_title: this.$('#tw_show_title' + ord).val(),
+      body:       this.$('#tw_body' + ord).val(),
+      show_body:  this.$('#tw_show_title' + ord).val()
+    });
   }
 });

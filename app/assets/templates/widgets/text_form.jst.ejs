@@ -1,25 +1,25 @@
-<% var ord = tw.get('ord') %>
+<% var ord = widget.get('ord') %>
 <input type="text"
        placeholder="title"
        id="tw_title<%= ord %>"
-       <% if (tw.get('title')) { %>
-         value="<%= tw.escape('title') %>"
+       <% if (widget.get('title')) { %>
+         value="<%= widget.escape('title') %>"
        <% } %>
        ><br>
 <label for="tw_show_title<%= ord %>">show title?</label>
 <input type="checkbox"
        id="tw_show_title<%= ord %>"
-       <% if (tw.get('show_title')) { %>
+       <% if (widget.get('show_title')) { %>
          checked
        <% } %>
        ><br>
 
-<textarea id="tw_body<%= ord %>"><% if (tw.get('body')) { %><%= tw.escape('body') %><% } %></textarea>
+<textarea id="tw_body<%= ord %>"><% if (widget.get('body')) { %><%= widget.escape('body') %><% } %></textarea>
 
 <label for="tw_show_body<%= ord %>">show body?</label>
 <input type="checkbox"
        id="tw_show_body<%= ord %>"
-       <% if (tw.get('show_body')) { %>
+       <% if (widget.get('show_body')) { %>
          checked
        <% } %>
        ><br>

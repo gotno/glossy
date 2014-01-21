@@ -21,7 +21,9 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     if (!this.model.get('imageWidgets')) {
       this.model.set('imageWidgets', new Glossy.Collections.ImageWidgets());
     }
-    this.listenTo(this.model.get('imageWidgets'), 'add', this.renderImageWidget);
+    this.listenTo(this.model.get('imageWidgets'), 'add', function() {
+      view.renderWidget('Image', view.model.get('imageWidgets').last());
+    });
   },
 
   render: function() {
@@ -32,9 +34,13 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       section: this.model
     }));
 
+    // THIS DOES NOT RESPECT ORD. FIX.
     var view = this;
     this.model.get('textWidgets').each(function(widget) {
       view.renderWidget('Text', widget);
+    });
+    this.model.get('imageWidgets').each(function(widget) {
+      view.renderWidget('Image', widget);
     });
 
     return this;
@@ -50,6 +56,16 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.model.get('textWidgets').add(textWidget);
   },
 
+  addImageWidget: function(event) {
+    event.preventDefault();
+
+    var imageWidget = new Glossy.Models.ImageWidget({
+      ord: this.widgetOrder
+    });
+
+    this.model.get('imageWidgets').add(imageWidget);
+  },
+
   renderWidget: function(type, widget) {
     var newWidgetView = new Glossy.Views[type + "WidgetForm"]({
       model: widget
@@ -61,14 +77,12 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.$el.append(newWidgetView.render().$el);
   },
 
-  addImageWidget: function(event) {
-    event.preventDefault();
-  },
-
   collect: function() {
     var ord = this.model.get('ord');
-    this.model.set('title', this.$('#section_title' + ord).val());
-    this.model.set('show_title', this.$('#show_title' + ord).val());
+    this.model.set({
+      title:      this.$('#section_title' + ord).val(),
+      show_title: this.$('#show_title' + ord).val()
+    });
 
     this.widgetViews.forEach(function(widget) {
       widget.collect();

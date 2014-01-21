@@ -1,0 +1,22 @@
+<% if (widget.has('image_url_thumb')) { %>
+  <% console.log(widget.escape('image_url_thumb')) %>
+  <img src="<%= widget.escape('image_url_thumb') %>">
+<% } %>
+
+<% var ord = widget.get('ord') %>
+<input type="file"><br>
+<input type="text"
+       id="iw_title<%= ord %>"
+       placeholder="title"
+       <% if (widget.has('title')) { %>
+         value="<%= widget.escape('title') %>"
+       <% } %>
+       ><br>
+<input type="date"
+       id="iw_date<%= ord %>"
+       <% if (widget.has('date')) { %>
+         value="<%= widget.escape('date') %>"
+       <% } %>
+       >
+
+<a href="#" class="image-widget-remove">remove image</a>
