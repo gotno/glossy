@@ -31,13 +31,14 @@ Glossy.Views.ArticlesEdit = Backbone.View.extend({
   submit: function(event) {
     event.preventDefault();
     var formData = $(event.target).serializeJSON();
-    var newArticle = new Glossy.Models.Article(formData);
-    newArticle.save({}, {
-      success: function(model) {
-        Glossy.articles.add(model);
-        Backbone.history.navigate('', { trigger: true });
-      }
-    });
+    console.log(formData);
+//    var newArticle = new Glossy.Models.Article(formData);
+//    newArticle.save({}, {
+//      success: function(model) {
+//        Glossy.articles.add(model);
+//        Backbone.history.navigate('', { trigger: true });
+//      }
+//    });
   },
 
   addSection: function(event) {

@@ -4,6 +4,16 @@
  */
 
 @import 'reset';
+@import 'fonts';
+
+// font stacks
+$serif: "EB Garamond", serif;
+$sans: "quicksand", sans-serif;
+$sans-bold: "quicksand-bold", sans-serif;
+
+body {
+  font-family: $serif;
+}
 
 header {
   background-color: #333;

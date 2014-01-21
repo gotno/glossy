@@ -6,13 +6,12 @@ Glossy::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   namespace :api, defaults: { format: :json } do
-    resources :articles, except: [:new, :edit] do
-      resources :sections, only: [:create]
-    end
+    resources :articles, except: [:new, :edit]
 
-    #resources :sections, except: [:create]
-    #resources :section_widgets
-    #resources :text_widgets
+    resources :sections, only: [:create, :update, :destroy]
+
+    resources :text_widgets, only: [:create, :update, :destroy]
+    resources :image_widgets, only: [:create, :update, :destroy]
   end
 
   root to: 'root#root'

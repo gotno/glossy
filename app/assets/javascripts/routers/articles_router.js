@@ -1,10 +1,12 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
-    '': 'new',
+    'new': 'new',
     'edit': 'edit'
   },
 
   new: function() {
+    Glossy.article = new Glossy.Models.Article();
+
     var newArticleView = new Glossy.Views.ArticlesNew({
       model: Glossy.article
     });

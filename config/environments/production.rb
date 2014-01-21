@@ -74,4 +74,9 @@ Glossy::Application.configure do
       :s3_host_name => 's3-us-west-1.amazonaws.com'
     }
   }
+
+  # add the fonts path
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+  # Precompile additional assets.
+  config.assets.precompile += %w(.svg .eot .woff .ttf)
 end

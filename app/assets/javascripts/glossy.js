@@ -17,8 +17,7 @@ window.Glossy = {
         }
       });
     } else {
-      Glossy.article = new Glossy.Models.Article();
-      Backbone.history.navigate('', { trigger: true });
+      Backbone.history.navigate('new', { trigger: true });
     }
   }
 }
