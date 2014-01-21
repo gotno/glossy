@@ -4,18 +4,22 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
   tagName: 'section',
 
   events: {
-    'click a.section-add-text': 'addTextWidget',
-    'click a.seciton-add-image': 'addImageWidget'
+    'click a.section-add-text':  'addTextWidget',
+    'click a.section-add-image': 'addImageWidget'
   },
 
   initialize: function() {
+    var view = this;
+
     this.widgetOrder = 0;
     this.widgetViews = [];
 
     if (!this.model.get('textWidgets')) {
       this.model.set('textWidgets', new Glossy.Collections.TextWidgets());
     }
-    this.listenTo(this.model.get('textWidgets'), 'add', this.renderTextWidget);
+    this.listenTo(this.model.get('textWidgets'), 'add', function() {
+      view.renderWidget('Text', view.model.get('textWidgets').last());
+    });
 
     if (!this.model.get('imageWidgets')) {
       this.model.set('imageWidgets', new Glossy.Collections.ImageWidgets());
@@ -34,21 +38,21 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
   addTextWidget: function(event) {
     event.preventDefault();
 
-    var textWidget = new Glossy.Models.TextWidget({
+    var textWidget = new Glossy.Models["TextWidget"]({
       ord: this.widgetOrder
     });
 
     this.model.get('textWidgets').add(textWidget);
   },
 
-  renderTextWidget: function() {
-    var newTextWidgetView = new Glossy.Views.TextWidget({
-      model: this.model.get('textWidgets').last()
+  renderWidget: function(type, widget) {
+    var newWidgetView = new Glossy.Views[type + "WidgetForm"]({
+      model: widget
     });
 
-    this.widgetViews.push(newTextWidgetView);
+    this.widgetViews.push(newWidgetView);
 
-    this.$el.append(newTextWidgetView.render().$el);
+    this.$el.append(newWidgetView.render().$el);
   },
 
   addImageWidget: function(event) {
@@ -59,5 +63,9 @@ Glossy.Views.SectionsEdit = Backbone.View.extend({
     var ord = this.model.get('ord');
     this.model.set('title', this.$('#section_title' + ord).val());
     this.model.set('show_title', this.$('#show_title' + ord).val());
+
+    this.widgetViews.forEach(function(widget) {
+      widget.collect();
+    });
   }
 });

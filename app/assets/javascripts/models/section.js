@@ -3,12 +3,16 @@ Glossy.Models.Section = Backbone.Model.extend({
 
   toJSON: function() {
     var json = _.clone(this.attributes);
-    if (this.get('textWidgets')) {
+
+    if (this.get('textWidgets').length !== 0) {
       json.text_widgets_attributes = this.get('textWidgets').toJSON();
     }
-    if (this.get('imageWidgets')) {
+    delete json.textWidgets;
+
+    if (this.get('imageWidgets').length !== 0) {
       json.image_widgets_attributes = this.get('imageWidgets').toJSON();
     }
+    delete json.imageWidgets;
 
     return json;
   }
