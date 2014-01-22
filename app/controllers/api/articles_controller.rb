@@ -14,7 +14,8 @@ class Api::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update_attributes(params[:article])
-      render json: @article
+#      render json: @article
+      render :show
     else
       render json: @article.errors.full_messages, status: 422
     end

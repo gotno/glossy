@@ -5,7 +5,7 @@ window.Glossy = {
   Routers: {},
 
   initialize: function(options) {
-    new Glossy.Routers.ArticlesRouter;
+    Glossy.router = new Glossy.Routers.ArticlesRouter;
     Backbone.history.start();
 
     if (options.article_id) {

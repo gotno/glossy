@@ -7,17 +7,20 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.sectionOrder = 0;
-    this.sectionViews = [];
-
     if (!Glossy.article.get('sections')) {
       Glossy.article.set('sections', new Glossy.Collections.Sections());
     }
 
+    this.listenTo(this.model, 'sync', this.render);
     this.listenTo(Glossy.article.get('sections'), 'add', this.renderSection);
   },
 
   render: function() {
+    this.$el.empty();
+
+    this.sectionOrder = 0;
+    this.sectionViews = [];
+
     var view = this;
 
     this.$el.html(this.template({

@@ -17,13 +17,15 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
     var view = this;
     var file = event.currentTarget.files[0];
 
-    console.log(file);
-
     var reader = new FileReader();
     reader.onload = function(e) {
-      console.log(e.target.result);
       view.model.set('img', e.target.result);
-      view.render();
+
+      Glossy.article.save(null, {
+        success: function() {
+          console.log('image saved');
+        }
+      });
     };
 
     reader.onerror = function(err) {
