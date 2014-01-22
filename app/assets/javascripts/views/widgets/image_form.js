@@ -40,9 +40,9 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
     var ord = this.model.get('ord');
     this.model.set({
       title: this.$('#iw_title' + ord).val(),
-      show_title: this.$('#iw_show_title' + ord).val(),
+      show_title: this.$('#iw_show_title' + ord).prop('checked'),
       date:  this.$('#iw_date' + ord).val(),
-      show_date: this.$('#iw_show_date' + ord).val()
+      show_date: this.$('#iw_show_date' + ord).prop('checked')
     });
   }
 });

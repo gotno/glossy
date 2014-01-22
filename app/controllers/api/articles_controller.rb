@@ -4,7 +4,8 @@ class Api::ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(params[:article]);
     if @article.save
-      render json: @article
+#      render json: @article
+      render :show
     else
       render json: @article.errors.full_messages, status: 422
     end
@@ -14,7 +15,6 @@ class Api::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update_attributes(params[:article])
-#      render json: @article
       render :show
     else
       render json: @article.errors.full_messages, status: 422

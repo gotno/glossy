@@ -98,7 +98,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     var ord = this.model.get('ord');
     this.model.set({
       title:      this.$('#section_title' + ord).val(),
-      show_title: this.$('#show_title' + ord).val()
+      show_title: this.$('#show_title' + ord).prop('checked')
     });
 
     this.widgetViews.forEach(function(widgetView) {

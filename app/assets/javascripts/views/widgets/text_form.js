@@ -13,9 +13,9 @@ Glossy.Views.TextWidgetForm = Backbone.View.extend({
     var ord = this.model.get('ord');
     this.model.set({ 
       title:      this.$('#tw_title' + ord).val(),
-      show_title: this.$('#tw_show_title' + ord).val(),
+      show_title: this.$('#tw_show_title' + ord).prop('checked'),
       body:       this.$('#tw_body' + ord).val(),
-      show_body:  this.$('#tw_show_title' + ord).val()
+      show_body:  this.$('#tw_show_title' + ord).prop('checked')
     });
   }
 });
