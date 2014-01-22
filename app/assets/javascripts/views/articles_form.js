@@ -12,11 +12,11 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model, 'sync', this.render);
-    this.listenTo(Glossy.article.get('sections'), 'add', this.renderSection);
   },
 
   render: function() {
     this.$el.empty();
+    this.listenTo(this.model.get('sections'), 'add', this.renderSection);
 
     this.sectionOrder = 0;
     this.sectionViews = [];
@@ -47,7 +47,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     Glossy.article.save({}, {
       success: function() {
-        console.log('successfully saved');
+        console.log('successful save.');
       }
     });
   },
@@ -58,7 +58,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     var section = new Glossy.Models.Section({
       ord: this.sectionOrder
     });
-    Glossy.article.get('sections').add(section);
+    this.model.get('sections').add(section);
 
     this.sectionOrder++;
   },
@@ -67,7 +67,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     var $submit = this.$el.find(':submit');
     
     var sectionView = new Glossy.Views.SectionsForm({
-      model: Glossy.article.get('sections').last()
+      model: this.model.get('sections').last()
     });
 
     this.sectionViews.push(sectionView);
