@@ -1,27 +1,55 @@
 <% var ord = widget.get('ord') %>
-<input type="text"
-       placeholder="title"
-       id="tw_title<%= ord %>"
-       <% if (widget.get('title')) { %>
-         value="<%= widget.escape('title') %>"
-       <% } %>
-       ><br>
-<label for="tw_show_title<%= ord %>">show title?</label>
-<input type="checkbox"
-       id="tw_show_title<%= ord %>"
-       <% if (widget.get('show_title')) { %>
-         checked
-       <% } %>
-       ><br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg text-widget-title">
+      <input type="text"
+             placeholder="title"
+             class="text-widget-title form-control"
+             id="tw_title"
+             <% if (widget.get('title')) { %>
+               value="<%= widget.escape('title') %>"
+             <% } %>
+             <% if (!widget.get('show_body')) { %>
+               disabled
+             <% } %>
+             >
+      <span class="input-group-addon">
+        <!--<label for="tw_show_title<%= ord %>">show?</label>-->
+        <input type="checkbox"
+               id="tw_show_title"
+               <% if (widget.get('show_title')) { %>
+                 checked
+               <% } %>
+               >
+      </span>
+    </div>
+  </div>
 
-<textarea id="tw_body<%= ord %>"><% if (widget.get('body')) { %><%= widget.escape('body') %><% } %></textarea>
+</div>
 
-<label for="tw_show_body<%= ord %>">show body?</label>
-<input type="checkbox"
-       id="tw_show_body<%= ord %>"
-       <% if (widget.get('show_body')) { %>
-         checked
-       <% } %>
-       ><br>
-
-<a href="#" class="text-widget-remove">remove text</a>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg">
+      <textarea class="text-widget-body form-control" 
+                id="tw_body"
+                <% if (!widget.get('show_body')) { %>
+                  disabled
+                <% } %>
+                ><% if (widget.get('body')) { %><%= widget.escape('body') %><% } %></textarea>
+      <span class="input-group-addon">
+        <!--<label for="tw_show_body<%= ord %>">show?</label>-->
+        <input type="checkbox"
+               id="tw_show_body"
+               <% if (widget.get('show_body')) { %>
+                 checked
+               <% } %>
+               >
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2 col-md-offset-9">
+      <a href="#" class="text-widget-remove">remove text</a>
+    </div>
+  </div>
+</div>

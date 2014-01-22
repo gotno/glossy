@@ -5,7 +5,13 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
   events: {
     'click a.section-add-text':  'addTextWidget',
-    'click a.section-add-image': 'addImageWidget'
+    'click a.section-add-image': 'addImageWidget',
+    'click #show_section_title': 'toggleTitle'
+  },
+
+  toggleTitle: function(event) {
+    var $input = this.$('input[type=text]');
+    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   initialize: function() {
@@ -16,6 +22,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.widgetOrder = 0;
     this.widgetViews = [];
 
+    this.$el.empty();
     this.$el.html(this.template({
       section: this.model
     }));
@@ -97,8 +104,8 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   collect: function() {
     var ord = this.model.get('ord');
     this.model.set({
-      title:      this.$('#section_title' + ord).val(),
-      show_title: this.$('#show_title' + ord).prop('checked')
+      title:      this.$('#section_title').val(),
+      show_title: this.$('#show_section_title').prop('checked')
     });
 
     this.widgetViews.forEach(function(widgetView) {

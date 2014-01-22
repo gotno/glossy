@@ -1,38 +1,73 @@
-<% if (widget.has('image_url_thumb')) { %>
-  <img src="<%= widget.escape('image_url_thumb') %>">
-<% } %>
+<div class="row">
+  <div class="col-md-3">
+    <% if (widget.has('image_url_smallest')) { %>
+      <img src="<%= widget.escape('image_url_smallest') %>">
+    <% } %>
+  </div>
+</div>
 
 <% var ord = widget.get('ord') %>
-<input type="file"><br>
-<input type="text"
-       id="iw_title<%= ord %>"
-       placeholder="title"
-       <% if (widget.has('title')) { %>
-         value="<%= widget.escape('title') %>"
-       <% } %>
-       >
+<div class="row">
+  <div class="col-md-3">
+    <input type="file form-control"><br>
+  </div>
+</div>
 
-<label for="iw_show_title<%= ord %>">show title?</label>
-<input type="checkbox"
-       id="iw_show_title<%= ord %>"
-       <% if (widget.get('show_title')) { %>
-         checked
-       <% } %>
-       ><br>
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group image-widget-title">
+      <input type="text"
+             class="image-widget-title form-control"
+             id="iw_title"
+             placeholder="title"
+             <% if (widget.has('title')) { %>
+               value="<%= widget.escape('title') %>"
+             <% } %>
+             <% if (!widget.get('show_title')) { %>
+               disabled
+             <% } %>
+             >
+      <span class="input-group-addon">
+        <input type="checkbox"
+               id="iw_show_title"
+               <% if (widget.get('show_title')) { %>
+                 checked
+               <% } %>
+               >
+        <!--<label for="iw_show_title<%= ord %>">show title?</label>-->
+      </span>
+    </div>
+  </div>
+</div>
 
-<input type="date"
-       id="iw_date<%= ord %>"
-       <% if (widget.has('date')) { %>
-         value="<%= widget.escape('date') %>"
-       <% } %>
-       >
+<div class="row">
+  <div class="col-md-3">
+    <div class="input-group">
+      <input type="date"
+             class="image-widget-date form-control"
+             id="iw_date"
+             <% if (widget.has('date')) { %>
+               value="<%= widget.escape('date') %>"
+             <% } %>
+             <% if (!widget.get('show_date')) { %>
+               disabled
+             <% } %>
+      >
+      <span class="input-group-addon">
+        <!--<label for="iw_show_date<%= ord %>">show date?</label>-->
+        <input type="checkbox"
+               id="iw_show_date"
+               <% if (widget.get('show_date')) { %>
+                 checked
+               <% } %>
+        >
+      </span>
+    </div>
+  </div>
+</div>
 
-<label for="iw_show_date<%= ord %>">show date?</label>
-<input type="checkbox"
-       id="iw_show_date<%= ord %>"
-       <% if (widget.get('show_date')) { %>
-         checked
-       <% } %>
-       ><br>
-
-<a href="#" class="image-widget-remove">remove image</a>
+<div class="row">
+  <div class="col-md-3">
+    <a href="#" class="image-widget-remove">remove image</a>
+  </div>
+</div>

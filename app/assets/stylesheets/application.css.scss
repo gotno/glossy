@@ -3,8 +3,10 @@
  *= require_tree .
  */
 
+@import 'bootstrap';
 @import 'reset';
 @import 'fonts';
+@import 'http://fonts.googleapis.com/css?family=EB+Garamond';
 
 // font stacks
 $serif: "EB Garamond", serif;
@@ -18,22 +20,14 @@ body {
 header {
   background-color: #333;
   color: #cecece;
-  overflow: hidden;
-  width: 100%;
   height: 100px;
-  margin: 0;
-  display: block;
 
   span.logo {
-    font-size: 3em;
-    display: inline-block;
-    float: left;
+    font-size: 5em;
+    font-family: $sans-bold;
   }
 
   nav.session {
-    float: right;
-    margin-top: 1em;
-    padding-right: 3em;
     ul {
       list-style: none;
       li {
@@ -42,4 +36,65 @@ header {
       }
     }
   }
+}
+
+input[type=text].article-title {
+  width: 100%;
+  text-align: center;
+  font-family: $sans-bold;
+  font-size: 2em;
+}
+
+.input-group.article-title,
+.input-group.text-widget-title,
+.input-group.image-widget-title {
+  margin-bottom: 1em;
+}
+
+.input-group.article-body {
+//  height: 200px;
+//  does not work
+}
+
+textarea.article-body,
+textarea.text-widget-body {
+  width: 100%;
+  text-align: center;
+  font-family: $serif;
+  font-size: 1.4em;
+  resize: vertical;
+}
+
+input[type=text].section-title {
+  width: 100%;
+  text-align: center;
+  font-family: $sans-bold;
+  font-size: 1.6em;
+}
+
+input[type=text].text-widget-title {
+  width: 100%;
+  text-align: center;
+  font-family: $sans-bold;
+  font-size: 1.4em;
+}
+
+input[type=text].image-widget-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2em;
+  font-family: $sans;
+}
+
+
+input[type=date].image-widget-date {
+  width: 100%;
+  text-align: center;
+  font-family: $sans;
+  font-size: 1.2em;
+}
+
+.container {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }

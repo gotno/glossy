@@ -1,33 +1,66 @@
 <form>
-  <input type="text"
-         id="article_title"
-         <% if (article.get('title')) { %>
-           value="<%= article.escape('title') %>"
-         <% } %>
-         >
-  <label for="show_title">show title?</label>
-  <input type="checkbox"
-         id="show_title"
-         <% if (article.get('show_title')) { %>
-         checked
-         <% } %>
-         >
-  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group input-group-lg article-title">
+        <input type="text"
+               id="article_title"
+               class="article-title form-control"
+               <% if (article.has('title')) { %>
+                 value="<%= article.escape('title') %>"
+               <% } %>
+               <% if (!article.get('show_title')) { %>
+                 disabled
+               <% } %>
+               >
+        <span class="input-group-addon">
+          <input type="checkbox"
+                 id="show_article_title"
+                 <% if (article.get('show_title')) { %>
+                 checked
+                 <% } %>
+                 >
+                 <!--<label for="show_title">show?</label>-->
+        </span>
+      </div>
+    </div>
+  </div>
 
-    <textarea id="article_body"><% if (article.get('body')) { %><%= article.escape('body') %><% } %></textarea>
-  <label for="show_body">show body?</label>
-  <input type="checkbox"
-         id="show_body"
-         <% if (article.get('show_body')) { %>
-         checked
-         <% } %>
-         >
-  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+        <textarea class="article-body form-control"
+                  id="article_body"
+                  <% if (!article.get('show_body')) { %>
+                    disabled
+                  <% } %>
+                  ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
+        <span class="input-group-addon">
+          <input type="checkbox"
+                 id="show_article_body"
+                 <% if (article.get('show_body')) { %>
+                 checked
+                 <% } %>
+                 >
+                 <!--<label for="show_body">show?</label>-->
+        </span>
+      </div>
+    </div>
+  </div>
   
-  <% if (article.id) { %>
-    <input type="submit" value="update article">
-  <% } else { %>
-    <input type="submit" value="save article">
-  <% } %>
+  <div class="row">
+    <div class="col-md-1">
+      <% if (article.id) { %>
+        <input type="submit" value="update article">
+      <% } else { %>
+        <input type="submit" value="save article">
+      <% } %>
+    </div>
+
+    <div class="col-md-2">
+      <a href="#" class="add-section">add section</a>
+    </div>
+  </div>
 <form>
-<a href="#" class="add-section">add section</a>
+<br>
+<br>
+<br>

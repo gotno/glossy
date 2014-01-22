@@ -3,6 +3,7 @@
 //= require jquery.serializeJSON
 //= require underscore
 //= require backbone
+//= require bootstrap
 //= require glossy
 //= require_tree ../templates
 //= require_tree ./models

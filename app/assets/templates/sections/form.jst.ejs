@@ -1,16 +1,35 @@
+<hr>
 <% var ord = section.get('ord') %>
-<input type="text"
-       id="section_title<%= ord %>"
-       <% if (section.get('title')) { %>
-         value="<%= section.escape('title') %>"
-       <% } %>
-       >
-<label for="show_title<%= ord %>">show title?</label>
-<input type="checkbox"
-       id="show_title<%= ord %>"
-       <% if (section.get('show_title')) { %>
-       checked
-       <% } %>
-       >
-<a href="#" class="section-add-text">add text</a>
-<a href="#" class="section-add-image">add image</a>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg">
+      <input type="text"
+             id="section_title"
+             class="section-title form-control"
+             <% if (section.get('title')) { %>
+               value="<%= section.escape('title') %>"
+             <% } %>
+             <% if (!section.get('show_title')) { %>
+               disabled
+             <% } %>
+             >
+      <span class="input-group-addon">
+        <input type="checkbox"
+               id="show_section_title"
+               <% if (section.get('show_title')) { %>
+               checked
+               <% } %>
+               >
+        <!--<label for="show_title<%= ord %>">show?</label>-->
+      </span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1 col-md-offset-9">
+    <a href="#" class="section-add-text">add text</a>
+  </div>
+  <div class="col-md-1">
+    <a href="#" class="section-add-image">add image</a>
+  </div>
+</div>

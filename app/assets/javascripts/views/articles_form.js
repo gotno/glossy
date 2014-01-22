@@ -3,7 +3,19 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   events: {
     'submit': 'submit',
-    'click a.add-section': 'addSection'
+    'click a.add-section': 'addSection',
+    'click #show_article_title': 'toggleTitle',
+    'click #show_article_body': 'toggleBody'
+  },
+
+  toggleTitle: function(event) {
+    var $input = this.$('input[type=text]#article_title');
+    $input.prop('disabled', (!$input.prop('disabled')));
+  },
+
+  toggleBody: function(event) {
+    var $input = this.$('textarea#article_body');
+    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   initialize: function() {
@@ -29,13 +41,17 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }));
 
     this.model.get('sections').each(function(section) {
-      var editSectionView = new Glossy.Views.SectionsForm({
+      var sectionView = new Glossy.Views.SectionsForm({
         model: section
       });
 
-      view.$el.find(':submit').before(editSectionView.render().$el);
+      var $submit = view.$el.find(':submit');
+      var $parent = $($submit.parents()[1]);
+
+      $parent.before(sectionView.render().$el);
+
       view.sectionOrder++;
-      view.sectionViews.push(editSectionView);
+      view.sectionViews.push(sectionView);
     });
 
     return this;
@@ -66,6 +82,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   renderSection: function() {
     var $submit = this.$el.find(':submit');
+    var $parent = $($submit.parents()[1]);
     
     var sectionView = new Glossy.Views.SectionsForm({
       model: this.model.get('sections').last()
@@ -73,15 +90,15 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.sectionViews.push(sectionView);
 
-    $submit.before(sectionView.render().$el);
+    $parent.before(sectionView.render().$el);
   },
 
   collect: function() {
     this.model.set({
       title:      this.$('#article_title').val(),
       body:       this.$('#article_body').val(),
-      show_title: this.$('#show_title').prop('checked'),
-      show_body:  this.$('#show_body').prop('checked')
+      show_title: this.$('#show_article_title').prop('checked'),
+      show_body:  this.$('#show_article_body').prop('checked')
     });
 
     this.sectionViews.forEach(function(view) {

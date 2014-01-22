@@ -2,7 +2,19 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
   template: JST['widgets/image_form'],
 
   events: {
-    'change input[type=file]': 'encodeFile'
+    'change input[type=file]': 'encodeFile',
+    'click #iw_show_title': 'toggleTitle',
+    'click #iw_show_date': 'toggleBody'
+  },
+
+  toggleTitle: function(event) {
+    var $input = this.$('input[type=text]#iw_title');
+    $input.prop('disabled', (!$input.prop('disabled')));
+  },
+
+  toggleBody: function(event) {
+    var $input = this.$('input[type="date"]#iw_date');
+    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   render: function() {
@@ -37,12 +49,11 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
   },
 
   collect: function() {
-    var ord = this.model.get('ord');
     this.model.set({
-      title: this.$('#iw_title' + ord).val(),
-      show_title: this.$('#iw_show_title' + ord).prop('checked'),
-      date:  this.$('#iw_date' + ord).val(),
-      show_date: this.$('#iw_show_date' + ord).prop('checked')
+      title: this.$('#iw_title').val(),
+      show_title: this.$('#iw_show_title').prop('checked'),
+      date:  this.$('#iw_date').val(),
+      show_date: this.$('#iw_show_date').prop('checked')
     });
   }
 });
