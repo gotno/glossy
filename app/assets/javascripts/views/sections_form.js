@@ -4,9 +4,10 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   tagName: 'section',
 
   events: {
+    'click #show_section_title': 'toggleTitle',
     'click a.section-add-text':  'addTextWidget',
     'click a.section-add-image': 'addImageWidget',
-    'click #show_section_title': 'toggleTitle'
+    'click a.destroy-section': 'destroySection'
   },
 
   toggleTitle: function(event) {
@@ -99,6 +100,17 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.listenTo(this.imageWidgets, 'add', function() {
       view.renderWidget('Image', view.imageWidgets.last());
     });
+  },
+
+  destroySection: function(event) {
+    event.preventDefault();
+
+    var view = this;
+    this.model.destroy({
+                 success: function(model) {
+                   view.remove();
+                 }
+               });
   },
 
   collect: function() {

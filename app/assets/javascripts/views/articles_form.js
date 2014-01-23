@@ -4,7 +4,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   events: {
     'submit': 'submit',
     'click a.add-section': 'addSection',
-    'click a.destroy-section': 'destroySection',
     'click #show_article_title': 'toggleTitle',
     'click #show_article_body': 'toggleBody'
   },
@@ -70,23 +69,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.model.get('sections').add(section);
 
     this.sectionOrder++;
-  },
-
-  destroySection: function(event) {
-    event.preventDefault();
-
-    var view = this;
-    this.model.get('sections')
-              .remove($(event.currentTarget).attr('data-id'))
-              .destroy({
-                success: function(model) {
-                  view.sectionViews.forEach(function(sectionView) {
-                    if (sectionView.model.id === model.id) {
-                      sectionView.remove();
-                    }
-                  });
-                }
-              });
   },
 
   renderSection: function() {
