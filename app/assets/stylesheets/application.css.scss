@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require_tree .
+ *= require jquery.ui.all
  */
 
 @import 'bootstrap';
@@ -51,9 +52,9 @@ input[type=text].article-title {
   margin-bottom: 1em;
 }
 
-.input-group.article-body {
-//  height: 200px;
-//  does not work
+#article_body {
+//  margin-bottom: 1em;
+  height: 200px;
 }
 
 textarea.article-body,
@@ -97,4 +98,26 @@ input[type=date].image-widget-date {
 .container {
   border-left: 1px solid black;
   border-right: 1px solid black;
+  border-bottom: 3px solid black;
+}
+
+ul.sections-list {
+  list-style: none;
+//  padding-left: 0;
+}
+
+.widget-panel {
+  margin-bottom: 1em;
+}
+
+.widget-panel-button {
+  background-color: #dfdfdf;
+  border: 1px solid black;
+  text-align: center;
+}
+
+section.helper {
+  width: 200px;
+  height: 50px;
+  background-color: #F00;
 }

@@ -26,6 +26,7 @@ group :production do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'
 gem 'debugger'

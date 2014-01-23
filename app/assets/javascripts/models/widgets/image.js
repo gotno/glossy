@@ -1,4 +1,6 @@
 Glossy.Models.ImageWidget = Backbone.Model.extend({
+  urlRoot: '/api/image_widgets',
+
   toJSON: function() {
     var json = _.clone(this.attributes);
     
