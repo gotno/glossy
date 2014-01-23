@@ -10,11 +10,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     'click a.destroy-section': 'destroySection'
   },
 
-  toggleTitle: function(event) {
-    var $input = this.$('input[type=text]');
-    $input.prop('disabled', (!$input.prop('disabled')));
-  },
-
   initialize: function() {
     this.setupWidgets();
   },
@@ -34,6 +29,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     });
 
     return this;
+  },
+
+  toggleTitle: function(event) {
+    var $input = this.$('input[type=text]');
+    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   addTextWidget: function(event) {
@@ -107,7 +107,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
     var view = this;
     this.model.destroy({
-                 success: function(model) {
+                 success: function() {
                    view.remove();
                  }
                });

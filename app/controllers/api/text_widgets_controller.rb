@@ -1,4 +1,4 @@
-class Api:TextWidgetsController < ApplicationController
+class Api::TextWidgetsController < ApplicationController
   def destroy
     @text_widget = TextWidget.find(params[:id])
     @text_widget.destroy
