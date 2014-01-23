@@ -19,6 +19,5 @@ class Section < ActiveRecord::Base
     @widgets = self.text_widgets + 
                self.image_widgets
                .sort_by { |hsh| hsh[:ord] }
-    @widgets
   end
 end

@@ -6,30 +6,35 @@
       <input type="text"
              id="section_title"
              class="section-title form-control"
-             <% if (section.get('title')) { %>
+             <% if (section.has('title')) { %>
                value="<%= section.escape('title') %>"
              <% } %>
              <% if (!section.get('show_title')) { %>
                disabled
              <% } %>
-             >
+      >
       <span class="input-group-addon">
         <input type="checkbox"
                id="show_section_title"
-               <% if (section.get('show_title')) { %>
+               <% if (section.has('show_title')) { %>
                checked
                <% } %>
-               >
+        >
         <!--<label for="show_title<%= ord %>">show?</label>-->
       </span>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-1 col-md-offset-9">
+  <div class="col-md-1 col-md-offset-8">
     <a href="#" class="section-add-text">add text</a>
   </div>
   <div class="col-md-1">
     <a href="#" class="section-add-image">add image</a>
+  </div>
+  <div class="col-md-2">
+    <a href="#"
+       class="destroy-section"
+       data-id="<%= section.id %>">delete section</a>
   </div>
 </div>

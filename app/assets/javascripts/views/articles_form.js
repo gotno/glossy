@@ -4,18 +4,9 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   events: {
     'submit': 'submit',
     'click a.add-section': 'addSection',
+    'click a.destroy-section': 'destroySection',
     'click #show_article_title': 'toggleTitle',
     'click #show_article_body': 'toggleBody'
-  },
-
-  toggleTitle: function(event) {
-    var $input = this.$('input[type=text]#article_title');
-    $input.prop('disabled', (!$input.prop('disabled')));
-  },
-
-  toggleBody: function(event) {
-    var $input = this.$('textarea#article_body');
-    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   initialize: function() {
@@ -54,6 +45,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       view.sectionViews.push(sectionView);
     });
 
+
     return this;
   },
 
@@ -80,6 +72,23 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.sectionOrder++;
   },
 
+  destroySection: function(event) {
+    event.preventDefault();
+
+    var view = this;
+    this.model.get('sections')
+              .remove($(event.currentTarget).attr('data-id'))
+              .destroy({
+                success: function(model) {
+                  view.sectionViews.forEach(function(sectionView) {
+                    if (sectionView.model.id === model.id) {
+                      sectionView.remove();
+                    }
+                  });
+                }
+              });
+  },
+
   renderSection: function() {
     var $submit = this.$el.find(':submit');
     var $parent = $($submit.parents()[1]);
@@ -91,6 +100,16 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.sectionViews.push(sectionView);
 
     $parent.before(sectionView.render().$el);
+  },
+
+  toggleTitle: function(event) {
+    var $input = this.$('input[type=text]#article_title');
+    $input.prop('disabled', (!$input.prop('disabled')));
+  },
+
+  toggleBody: function(event) {
+    var $input = this.$('textarea#article_body');
+    $input.prop('disabled', (!$input.prop('disabled')));
   },
 
   collect: function() {
