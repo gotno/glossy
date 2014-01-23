@@ -3,10 +3,10 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   events: {
     'submit': 'submit',
-    'click a.add-section': 'addSection',
     'click #show_article_title': 'toggleTitle',
     'click #show_article_body': 'toggleBody',
-    'sortstop': 'reorderSections'
+    'sortstop': 'reorderSections',
+    'dragstop': 'addSection'
   },
 
   initialize: function() {
@@ -21,10 +21,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$el.empty();
 
     this.stopListening(this.model.get('sections'));
-    this.listenTo(this.model.get('sections'), 'add', this.renderSection);
-    this.listenTo(this.model.get('sections'), 'add', this.reorderSections);
+    this.listenTo(this.model.get('sections'), 'add', this.renderSections);
 
-    this.sectionOrder = 0;
     this.sectionViews = [];
 
     var view = this;
@@ -34,20 +32,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }));
 
     this.$sectionsList = this.$('ul.sections-list');
+    this.renderSections();
     this.setupUI();
-
-    this.model.get('sections').each(function(section) {
-      var sectionView = new Glossy.Views.SectionsForm({
-        model: section
-      });
-
-      var $listEl = $('<li>');
-      $listEl.html(sectionView.render().$el);
-      view.$sectionsList.append($listEl);
-
-      view.sectionOrder++;
-      view.sectionViews.push(sectionView);
-    });
 
     return this;
   },
@@ -72,7 +58,10 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       revert: 'invalid',
       snap: true,
       snapMode: 'outer',
-      zIndex: 100
+      zIndex: 100,
+      scroll: true,
+      scrollSensitivity: 100,
+      scrollSpeed: 50
     });
   },
 
@@ -88,18 +77,17 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     });
   },
 
-  addSection: function(event) {
-    if (event) {
-      event.preventDefault();
-    }
+  addSection: function(event, ui) {
+    var $draggedEl = $($('.ui-draggable')[1]);
 
     var section = new Glossy.Models.Section({
-      ord: this.sectionOrder
+      ord: (Math.floor($draggedEl.position()['top']) - 1),
+      show_title: true
     });
 
-    this.model.get('sections').add(section);
+    $draggedEl.remove();
 
-    this.sectionOrder++;
+    this.model.get('sections').add(section);
   },
 
   createDummySection: function() {
@@ -114,21 +102,29 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     console.log('reordering');
     this.sectionViews.forEach(function(view) {
       view.model.set({
-        ord: Math.floor(view.$el.offset()['top'])
+        ord: Math.floor(view.$el.position()['top'])
       });
     });
   },
 
-  renderSection: function() {
-    var sectionView = new Glossy.Views.SectionsForm({
-      model: this.model.get('sections').last()
+  renderSections: function() {
+    this.collect(); // make sure we don't obliterate data on re-render
+    this.$sectionsList.empty();
+
+    var view = this;
+    this.model.get('sections').each(function(section) {
+      var sectionView = new Glossy.Views.SectionsForm({
+        model: section
+      });
+
+      var $listEl = $('<li>');
+      $listEl.html(sectionView.render().$el);
+      view.$sectionsList.append($listEl);
+
+      view.sectionViews.push(sectionView);
     });
 
-    this.sectionViews.push(sectionView);
-
-    var $listEl = $('<li>');
-    $listEl.html(sectionView.render().$el);
-    this.$sectionsList.append($listEl);
+    this.reorderSections();
   },
 
   toggleTitle: function(event) {
