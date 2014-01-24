@@ -7,10 +7,14 @@ gem 'rails', '3.2.15'
 gem 'pg'
 gem 'faker'
 gem 'backbone-on-rails'
+gem 'jquery-rails'
 gem 'jbuilder'
 gem 'figaro'
 gem 'paperclip'
 gem 'aws-sdk'
+
+gem 'kaminari'
+gem 'friendly_id'
 
 group :development do
   gem 'better_errors'
@@ -26,7 +30,6 @@ group :production do
   gem 'rails_12factor'
 end
 
-gem 'jquery-rails'
 #gem 'jquery-ui-rails'
 
 gem 'bcrypt-ruby', '~> 3.0.0', require: 'bcrypt'

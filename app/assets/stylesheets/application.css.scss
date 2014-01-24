@@ -22,6 +22,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $sans-bold;
 }
 
+ul {
+  list-style: none;
+}
+
+.container {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 3px solid black;
+}
+
 header {
   background-color: #333;
   color: #cecece;
@@ -78,6 +88,18 @@ section {
   }
 }
 
+// pagination
+.pagination {
+  font-size: 1.2em;
+  font-family: $sans;
+}
+
+
+ul {
+  list-style: none;
+}
+
+// edit/new
 input[type=text].article-title {
   width: 100%;
   text-align: center;
@@ -92,7 +114,6 @@ input[type=text].article-title {
 }
 
 #article_body {
-//  margin-bottom: 1em;
   height: 200px;
 }
 
@@ -132,16 +153,6 @@ input[type=date].image-widget-date {
   text-align: center;
   font-family: $sans;
   font-size: 1.2em;
-}
-
-.container {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 3px solid black;
-}
-
-ul {
-  list-style: none;
 }
 
 .widget-panel {

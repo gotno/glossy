@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   attr_accessible :email, :password, :password_confirmation, :username
   attr_reader :password
 
