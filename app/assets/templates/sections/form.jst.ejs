@@ -1,10 +1,10 @@
-<% var ord = section.get('ord') %>
 <div class="row">
   <div class="col-md-12">
     <div class="input-group input-group-lg">
       <input type="text"
              id="section_title"
              class="section-title form-control"
+             placeholder="section title"
              <% if (section.has('title')) { %>
                value="<%= section.escape('title') %>"
              <% } %>
@@ -19,11 +19,15 @@
                checked
                <% } %>
         >
-        <!--<label for="show_title<%= ord %>">show?</label>-->
       </span>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <ul class="col-md-12 widgets-list"></ul>
+</div>
+
 <div class="row">
   <div class="col-md-1 col-md-offset-8">
     <a href="#" class="section-add-text">add text</a>

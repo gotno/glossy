@@ -29,6 +29,9 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
   destroyImageWidget: function(event) {
     event.preventDefault();
 
+    this.$('a.image-widget-remove').prop('disabled', true);
+    this.$('a.image-widget-remove').text('deleting image...');
+
     var view = this;
     this.model.destroy({
       success: function() {

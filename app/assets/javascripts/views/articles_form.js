@@ -25,8 +25,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.sectionViews = [];
 
-    var view = this;
-
     this.$el.html(this.template({
       article: this.model
     }));
@@ -42,26 +40,20 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$sectionsList.sortable({
       scroll: true,
       scrollSensitivity: 100,
-      scrollSpeed: 50
+      scrollSpeed: 50,
+      axis: 'y'
     });
 
-    var view = this;
     this.$('div.create-section').draggable({
 
-      helper: function() {
-        return view.createDummySection();
-      },
-
+      helper: 'clone',
       connectToSortable: this.$sectionsList,
-      containment: $('#content'),
+      //containment: $('div.create-section'),
+      appendTo: $('div.create-section'),
       axis: 'y',
       revert: 'invalid',
-      snap: true,
-      snapMode: 'outer',
-      zIndex: 100,
-      scroll: true,
-      scrollSensitivity: 100,
-      scrollSpeed: 50
+      snap: false,
+      zIndex: 100
     });
   },
 
@@ -99,7 +91,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   reorderSections: function(event, ui) {
-    console.log('reordering');
     this.sectionViews.forEach(function(view) {
       view.model.set({
         ord: Math.floor(view.$el.position()['top'])

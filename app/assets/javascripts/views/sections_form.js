@@ -5,9 +5,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
   events: {
     'click #show_section_title': 'toggleTitle',
+    //*
     'click a.section-add-text':  'addTextWidget',
     'click a.section-add-image': 'addImageWidget',
-    'click a.destroy-section': 'destroySection'
+    'click a.destroy-section':   'destroySection'
+    // */
   },
 
   initialize: function() {
@@ -22,6 +24,8 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.$el.html(this.template({
       section: this.model
     }));
+
+    this.$widgetsList = this.$('.widgets-list');
 
     var view = this;
     this.getSortedWidgets().forEach(function(widget) {
@@ -64,7 +68,10 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.widgetViews.push(newWidgetView);
     this.widgetOrder++;
 
-    this.$el.append(newWidgetView.render().$el);
+    var $listEl = $('<li>');
+    $listEl.html(newWidgetView.render().$el);
+    this.$widgetsList.append($listEl);
+//    this.$el.append(newWidgetView.render().$el);
   },
 
   getSortedWidgets: function() {
@@ -107,10 +114,10 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
     var view = this;
     this.model.destroy({
-                 success: function() {
-                   view.remove();
-                 }
-               });
+      success: function() {
+        view.remove();
+      }
+    });
   },
 
   collect: function() {

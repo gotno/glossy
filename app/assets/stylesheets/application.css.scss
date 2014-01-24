@@ -1,7 +1,7 @@
 /*
  *= require_self
+ *= require jquery-ui
  *= require_tree .
- *= require jquery.ui.all
  */
 
 @import 'bootstrap';
@@ -101,7 +101,7 @@ input[type=date].image-widget-date {
   border-bottom: 3px solid black;
 }
 
-ul.sections-list {
+ul {
   list-style: none;
 }
 
@@ -115,7 +115,14 @@ ul.sections-list {
   text-align: center;
 }
 
-section.helper {
-  height: 100px;
-  background-color: #F00;
+div.create-section {
+  &:hover {
+    background-color: #1f0d0d;
+  }
+  .panel-body {
+    font-family: $sans-bold;
+    text-align: center;
+    font-size: 2em;
+    color: #3a3a3a;
+  }
 }
