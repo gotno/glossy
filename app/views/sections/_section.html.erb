@@ -1,0 +1,13 @@
+<section>
+  <hr>
+  <% if section.show_title %>
+    <div class="row">
+      <div class="col-md-12">
+        <h2><%= section.title %></h2>
+      </div>
+    </div>
+  <% end %>
+  <% section.widgets.each do |widget| %>
+    <%= render widget, widget: widget %>
+  <% end %>
+</section>

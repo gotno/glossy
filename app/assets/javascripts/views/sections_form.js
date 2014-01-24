@@ -71,7 +71,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     var $listEl = $('<li>');
     $listEl.html(newWidgetView.render().$el);
     this.$widgetsList.append($listEl);
-//    this.$el.append(newWidgetView.render().$el);
   },
 
   getSortedWidgets: function() {

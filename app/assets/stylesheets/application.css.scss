@@ -43,6 +43,41 @@ header {
   }
 }
 
+// article
+article {
+  h1 {
+    margin-top: 0;
+    font-size: 2.4em;
+    text-align: center;
+  }
+  p {
+    font-family: $serif;
+    text-align: justify;
+    font-size: 1.6em;
+  }
+}
+
+// section
+section {
+  h2 {
+    font-size: 1.8em;
+    text-align: center;
+  }
+}
+
+// widgets
+/// text widget
+.text-widget {
+  h3 {
+    font-size: 1.4em;
+    text-align: center;
+  }
+  p {
+    font-size: 1.4em;
+    text-align: center;
+  }
+}
+
 input[type=text].article-title {
   width: 100%;
   text-align: center;

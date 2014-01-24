@@ -5,6 +5,7 @@ ruby '2.0.0'
 gem 'rails', '3.2.15'
 
 gem 'pg'
+gem 'faker'
 gem 'backbone-on-rails'
 gem 'jbuilder'
 gem 'figaro'

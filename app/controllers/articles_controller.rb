@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :require_logged_in_user
+  before_filter :require_logged_in_user, except: [:show, :index]
 
   def new
     @article = Article.new
