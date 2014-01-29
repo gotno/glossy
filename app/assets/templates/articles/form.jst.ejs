@@ -5,6 +5,7 @@
         <input type="text"
                id="article_title"
                class="article-title form-control"
+               placeholder="title"
                <% if (article.has('title')) { %>
                  value="<%= article.escape('title') %>"
                <% } %>
@@ -30,6 +31,7 @@
       <div class="input-group input-group-lg">
         <textarea class="article-body form-control"
                   id="article_body"
+                  placeholder="body"
                   <% if (!article.get('show_body')) { %>
                     disabled
                   <% } %>
@@ -46,7 +48,7 @@
       </div>
     </div>
   </div>
-
+<!--
   <div class="row widget-panel">
     <a href="#">
       <div class="col-md-2
@@ -61,17 +63,22 @@
       </div>
     </a>
   </div>
+-->
 
-  <a href="#">
+  <div class="row">
     <div class="col-md-12 panel panel-default create-section">
       <div class="panel-body">
         new section
       </div>
     </div>
-  </a>
+  </div>
+
 
   <div class="row">
-    <ul class="col-md-12 sections-list"></ul>
+    <ul class="col-md-12 sections-list">
+      <a href="#">
+      </a>
+    <ul>
   </div>
   
   <div class="row">

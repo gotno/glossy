@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <div class="input-group input-group-lg text-widget-title">
       <input type="text"
-             placeholder="title"
+             placeholder="heading"
              class="text-widget-title form-control"
              id="tw_title"
              <% if (widget.get('title')) { %>
@@ -31,6 +31,7 @@
   <div class="col-md-12">
     <div class="input-group input-group-lg">
       <textarea class="text-widget-body form-control" 
+                placeholder="body"
                 id="tw_body"
                 <% if (!widget.get('show_body')) { %>
                   disabled

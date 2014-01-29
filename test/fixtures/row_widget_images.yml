@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  row_id: 1
+  widget_text_id: 1
+
+two:
+  row_id: 1
+  widget_text_id: 1

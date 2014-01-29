@@ -1,6 +1,7 @@
 /*
  *= require_self
  *= require jquery-ui
+ *= require font-awesome
  *= require_tree .
  */
 
@@ -32,6 +33,84 @@ ul {
   border-bottom: 3px solid black;
 }
 
+// header stolen from old glossy
+$bone: #F0EAD1;
+$darkgray: #31302F;
+$lightgray: #52504E;
+$lightred: #6F0909;
+$greeny: #C0D8C0;
+
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+header {
+//  margin: 1em 0 0 0;
+  height: 100px;
+  background-color: $darkgray;
+  a {
+    color: $bone;
+    &:hover {
+      text-decoration: none;
+      color: $darkgray;
+    }
+    .logo {
+      font-size: 5em;
+      float: left;
+      height: 100%;
+//      padding: .25em;
+      background-color: $darkgray;
+      font-family: $sans-bold;
+      //position: relative;
+      //top: -6px;
+      //left: 6px;
+      
+      @include transition(all, 0.2s, ease-out);
+
+      &:hover {
+        background-color: $lightgray;
+      }
+    }
+    li { 
+      float: right;
+      font-size: 2em;
+      height: 100%;
+      padding: 1em .35em;
+      text-align: center;
+      background-color: $darkgray;
+
+      @include transition(all, 0.2s, ease-out);
+
+      &:hover {
+        background-color: $lightgray;
+      }
+    }
+    li.warning {
+      &:hover {
+        color: $bone;
+        background-color: $lightred;
+      }
+    }
+    li.good {
+      &:hover {
+        color: $bone;
+        background-color: $greeny;
+      }
+    }
+  }
+  nav {
+    float: right;
+    height: 100%;
+    ul {
+      height: 100%;
+    }
+  }
+}
+/*
 header {
   background-color: #333;
   color: #cecece;
@@ -52,6 +131,7 @@ header {
     }
   }
 }
+// */
 
 // article
 article {
@@ -90,13 +170,8 @@ section {
 
 // pagination
 .pagination {
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: $sans;
-}
-
-
-ul {
-  list-style: none;
 }
 
 // edit/new
@@ -166,6 +241,7 @@ input[type=date].image-widget-date {
 }
 
 div.create-section {
+  margin-top: 1em;
   &:hover {
     background-color: #1f0d0d;
   }
@@ -175,4 +251,16 @@ div.create-section {
     font-size: 2em;
     color: #3a3a3a;
   }
+}
+
+div.section-edit {
+  margin-bottom: 1em;
+}
+
+section.section-edit {
+  margin-top: 1em;
+  border-top: 1px dotted gray;
+  border-bottom: 1px dotted gray;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }

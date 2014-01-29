@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 section-edit">
     <div class="input-group input-group-lg">
       <input type="text"
              id="section_title"
@@ -25,26 +25,17 @@
 </div>
 
 <div class="row">
-  <div class="btn-group">
-    <button type="button" class="btn btn-default">text</button>
-    <button type="button" class="btn btn-default">image</button>
-  </div>
-</div>
-
-<div class="row">
   <ul class="col-md-12 widgets-list"></ul>
 </div>
 
 <div class="row">
-  <div class="col-md-1 col-md-offset-8">
-    <a href="#" class="section-add-text">add text</a>
-  </div>
-  <div class="col-md-1">
-    <a href="#" class="section-add-image">add image</a>
-  </div>
-  <div class="col-md-2">
-    <a href="#"
-       class="destroy-section"
-       data-id="<%= section.id %>">delete section</a>
+  <div class="col-md-3 col-md-offset-9 btn-group">
+    <button type="button"
+            class="btn btn-default section-add-text">add text</button>
+    <button type="button"
+            class="btn btn-default section-add-image">add image</button>
+    <button type="button"
+            data-id="<%= section.id %>"
+            class="btn btn-danger destroy-section">remove section</button>
   </div>
 </div>

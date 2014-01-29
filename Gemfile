@@ -16,6 +16,8 @@ gem 'aws-sdk'
 gem 'kaminari'
 gem 'friendly_id'
 
+gem 'font-awesome-sass'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
