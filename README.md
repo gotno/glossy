@@ -9,3 +9,36 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 + Complex, drag-and-drop editable layout with nested views (in progress).
 + Nested form creates multiple model types in a single transaction.
 + Bootstrapped data and customized JSON serialization to reduce transaction overhead.
+
+#### TODO
++ Business
+  + add row logic
+    + rework everything to incorporate rows
+      + migrations
+      + old migrations
+      + models (rails and backbone)
+      + controllers
+      + collections
+      + views
+      + templates
+  + change id to name[whatev] on forms
+  + rename widgets (widget_text v. text_widget)
+  + drap-and-dropability
+    + sections collapse on drag
+    + drag row to row, section to section
+  + add wysihtml5
+  + paperclip
+    + preview during upload
+    + progress for uploads
+    + image saving without full reload
+  + sql cleanup and optimization
+
++ Design
+  + front/landing
+  + sign in
+    + demo button
+  + dummy content
+    + demo sections
+  + clear up edit layout
+  + color scheme
+  + show/hide labels
