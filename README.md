@@ -14,8 +14,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 + ##### Logic
   + add row logic
     + rework everything to incorporate rows
-      + migrations
-      + old migrations
+      + schema
       + models (rails and backbone)
       + controllers
       + collections
@@ -32,6 +31,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
     + progress for uploads
     + image saving without full reload
   + sql cleanup and optimization
+  + switch auth from hand-rolled to devise
 
 + ##### Design
   + front/landing page
