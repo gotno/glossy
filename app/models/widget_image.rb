@@ -1,4 +1,4 @@
-class ImageWidget < ActiveRecord::Base
+class WidgetImage < ActiveRecord::Base
   attr_accessible :date, :show_date,
                   :title, :show_title,
                   :img, :ord, :widget_type

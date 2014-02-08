@@ -1,6 +1,6 @@
-class Api::ImageWidgetsController < ApplicationController
+class Api::WidgetImagesController < ApplicationController
   def create
-    @widget = ImageWidget.new(params[:image_widget]);
+    @widget = WidgetImage.new(params[:widget_image]);
 
     if @widget.save
       render json: @widget
@@ -10,9 +10,9 @@ class Api::ImageWidgetsController < ApplicationController
   end
 
   def update
-    @widget = ImageWidget.find(params[:id])
+    @widget = WidgetImage.find(params[:id])
 
-    if @widget.update_attributes(params[:image_widget])
+    if @widget.update_attributes(params[:widget_image])
       render json: @widget
     else
       render json: @widget.errors.full_messages, status: 422
@@ -20,7 +20,7 @@ class Api::ImageWidgetsController < ApplicationController
   end
 
   def destroy
-    @widget = ImageWidget.find(params[:id])
+    @widget = WidgetImage.find(params[:id])
     @widget.destroy
     render json: @widget
   end
