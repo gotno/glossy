@@ -1,0 +1,10 @@
+<div class="row widget-text">
+  <div class="col-md-12">
+    <% unless widget.hide_title %>
+      <h3><%= widget.title.html_safe %></h3>
+    <% end %>
+    <% unless widget.hide_body %>
+      <p><%= widget.body.html_safe %></p>
+    <% end %>
+  </div>
+</div>

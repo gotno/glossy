@@ -1,13 +1,16 @@
 <section>
   <hr>
-  <% if section.show_title %>
+  <% unless section.hide_title %>
     <div class="row">
       <div class="col-md-12">
-        <h2><%= section.title %></h2>
+        <h2><%= section.title.html_safe %></h2>
       </div>
     </div>
   <% end %>
-  <% section.widgets.each do |widget| %>
-    <%= render widget, widget: widget %>
-  <% end %>
+
+  <%= render section.rows %>
+
+  <%# section.widgets.each do |widget| %>
+    <%=# render widget, widget: widget %>
+  <%# end %>
 </section>
