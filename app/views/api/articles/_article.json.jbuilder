@@ -1,14 +1,14 @@
-json.(article, :id, :title, :show_title, :body, :show_body)
+json.(article, :id, :title, :hide_title, :body, :hide_body)
 json.sections(article.sections) do |section|
-  json.(section, :id, :title, :show_title, :ord)
+  json.(section, :id, :title, :hide_title, :ord)
 
   json.rows(section.rows) do |row|
     wt = row.widget_texts
     if (wt.count > 0)
       json.widget_texts(wt) do |widget|
         json.(widget, :id, :ord, :widget_type,
-                      :title, :show_title,
-                      :body,  :show_body,)
+                      :title, :hide_title,
+                      :body,  :hide_body,)
       end
     end
 
@@ -16,8 +16,8 @@ json.sections(article.sections) do |section|
     if (wi.count > 0)
       json.widget_images(wi) do |widget|
         json.(widget, :id, :ord, :widget_type, 
-                      :title, :show_title,
-                      :date,  :show_date)
+                      :title, :hide_title,
+                      :date,  :hide_date)
         json.image_url_original widget.img.url 
         json.image_url_big      widget.img.url(:big)
         json.image_url_med      widget.img.url(:med)
