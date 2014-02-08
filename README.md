@@ -14,14 +14,11 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 + ##### Logic
   + add row logic
     + rework everything to incorporate rows
-      + schema
-      + models (rails and backbone)
-      + controllers
+      + models
       + collections
       + views
       + templates
   + change id to name[whatev] on forms
-  + rename widgets (widget_text v. text_widget)
   + drag-and-dropability
     + sections collapse on drag
     + drag row to row, section to section
