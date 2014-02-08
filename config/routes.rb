@@ -8,8 +8,9 @@ Glossy::Application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :articles, except: [:new, :edit]
     resources :sections, only: [:create, :update, :destroy]
-    resources :text_widgets, only: [:create, :update, :destroy]
-    resources :image_widgets, only: [:create, :update, :destroy]
+    resources :rows, only: [:create, :update, :destroy]
+    resources :widget_texts, only: [:create, :update, :destroy]
+    resources :widget_images, only: [:create, :update, :destroy]
   end
 
   root to: 'root#root'
