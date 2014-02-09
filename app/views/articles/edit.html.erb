@@ -1,8 +1,13 @@
 <div id="content"></div>
+
+<script type="application/json" id="article_json">
+  { "article": <%== @article_json %> }
+</script>
+
 <script>
   $(function() {
-    Glossy.initialize({
-      article_id: <%= params[:id] %>
-    });
+    var article_json = JSON.parse($('#article_json').html());
+
+    Glossy.initialize(article_json);
   });
 </script>

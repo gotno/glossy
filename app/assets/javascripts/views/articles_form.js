@@ -48,7 +48,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
       helper: 'clone',
       connectToSortable: this.$sectionsList,
-      //containment: $('div.create-section'),
       appendTo: $('div.create-section'),
       axis: 'y',
       revert: 'invalid',

@@ -1,13 +1,16 @@
 Glossy.Models.Article = Backbone.Model.extend({
   urlRoot: '/api/articles',
 
-  parse: function (data) {
-    if (data.sections) {
-      var sections = data.sections;
-      data.sections = new Glossy.Collections.Sections(sections);
+  initialize: function() {
+    this.parseSections();
+  },
 
-      data.sections.each(function(section) {
-        if (section.get('text_widgets')) {
+  parseSections: function () {
+    if (this.has('sections')) {
+      this.set('sections', new Glossy.Collections.Sections(this.get('sections')));
+
+      this.get('sections').each(function(section) {
+        if (section.has('text_widgets')) {
           var textWidgets = section.get('text_widgets');
 
           section.set('textWidgets', 
@@ -16,7 +19,7 @@ Glossy.Models.Article = Backbone.Model.extend({
           section.unset('text_widgets');
         }
 
-        if (section.get('image_widgets')) {
+        if (section.has('image_widgets')) {
           var imageWidgets = section.get('image_widgets');
 
           section.set('imageWidgets',
@@ -24,9 +27,9 @@ Glossy.Models.Article = Backbone.Model.extend({
           section.unset('image_widgets');
         }
       });
+    } else {
+      this.set('sections', new Glossy.Collections.Sections());
     }
-
-    return data;
   },
 
   toJSON: function() {

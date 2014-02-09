@@ -18,7 +18,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article_id = params[:id]
+    @article = Article.find(params[:id])
+    @article_json = render_to_string template: '/api/articles/article',
+                                     layout: false,
+                                     locals: { article: @article } 
   end
 
   def show
