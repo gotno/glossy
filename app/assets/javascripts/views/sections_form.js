@@ -14,19 +14,28 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     'click button.destroy-section':   'destroySection'
     // */
   },
-
+  
+  /*
   initialize: function() {
     this.setupWidgets();
   },
+  */
 
   render: function() {
-    this.widgetOrder = 0;
-    this.widgetViews = [];
-
     this.$el.empty();
     this.$el.html(this.template({
       section: this.model
     }));
+    
+    this.rowViews = [];
+    this.$rowList = this.$('ul.rows-list')
+    this.renderRows();
+
+    return this;
+
+    /*
+    this.widgetOrder = 0;
+    this.widgetViews = [];
 
     this.$widgetsList = this.$('.widgets-list');
 
@@ -34,8 +43,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.getSortedWidgets().forEach(function(widget) {
       view.renderWidget(widget.get('widget_type'), widget);
     });
-
-    return this;
+    */
   },
 
   toggleTitle: function(event) {
@@ -43,6 +51,59 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     $input.prop('disabled', (!$input.prop('disabled')));
   },
 
+  destroySection: function(event) {
+    event.preventDefault();
+
+    var view = this;
+    this.model.destroy({
+      success: function() {
+        view.remove();
+      }
+    });
+  },
+
+  renderRows: function() {
+    this.collect();
+    this.$rowsList.empty();
+
+    var view = this;
+    this.model.get('rows').each(function(row) {
+      var rowView = new Glossy.Views.Row({
+        model: row
+      });
+
+      var $listEl = $('<li>');
+      $listEl.html(rowView.render().$el);
+      view.$rowsList.append($listEl);
+      view.rowViews.push(rowView);
+    });
+  },
+
+  reorderRows: function() {
+    this.rowViews.forEach(function(view) {
+      view.model.set({
+        ord: Math.floor(view.$el.position()['top'])
+      });
+    });
+  },
+
+  collect: function() {
+    this.model.set({
+      title:      this.$('#section_title').val(),
+      hide_title: this.$('#show_section_title').prop('checked')
+    });
+
+    this.rowViews.forEach(function(view) {
+      view.collect();
+    });
+    /*
+    this.widgetViews.forEach(function(widgetView) {
+      widgetView.collect();
+    });
+    */
+  }
+
+  /*
   addTextWidget: function(event) {
     event.preventDefault();
 
@@ -110,26 +171,5 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       view.renderWidget('Image', view.imageWidgets.last());
     });
   },
-
-  destroySection: function(event) {
-    event.preventDefault();
-
-    var view = this;
-    this.model.destroy({
-      success: function() {
-        view.remove();
-      }
-    });
-  },
-
-  collect: function() {
-    this.model.set({
-      title:      this.$('#section_title').val(),
-      show_title: this.$('#show_section_title').prop('checked')
-    });
-
-    this.widgetViews.forEach(function(widgetView) {
-      widgetView.collect();
-    });
-  }
+  */
 });

@@ -1,4 +1,4 @@
-Glossy.Views.ImageWidgetForm = Backbone.View.extend({
+Glossy.Views.WidgetImageForm = Backbone.View.extend({
   template: JST['widgets/image_form'],
 
   events: {
@@ -26,7 +26,7 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
     $input.prop('disabled', (!$input.prop('disabled')));
   },
 
-  destroyImageWidget: function(event) {
+  destroyWidgetImage: function(event) {
     event.preventDefault();
 
     this.$('a.image-widget-remove').prop('disabled', true);
@@ -66,9 +66,9 @@ Glossy.Views.ImageWidgetForm = Backbone.View.extend({
   collect: function() {
     this.model.set({
       title: this.$('#iw_title').val(),
-      show_title: this.$('#iw_show_title').prop('checked'),
+      hide_title: this.$('#iw_show_title').prop('checked'),
       date:  this.$('#iw_date').val(),
-      show_date: this.$('#iw_show_date').prop('checked')
+      hide_date: this.$('#iw_show_date').prop('checked')
     });
   }
 });

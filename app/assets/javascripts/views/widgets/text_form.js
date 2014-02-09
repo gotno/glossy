@@ -1,4 +1,4 @@
-Glossy.Views.TextWidgetForm = Backbone.View.extend({
+Glossy.Views.WidgetTextForm = Backbone.View.extend({
   template: JST['widgets/text_form'],
 
   events: {
@@ -25,7 +25,7 @@ Glossy.Views.TextWidgetForm = Backbone.View.extend({
     $input.prop('disabled', (!$input.prop('disabled')));
   },
 
-  destroyTextWidget: function(event) {
+  destroyWidgetText: function(event) {
     event.preventDefault();
 
     var view = this;
@@ -37,12 +37,11 @@ Glossy.Views.TextWidgetForm = Backbone.View.extend({
   },
 
   collect: function() {
-    var ord = this.model.get('ord');
     this.model.set({ 
       title:      this.$('#tw_title').val(),
-      show_title: this.$('#tw_show_title').prop('checked'),
+      hide_title: this.$('#tw_show_title').prop('checked'),
       body:       this.$('#tw_body').val(),
-      show_body:  this.$('#tw_show_title').prop('checked')
+      hide_body:  this.$('#tw_show_title').prop('checked')
     });
   }
 });

@@ -131,8 +131,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.model.set({
       title:      this.$('#article_title').val(),
       body:       this.$('#article_body').val(),
-      show_title: this.$('#show_article_title').prop('checked'),
-      show_body:  this.$('#show_article_body').prop('checked')
+      hide_title: this.$('#show_article_title').prop('checked'),
+      hide_body:  this.$('#show_article_body').prop('checked')
     });
 
     this.sectionViews.forEach(function(view) {
