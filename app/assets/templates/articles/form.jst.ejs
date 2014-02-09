@@ -9,18 +9,18 @@
                <% if (article.has('title')) { %>
                  value="<%= article.escape('title') %>"
                <% } %>
-               <% if (!article.get('show_title')) { %>
+               <% if (article.get('hide_title')) { %>
                  disabled
                <% } %>
                >
         <span class="input-group-addon">
           <input type="checkbox"
-                 id="show_article_title"
-                 <% if (article.get('show_title')) { %>
+                 id="hide_article_title"
+                 <% if (article.get('hide_title')) { %>
                  checked
                  <% } %>
                  >
-                 <!--<label for="show_title">show?</label>-->
+                 <!--<label for="hide_title">hide?</label>-->
         </span>
       </div>
     </div>
@@ -32,18 +32,18 @@
         <textarea class="article-body form-control"
                   id="article_body"
                   placeholder="body"
-                  <% if (!article.get('show_body')) { %>
+                  <% if (article.get('hide_body')) { %>
                     disabled
                   <% } %>
                   ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
         <span class="input-group-addon">
           <input type="checkbox"
-                 id="show_article_body"
-                 <% if (article.get('show_body')) { %>
+                 id="hide_article_body"
+                 <% if (article.get('hide_body')) { %>
                  checked
                  <% } %>
                  >
-                 <!--<label for="show_body">show?</label>-->
+                 <!--<label for="hide_body">hide?</label>-->
         </span>
       </div>
     </div>
