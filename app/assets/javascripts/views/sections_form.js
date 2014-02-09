@@ -28,7 +28,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     }));
     
     this.rowViews = [];
-    this.$rowList = this.$('ul.rows-list')
+    this.$rowsList = this.$('ul.rows-list')
     this.renderRows();
 
     return this;
