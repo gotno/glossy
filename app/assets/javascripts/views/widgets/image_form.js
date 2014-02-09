@@ -3,8 +3,8 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
 
   events: {
     'change input[type=file]': 'encodeFile',
-    'click #iw_show_title': 'toggleTitle',
-    'click #iw_show_date': 'toggleBody',
+    'click #iw_hide_title': 'toggleTitle',
+    'click #iw_hide_date': 'toggleBody',
     'click a.image-widget-remove': 'destroyImageWidget'
   },
 

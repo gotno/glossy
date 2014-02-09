@@ -3,8 +3,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   events: {
     'submit': 'submit',
-    'click #show_article_title': 'toggleTitle',
-    'click #show_article_body': 'toggleBody',
+    'click #hide_article_title': 'toggleTitle',
+    'click #hide_article_body': 'toggleBody',
     'sortstop': 'reorderSections',
     'dragstop': 'addSection'
   },

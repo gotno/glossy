@@ -7,7 +7,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   events: {
-    'click #show_section_title': 'toggleTitle',
+    'click #hide_section_title': 'toggleTitle',
     //* these should go away for d+d
     'click button.section-add-text':  'addTextWidget',
     'click button.section-add-image': 'addImageWidget',
