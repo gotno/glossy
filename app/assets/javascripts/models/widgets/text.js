@@ -1,3 +1,3 @@
-Glossy.Models.TextWidget = Backbone.Model.extend({
-  urlRoot: '/api/text_widgets'
+Glossy.Models.WidgetText = Backbone.Model.extend({
+  urlRoot: '/api/widget_texts'
 });

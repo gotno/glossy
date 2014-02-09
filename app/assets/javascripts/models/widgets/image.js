@@ -1,5 +1,5 @@
-Glossy.Models.ImageWidget = Backbone.Model.extend({
-  urlRoot: '/api/image_widgets',
+Glossy.Models.WidgetImage = Backbone.Model.extend({
+  urlRoot: '/api/widget_images',
 
   toJSON: function() {
     var json = _.clone(this.attributes);

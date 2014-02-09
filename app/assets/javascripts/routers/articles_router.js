@@ -1,7 +1,6 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
     '': 'form',
-    'edit': 'edit'
   },
 
   form: function() {
@@ -9,13 +8,6 @@ Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
       model: Glossy.article
     });
     this._swapViews(articleView);
-  },
-
-  edit: function() {
-    var editArticleView = Glossy.articleView = new Glossy.Views.ArticlesForm({
-      model: Glossy.article
-    });
-    this._swapViews(editArticleView);
   },
 
   _swapViews: function(view) {

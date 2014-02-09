@@ -7,24 +7,32 @@ Glossy.Models.Article = Backbone.Model.extend({
 
   parseSections: function () {
     if (this.has('sections')) {
-      this.set('sections', new Glossy.Collections.Sections(this.get('sections')));
+      this.set('sections',
+               new Glossy.Collections.Sections(this.get('sections')));
 
       this.get('sections').each(function(section) {
-        if (section.has('text_widgets')) {
-          var textWidgets = section.get('text_widgets');
+        if (section.has('rows')) {
+          section.set('rows',
+                   new Glossy.Collections.Rows(section.get('rows')));
 
-          section.set('textWidgets', 
-                      new Glossy.Collections.TextWidgets(textWidgets));
+          section.get('rows').each(function(row) {
+            if (row.has('text_widgets')) {
+              var widgetTexts = row.get('widget_texts');
 
-          section.unset('text_widgets');
-        }
+              row.set('widgetTexts', 
+                          new Glossy.Collections.WidgetTexts(widgetTexts));
 
-        if (section.has('image_widgets')) {
-          var imageWidgets = section.get('image_widgets');
+              row.unset('widget_texts');
+            }
 
-          section.set('imageWidgets',
-                      new Glossy.Collections.ImageWidgets(imageWidgets));
-          section.unset('image_widgets');
+            if (row.has('widget_images')) {
+              var widgetImages = row.get('widget_images');
+
+              row.set('widgetImages',
+                          new Glossy.Collections.WidgetImages(widgetImages));
+              row.unset('widget_images');
+            }
+          });
         }
       });
     } else {
@@ -35,7 +43,7 @@ Glossy.Models.Article = Backbone.Model.extend({
   toJSON: function() {
     var json = _.clone(this.attributes);
 
-    if (this.get('sections').length !== 0) {
+    if (this.has('sections') && this.get('sections').length !== 0) {
       json.sections_attributes = this.get('sections').toJSON();
     }
     delete json.sections;
