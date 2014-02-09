@@ -12,9 +12,6 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 
 #### TODO
 + ##### Logic
-  + add row logic
-    + rework everything to incorporate rows
-      + templates
   + change id to name[whatev] on forms
   + drag-and-dropability
     + sections collapse on drag
