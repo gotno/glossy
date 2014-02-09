@@ -11,7 +11,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 + Bootstrapped data and customized JSON serialization to reduce AJAX overhead.
 
 #### TODO
-+ ##### Logic
++ Logic
   + change id to name[whatev] on forms
   + drag-and-dropability
     + sections collapse on drag
@@ -25,7 +25,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
   + switch auth from hand-rolled to devise
   + update button should go somewhere
   + add preview and save draft
-+ ##### Design
++ Design
   + front/landing page
   + sign in
     + demo button
