@@ -8,14 +8,14 @@
              <% if (section.has('title')) { %>
                value="<%= section.escape('title') %>"
              <% } %>
-             <% if (!section.get('show_title')) { %>
+             <% if (section.get('hide_title')) { %>
                disabled
              <% } %>
       >
       <span class="input-group-addon">
         <input type="checkbox"
-               id="show_section_title"
-               <% if (section.has('show_title')) { %>
+               id="hide_section_title"
+               <% if (section.get('hide_title')) { %>
                checked
                <% } %>
         >
@@ -24,8 +24,8 @@
   </div>
 </div>
 
-<div class="row">
-  <ul class="col-md-12 widgets-list"></ul>
+<div class="row-container">
+  <ul class="rows-list"></ul>
 </div>
 
 <div class="row">

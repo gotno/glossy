@@ -23,18 +23,18 @@
              <% if (widget.has('title')) { %>
                value="<%= widget.escape('title') %>"
              <% } %>
-             <% if (!widget.get('show_title')) { %>
+             <% if (widget.get('hide_title')) { %>
                disabled
              <% } %>
              >
       <span class="input-group-addon">
         <input type="checkbox"
-               id="iw_show_title"
-               <% if (widget.get('show_title')) { %>
+               id="iw_hide_title"
+               <% if (widget.get('hide_title')) { %>
                  checked
                <% } %>
                >
-        <!--<label for="iw_show_title<%= ord %>">show title?</label>-->
+        <!--<label for="iw_hide_title<%= ord %>">hide title?</label>-->
       </span>
     </div>
   </div>
@@ -49,15 +49,15 @@
              <% if (widget.has('date')) { %>
                value="<%= widget.escape('date') %>"
              <% } %>
-             <% if (!widget.get('show_date')) { %>
+             <% if (widget.get('hide_date')) { %>
                disabled
              <% } %>
       >
       <span class="input-group-addon">
-        <!--<label for="iw_show_date<%= ord %>">show date?</label>-->
+        <!--<label for="iw_hide_date<%= ord %>">hide date?</label>-->
         <input type="checkbox"
-               id="iw_show_date"
-               <% if (widget.get('show_date')) { %>
+               id="iw_hide_date"
+               <% if (widget.get('hide_date')) { %>
                  checked
                <% } %>
         >

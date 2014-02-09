@@ -6,18 +6,18 @@
              placeholder="heading"
              class="text-widget-title form-control"
              id="tw_title"
-             <% if (widget.get('title')) { %>
+             <% if (widget.has('title')) { %>
                value="<%= widget.escape('title') %>"
              <% } %>
-             <% if (!widget.get('show_body')) { %>
+             <% if (widget.get('hide_body')) { %>
                disabled
              <% } %>
              >
       <span class="input-group-addon">
-        <!--<label for="tw_show_title<%= ord %>">show?</label>-->
+        <!--<label for="tw_hide_title<%= ord %>">hide?</label>-->
         <input type="checkbox"
-               id="tw_show_title"
-               <% if (widget.get('show_title')) { %>
+               id="tw_hide_title"
+               <% if (widget.get('hide_title')) { %>
                  checked
                <% } %>
                >
@@ -33,15 +33,15 @@
       <textarea class="text-widget-body form-control" 
                 placeholder="body"
                 id="tw_body"
-                <% if (!widget.get('show_body')) { %>
+                <% if (widget.get('hide_body')) { %>
                   disabled
                 <% } %>
-                ><% if (widget.get('body')) { %><%= widget.escape('body') %><% } %></textarea>
+                ><% if (widget.has('body')) { %><%= widget.escape('body') %><% } %></textarea>
       <span class="input-group-addon">
-        <!--<label for="tw_show_body<%= ord %>">show?</label>-->
+        <!--<label for="tw_hide_body<%= ord %>">hide?</label>-->
         <input type="checkbox"
-               id="tw_show_body"
-               <% if (widget.get('show_body')) { %>
+               id="tw_hide_body"
+               <% if (widget.get('hide_body')) { %>
                  checked
                <% } %>
                >
