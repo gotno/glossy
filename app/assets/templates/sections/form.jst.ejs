@@ -13,12 +13,11 @@
              <% } %>
       >
       <span class="input-group-addon">
-        <input type="checkbox"
-               id="hide_section_title"
-               <% if (section.get('hide_title')) { %>
-               checked
-               <% } %>
-        >
+        <% var icon = (section.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
+        <i id="hide_section_title"
+           class="fa fa-eye show-hide"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
       </span>
     </div>
   </div>

@@ -14,13 +14,10 @@
              <% } %>
              >
       <span class="input-group-addon">
-        <!--<label for="tw_hide_title<%= ord %>">hide?</label>-->
-        <input type="checkbox"
-               id="tw_hide_title"
-               <% if (widget.get('hide_title')) { %>
-                 checked
-               <% } %>
-               >
+        <% var icon = (widget.get('hide_title') ? "fa-eye" : "fa-eye-slash" %> 
+        <i id="tw_hide_title"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
       </span>
     </div>
   </div>
@@ -38,13 +35,10 @@
                 <% } %>
                 ><% if (widget.has('body')) { %><%= widget.escape('body') %><% } %></textarea>
       <span class="input-group-addon">
-        <!--<label for="tw_hide_body<%= ord %>">hide?</label>-->
-        <input type="checkbox"
-               id="tw_hide_body"
-               <% if (widget.get('hide_body')) { %>
-                 checked
-               <% } %>
-               >
+        <% var icon = (widget.get('hide_body') ? "fa-eye" : "fa-eye-slash" %> 
+        <i id="tw_hide_body"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
       </span>
     </div>
   </div>

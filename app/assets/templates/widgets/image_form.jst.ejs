@@ -28,13 +28,10 @@
              <% } %>
              >
       <span class="input-group-addon">
-        <input type="checkbox"
-               id="iw_hide_title"
-               <% if (widget.get('hide_title')) { %>
-                 checked
-               <% } %>
-               >
-        <!--<label for="iw_hide_title<%= ord %>">hide title?</label>-->
+        <% var icon = (widget.get('hide_title') ? "fa-eye" : "fa-eye-slash" %> 
+        <i id="iw_hide_title"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
       </span>
     </div>
   </div>
@@ -54,13 +51,10 @@
              <% } %>
       >
       <span class="input-group-addon">
-        <!--<label for="iw_hide_date<%= ord %>">hide date?</label>-->
-        <input type="checkbox"
-               id="iw_hide_date"
-               <% if (widget.get('hide_date')) { %>
-                 checked
-               <% } %>
-        >
+        <% var icon = (widget.get('hide_date') ? "fa-eye" : "fa-eye-slash" %> 
+        <i id="iw_hide_date"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
       </span>
     </div>
   </div>

@@ -14,13 +14,10 @@
                <% } %>
                >
         <span class="input-group-addon">
-          <input type="checkbox"
-                 id="hide_article_title"
-                 <% if (article.get('hide_title')) { %>
-                 checked
-                 <% } %>
-                 >
-                 <!--<label for="hide_title">hide?</label>-->
+          <% var icon = (article.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
+          <i id="hide_article_title"
+             class="fa show-hide <%= icon %>"
+             type="checkbox"></i>
         </span>
       </div>
     </div>
@@ -37,41 +34,14 @@
                   <% } %>
                   ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
         <span class="input-group-addon">
-          <input type="checkbox"
-                 id="hide_article_body"
-                 <% if (article.get('hide_body')) { %>
-                 checked
-                 <% } %>
-                 >
-                 <!--<label for="hide_body">hide?</label>-->
+          <% var icon = (article.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %>
+          <i id="hide_article_body"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
         </span>
       </div>
     </div>
   </div>
-<!--
-  <div class="row widget-panel">
-    <a href="#">
-      <div class="col-md-2
-                  widget-panel-button
-                  create-text-widget">
-        TW
-      </div>
-    </a>
-    <a href="#">
-      <div class="col-md-2 widget-panel-button create-image-widget">
-        IW
-      </div>
-    </a>
-  </div>
-
-  <div class="row">
-    <div class="col-md-12 panel panel-default create-section">
-      <div class="panel-body">
-        new section
-      </div>
-    </div>
-  </div>
--->
 
   <div class="row">
     <ul class="col-md-12 sections-list">
