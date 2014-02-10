@@ -25,6 +25,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
   + switch auth from hand-rolled to devise
   + update button should go somewhere
   + add preview and save draft
+  + widget weight? placeholder widget?
 + Design
   + front/landing page
   + sign in
