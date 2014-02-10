@@ -1,6 +1,6 @@
 class WidgetImage < ActiveRecord::Base
-  attr_accessible :date, :show_date,
-                  :title, :show_title,
+  attr_accessible :date, :hide_date,
+                  :title, :hide_title,
                   :img, :ord, :widget_type
 
   has_attached_file :img, styles: {

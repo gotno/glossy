@@ -14,7 +14,7 @@
              <% } %>
              >
       <span class="input-group-addon">
-        <% var icon = (widget.get('hide_title')) ? "fa-eye" : "fa-eye-slash" %> 
+        <% var icon = (widget.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %> 
         <i id="tw_hide_title"
            class="fa <%= icon %> show-hide"
            type="checkbox"></i>
@@ -35,7 +35,7 @@
                 <% } %>
                 ><% if (widget.has('body')) { %><%= widget.escape('body') %><% } %></textarea>
       <span class="input-group-addon">
-        <% var icon = (widget.get('hide_body')) ? "fa-eye" : "fa-eye-slash" %> 
+        <% var icon = (widget.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %> 
         <i id="tw_hide_body"
            class="fa <%= icon %> show-hide"
            type="checkbox"></i>
