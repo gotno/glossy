@@ -1,49 +1,51 @@
-<% var ord = widget.get('ord') %>
-<div class="row">
-  <div class="col-md-12">
-    <div class="input-group input-group-lg text-widget-title">
-      <input type="text"
-             placeholder="heading"
-             class="text-widget-title form-control"
-             id="tw_title"
-             <% if (widget.has('title')) { %>
-               value="<%= widget.escape('title') %>"
-             <% } %>
-             <% if (widget.get('hide_body')) { %>
-               disabled
-             <% } %>
-             >
-      <span class="input-group-addon">
-        <% var icon = (widget.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %> 
-        <i id="tw_hide_title"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
-      </span>
-    </div>
-  </div>
-
-</div>
-
-<div class="row">
-  <div class="col-md-12">
-    <div class="input-group input-group-lg">
-      <textarea class="text-widget-body form-control" 
-                placeholder="body"
-                id="tw_body"
-                <% if (widget.get('hide_body')) { %>
-                  disabled
-                <% } %>
-                ><% if (widget.has('body')) { %><%= widget.escape('body') %><% } %></textarea>
-      <span class="input-group-addon">
-        <% var icon = (widget.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %> 
-        <i id="tw_hide_body"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
-      </span>
-    </div>
-  </div>
+<!-- fix this -->
+<div class="col-md-3">
   <div class="row">
-    <div class="col-md-2 col-md-offset-9">
+    <div class="col-m2-12">
+      <div class="col-md-12 input-group input-group-lg text-widget-title">
+        <input type="text"
+               placeholder="heading"
+               class="text-widget-title form-control"
+               id="tw_title"
+               <% if (widget.has('title')) { %>
+                 value="<%= widget.escape('title') %>"
+               <% } %>
+               <% if (widget.get('hide_body')) { %>
+                 disabled
+               <% } %>
+               >
+        <span class="input-group-addon">
+          <% var icon = (widget.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %> 
+          <i id="tw_hide_title"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group input-group-lg">
+        <textarea class="text-widget-body form-control" 
+                  placeholder="body"
+                  id="tw_body"
+                  <% if (widget.get('hide_body')) { %>
+                    disabled
+                  <% } %>
+                  ><% if (widget.has('body')) { %><%= widget.escape('body') %><% } %></textarea>
+        <span class="input-group-addon">
+          <% var icon = (widget.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %> 
+          <i id="tw_hide_body"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
       <a href="#" class="text-widget-remove">remove text</a>
     </div>
   </div>

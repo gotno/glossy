@@ -1,67 +1,70 @@
-<div class="row">
-  <div class="col-md-3">
-    <% if (widget.has('image_url_smallest')) { %>
-      <img src="<%= widget.escape('image_url_smallest') %>">
-    <% } %>
-  </div>
-</div>
-
-<% var ord = widget.get('ord') %>
-<div class="row">
-  <div class="col-md-3">
-    <input type="file"><br>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-md-3">
-    <div class="input-group image-widget-title">
-      <input type="text"
-             class="image-widget-title form-control"
-             id="iw_title"
-             placeholder="title"
-             <% if (widget.has('title')) { %>
-               value="<%= widget.escape('title') %>"
-             <% } %>
-             <% if (widget.get('hide_title')) { %>
-               disabled
-             <% } %>
-             >
-      <span class="input-group-addon">
-        <% var icon = (widget.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %> 
-        <i id="iw_hide_title"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
-      </span>
+<!-- fix cols -->
+<!--  12/len  -->
+<div class="col-md-3">
+  <div class="row">
+    <div class="col-md-12">
+      <% if (widget.has('image_url_smallest')) { %>
+        <img src="<%= widget.escape('image_url_smallest') %>">
+      <% } %>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-3">
-    <div class="input-group">
-      <input type="date"
-             class="image-widget-date form-control"
-             id="iw_date"
-             <% if (widget.has('date')) { %>
-               value="<%= widget.escape('date') %>"
-             <% } %>
-             <% if (widget.get('hide_date')) { %>
-               disabled
-             <% } %>
-      >
-      <span class="input-group-addon">
-        <% var icon = (widget.get('hide_date')) ? "fa-eye-slash" : "fa-eye" %> 
-        <i id="iw_hide_date"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
-      </span>
+  <div class="row">
+    <div class="col-md-12">
+      <input type="file"><br>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-3">
-    <a href="#" class="image-widget-remove">remove image</a>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group image-widget-title">
+        <input type="text"
+               class="image-widget-title form-control"
+               id="iw_title"
+               placeholder="title"
+               <% if (widget.has('title')) { %>
+                 value="<%= widget.escape('title') %>"
+               <% } %>
+               <% if (widget.get('hide_title')) { %>
+                 disabled
+               <% } %>
+               >
+        <span class="input-group-addon">
+          <% var icon = (widget.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %> 
+          <i id="iw_hide_title"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="input-group">
+        <input type="date"
+               class="image-widget-date form-control"
+               id="iw_date"
+               <% if (widget.has('date')) { %>
+                 value="<%= widget.escape('date') %>"
+               <% } %>
+               <% if (widget.get('hide_date')) { %>
+                 disabled
+               <% } %>
+        >
+        <span class="input-group-addon">
+          <% var icon = (widget.get('hide_date')) ? "fa-eye-slash" : "fa-eye" %> 
+          <i id="iw_hide_date"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <a href="#" class="image-widget-remove">remove image</a>
+    </div>
   </div>
 </div>

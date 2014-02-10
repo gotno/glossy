@@ -110,28 +110,6 @@ header {
     }
   }
 }
-/*
-header {
-  background-color: #333;
-  color: #cecece;
-  height: 100px;
-
-  span.logo {
-    font-size: 5em;
-    font-family: $sans-bold;
-  }
-
-  nav.session {
-    ul {
-      list-style: none;
-      li {
-        padding-left: 2em;
-        float: right;
-      }
-    }
-  }
-}
-// */
 
 // article
 article {
@@ -228,16 +206,6 @@ input[type=date].image-widget-date {
   text-align: center;
   font-family: $sans;
   font-size: 1.2em;
-}
-
-.widget-panel {
-  margin-bottom: 1em;
-}
-
-.widget-panel-button {
-  background-color: #dfdfdf;
-  border: 1px solid black;
-  text-align: center;
 }
 
 div.create-section {
