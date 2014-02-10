@@ -16,7 +16,8 @@ Glossy.Models.Article = Backbone.Model.extend({
                    new Glossy.Collections.Rows(section.get('rows')));
 
           section.get('rows').each(function(row) {
-            if (row.has('text_widgets')) {
+
+            if (row.has('widget_texts')) {
               var widgetTexts = row.get('widget_texts');
 
               row.set('widgetTexts', 

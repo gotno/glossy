@@ -1,7 +1,7 @@
 class RowWidgetText < ActiveRecord::Base
   attr_accessible :row_id, :widget_text_id
 
-  validates :section_id, :widget_text_id, presence: true
+  validates :row_id, :widget_text_id, presence: true
 
   belongs_to :row
   belongs_to :widget_text

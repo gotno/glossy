@@ -3,6 +3,7 @@ json.sections(article.sections) do |section|
   json.(section, :id, :title, :hide_title, :ord)
 
   json.rows(section.rows) do |row|
+    json.(row, :id, :ord, :section_id)
     wt = row.widget_texts
     if (wt.count > 0)
       json.widget_texts(wt) do |widget|

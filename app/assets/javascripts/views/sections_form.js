@@ -68,7 +68,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
     var view = this;
     this.model.get('rows').each(function(row) {
-      var rowView = new Glossy.Views.Row({
+      var rowView = new Glossy.Views.RowsForm({
         model: row
       });
 
