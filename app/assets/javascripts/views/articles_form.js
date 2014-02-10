@@ -37,6 +37,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   setupUI: function() {
+    /*
     this.$sectionsList.sortable({
       scroll: true,
       scrollSensitivity: 100,
@@ -54,6 +55,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       snap: false,
       zIndex: 100
     });
+    */
   },
 
   submit: function(event) {
