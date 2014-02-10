@@ -1,6 +1,8 @@
 Glossy.Views.WidgetImageForm = Backbone.View.extend({
   template: JST['widgets/image_form'],
 
+  tagName: 'li',
+
   events: {
     'change input[type=file]': 'encodeFile',
     'click #iw_hide_title': 'toggleTitle',

@@ -1,7 +1,8 @@
 Glossy.Views.SectionsForm = Backbone.View.extend({
   template: JST['sections/form'],
 
-  tagName: 'section',
+  tagName: 'li',
+
   attributes: {
     class: 'section-edit'
   },
@@ -14,12 +15,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     'click button.destroy-section':   'destroySection'
     // */
   },
-  
-  /*
-  initialize: function() {
-    this.setupWidgets();
-  },
-  */
 
   render: function() {
     this.$el.empty();
@@ -32,18 +27,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.renderRows();
 
     return this;
-
-    /*
-    this.widgetOrder = 0;
-    this.widgetViews = [];
-
-    this.$widgetsList = this.$('.widgets-list');
-
-    var view = this;
-    this.getSortedWidgets().forEach(function(widget) {
-      view.renderWidget(widget.get('widget_type'), widget);
-    });
-    */
   },
 
   toggleTitle: function(event) {

@@ -52,21 +52,22 @@ Glossy.Views.RowsForm = Backbone.View.extend({
 
   renderWidget: function(type, widget) {
     var newWidgetView = new Glossy.Views["Widget" + type + "Form"]({
-      model: widget
+      model: widget,
+      className: "col-md-" + (12/this.familySize)
     });
 
     this.widgetViews.push(newWidgetView);
     this.widgetOrder++;
 
-    var $listEl = $('<li>');
-    $listEl.html(newWidgetView.render().$el);
-    this.$widgetsList.append($listEl);
+    this.$widgetsList.append(newWidgetView.render().$el);
   },
 
   getSortedWidgets: function() {
     var widgets = this.widgetTexts.models.concat(
       this.widgetImages.models
     );
+
+    this.familySize = widgets.length;
 
     return widgets.sort(function(a, b) {
       var x = a.attributes['ord']; var y = b.attributes['ord'];

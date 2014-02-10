@@ -1,65 +1,61 @@
-<form>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="input-group input-group-lg article-title">
-        <input type="text"
-               id="article_title"
-               class="article-title form-control"
-               placeholder="title"
-               <% if (article.has('title')) { %>
-                 value="<%= article.escape('title') %>"
-               <% } %>
-               <% if (article.get('hide_title')) { %>
-                 disabled
-               <% } %>
-               >
-        <span class="input-group-addon">
-          <% var icon = (article.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
-          <i id="hide_article_title"
-             class="fa show-hide <%= icon %>"
-             type="checkbox"></i>
-        </span>
-      </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg article-title">
+      <input type="text"
+             id="article_title"
+             class="article-title form-control"
+             placeholder="title"
+             <% if (article.has('title')) { %>
+               value="<%= article.escape('title') %>"
+             <% } %>
+             <% if (article.get('hide_title')) { %>
+               disabled
+             <% } %>
+             >
+      <span class="input-group-addon">
+        <% var icon = (article.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
+        <i id="hide_article_title"
+           class="fa show-hide <%= icon %>"
+           type="checkbox"></i>
+      </span>
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="input-group input-group-lg">
-        <textarea class="article-body form-control"
-                  id="article_body"
-                  placeholder="body"
-                  <% if (article.get('hide_body')) { %>
-                    disabled
-                  <% } %>
-                  ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
-        <span class="input-group-addon">
-          <% var icon = (article.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %>
-          <i id="hide_article_body"
-             class="fa <%= icon %> show-hide"
-             type="checkbox"></i>
-        </span>
-      </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="input-group input-group-lg">
+      <textarea class="article-body form-control"
+                id="article_body"
+                placeholder="body"
+                <% if (article.get('hide_body')) { %>
+                  disabled
+                <% } %>
+                ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
+      <span class="input-group-addon">
+        <% var icon = (article.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %>
+        <i id="hide_article_body"
+           class="fa <%= icon %> show-hide"
+           type="checkbox"></i>
+      </span>
     </div>
   </div>
+</div>
 
-  <div class="sections-container">
-    <ul class="sections-list">
-      <a href="#">
-      </a>
-    <ul>
+<div class="sections-container">
+  <ul class="sections-list">
+  <ul>
+</div>
+
+<div class="row">
+  <div class="col-md-1">
+    <% if (article.id) { %>
+      <input type="submit" value="update article">
+    <% } else { %>
+      <input type="submit" value="save article">
+    <% } %>
   </div>
-  
-  <div class="row">
-    <div class="col-md-1">
-      <% if (article.id) { %>
-        <input type="submit" value="update article">
-      <% } else { %>
-        <input type="submit" value="save article">
-      <% } %>
-    </div>
-  </div>
-<form>
+</div>
 <br>
 <br>
 <br>

@@ -1,6 +1,8 @@
 Glossy.Views.ArticlesForm = Backbone.View.extend({
   template: JST['articles/form'],
 
+  tagName: 'article',
+
   events: {
     'submit': 'submit',
     'click #hide_article_title': 'toggleTitle',
@@ -110,9 +112,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
         model: section
       });
 
-      var $listEl = $('<li>');
-      $listEl.html(sectionView.render().$el);
-      view.$sectionsList.append($listEl);
+      view.$sectionsList.append(sectionView.render().$el);
 
       view.sectionViews.push(sectionView);
     });

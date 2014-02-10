@@ -1,40 +1,42 @@
-<div class="row">
-  <div class="col-md-12 section-edit">
-    <div class="input-group input-group-lg">
-      <input type="text"
-             id="section_title"
-             class="section-title form-control"
-             placeholder="section title"
-             <% if (section.has('title')) { %>
-               value="<%= section.escape('title') %>"
-             <% } %>
-             <% if (section.get('hide_title')) { %>
-               disabled
-             <% } %>
-      >
-      <span class="input-group-addon">
-        <% var icon = (section.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
-        <i id="hide_section_title"
-           class="fa fa-eye show-hide"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
-      </span>
+<section>
+  <div class="row">
+    <div class="col-md-12 section-edit">
+      <div class="input-group input-group-lg">
+        <input type="text"
+               id="section_title"
+               class="section-title form-control"
+               placeholder="section title"
+               <% if (section.has('title')) { %>
+                 value="<%= section.escape('title') %>"
+               <% } %>
+               <% if (section.get('hide_title')) { %>
+                 disabled
+               <% } %>
+        >
+        <span class="input-group-addon">
+          <% var icon = (section.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
+          <i id="hide_section_title"
+             class="fa fa-eye show-hide"
+             class="fa <%= icon %> show-hide"
+             type="checkbox"></i>
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row-container">
-  <ul class="rows-list"></ul>
-</div>
-
-<div class="row">
-  <div class="col-md-3 col-md-offset-9 btn-group">
-    <button type="button"
-            class="btn btn-default section-add-text">add text</button>
-    <button type="button"
-            class="btn btn-default section-add-image">add image</button>
-    <button type="button"
-            data-id="<%= section.id %>"
-            class="btn btn-danger destroy-section">remove section</button>
+  <div class="row-container">
+    <ul class="rows-list"></ul>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-md-3 col-md-offset-9 btn-group">
+      <button type="button"
+              class="btn btn-default section-add-text">add text</button>
+      <button type="button"
+              class="btn btn-default section-add-image">add image</button>
+      <button type="button"
+              data-id="<%= section.id %>"
+              class="btn btn-danger destroy-section">remove section</button>
+    </div>
+  </div>
+</section>

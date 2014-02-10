@@ -1,6 +1,8 @@
 Glossy.Views.WidgetTextForm = Backbone.View.extend({
   template: JST['widgets/text_form'],
 
+  tagName: 'li',
+
   events: {
     'click #tw_hide_title': 'toggleTitle',
     'click #tw_hide_body': 'toggleBody',
