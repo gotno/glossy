@@ -74,8 +74,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     var $draggedEl = $($('.ui-draggable')[1]);
 
     var section = new Glossy.Models.Section({
-      ord: (Math.floor($draggedEl.position()['top']) - 1),
-      show_title: true
+      ord: 10//(Math.floor($draggedEl.position()['top']) - 1),
     });
 
     $draggedEl.remove();
@@ -92,6 +91,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   reorderSections: function(event, ui) {
+    var view = this;
+
     this.sectionViews.forEach(function(view) {
       view.model.set({
         ord: Math.floor(view.$el.position()['top'])
