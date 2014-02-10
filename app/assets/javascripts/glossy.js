@@ -12,9 +12,11 @@ window.Glossy = {
 
     $("i.show-hide").click(function(){
       if($(this).hasClass('fa-eye')){
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash');}
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+      }
       else {
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye');}
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+      }
     });
   }
 }

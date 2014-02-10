@@ -39,9 +39,9 @@ Glossy.Views.WidgetTextForm = Backbone.View.extend({
   collect: function() {
     this.model.set({ 
       title:      this.$('#tw_title').val(),
-      hide_title: this.$('#tw_show_title').prop('checked'),
+      hide_title: this.$('#tw_hide_title').hasClass('fa-eye-slash'),
       body:       this.$('#tw_body').val(),
-      hide_body:  this.$('#tw_show_title').prop('checked')
+      hide_body:  this.$('#tw_hide_title').hasClass('fa-eye-slash')
     });
   }
 });
