@@ -165,39 +165,27 @@ input[type=text].article-title {
   height: 200px;
 }
 
-
-div.create-section {
-  margin-top: 1em;
-  &:hover {
-    background-color: #1f0d0d;
-  }
-  .panel-body {
-    font-family: $sans-bold;
-    text-align: center;
-    font-size: 2em;
-    color: #3a3a3a;
-  }
-}
-
 ul.sections-list {
   padding-left: 0;
-  margin-top: 1em;
   li {
     margin-top: 1em;
+    border: 4px solid black;
   }
 }
 
 ul.rows-list {
   padding-left: 0;
+  li {
+    padding-bottom: 1em;
+    border: 4px solid pink;
+  }
 }
 
 ul.widgets-list {
-  margin-top: 1em;
   padding-left: 0;
   li {
     padding-top: 1em;
-    padding-bottom: 1em;
-    background-color: #000000;
+    border: 2px solid red;
   }
 }
 
@@ -235,4 +223,33 @@ input[type=date].image-widget-date {
   text-align: center;
   font-family: $sans;
   font-size: 1.2em;
+}
+
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.9;
+  z-index: 2000;
+}
+
+li.placeholder {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: none;
+  &:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    margin-top: -5px;
+    left: -5px;
+    top: -4px;
+    border: 5px solid transparent;
+    border-left-color: red;
+    border-right: none;
+  }
 }

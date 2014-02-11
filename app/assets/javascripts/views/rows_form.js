@@ -1,9 +1,9 @@
 Glossy.Views.RowsForm = Backbone.View.extend({
   template: JST['rows/form'],
 
-  attributes: {
-    class: 'row'
-  },
+  tagName: 'li',
+
+  className: 'col-md-12',
 
   events: {
   },
@@ -21,6 +21,30 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.widgetViews = [];
 
     this.$widgetsList = this.$('.widgets-list');
+
+    this.$widgetsList.sortable({
+      group: 'widgets',
+      verticle: false,
+      nested: false,
+
+      onDragStart: function ($item, container, _super) {
+        var offset = $item.offset(),
+            pointer = container.rootGroup.pointer
+
+        adjustment = {
+          left: pointer.left - offset.left,
+          top: pointer.top - offset.top
+        };
+        
+        _super($item, container);
+      },
+      onDrag: function ($item, position) {
+        $item.css({
+          left: position.left - adjustment.left,
+          top: position.top - adjustment.top
+        })
+      }
+    });
 
     var view = this;
     this.getSortedWidgets().forEach(function(widget) {
