@@ -1,50 +1,43 @@
-<div class="row">
+<div class="row article-row">
   <div class="col-md-12">
-    <div class="input-group input-group-lg article-title">
+    <div class="article-title input-group input-group-lg">
       <input type="text"
              id="article_title"
-             class="article-title form-control"
-             placeholder="title"
+             class="form-control"
              <% if (article.has('title')) { %>
                value="<%= article.escape('title') %>"
              <% } %>
              <% if (article.get('hide_title')) { %>
                disabled
              <% } %>
-             >
+             placeholder="title" />
       <span class="input-group-addon">
         <% var icon = (article.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
-        <i id="hide_article_title"
-           class="fa show-hide <%= icon %>"
-           type="checkbox"></i>
+        <i id="hide_article_title" class="fa <%= icon %> show-hide"></i>
       </span>
     </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row article-row">
   <div class="col-md-12">
-    <div class="input-group input-group-lg">
-      <textarea class="article-body form-control"
+    <div class="article-body input-group input-group-lg">
+      <textarea class="form-control"
                 id="article_body"
-                placeholder="body"
+                placeholder="Article Body"
                 <% if (article.get('hide_body')) { %>
                   disabled
                 <% } %>
                 ><% if (article.has('body')) { %><%= article.escape('body') %><% } %></textarea>
       <span class="input-group-addon">
         <% var icon = (article.get('hide_body')) ? "fa-eye-slash" : "fa-eye" %>
-        <i id="hide_article_body"
-           class="fa <%= icon %> show-hide"
-           type="checkbox"></i>
+        <i id="hide_article_body" class="fa <%= icon %> show-hide"></i>
       </span>
     </div>
   </div>
 </div>
 
-<div class="sections-container">
-  <ul class="sections-list"></ul>
-</div>
+<ul class="sections-list"></ul>
 
 <div class="row">
   <div class="col-md-1">
@@ -55,6 +48,3 @@
     <% } %>
   </div>
 </div>
-<br>
-<br>
-<br>

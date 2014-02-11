@@ -1,33 +1,28 @@
 <section>
-  <div class="row">
-    <div class="col-md-12 section-edit">
-      <div class="input-group input-group-lg">
+  <div class="row section-row">
+    <div class="col-md-12">
+      <div class="section-title input-group input-group-lg">
         <input type="text"
                id="section_title"
                class="section-title form-control"
-               placeholder="section title"
                <% if (section.has('title')) { %>
                  value="<%= section.escape('title') %>"
                <% } %>
                <% if (section.get('hide_title')) { %>
                  disabled
                <% } %>
-        >
+               placeholder="Section Title" />
         <span class="input-group-addon">
           <% var icon = (section.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
-          <i id="hide_section_title"
-             class="fa fa-eye show-hide"
-             class="fa <%= icon %> show-hide"
-             type="checkbox"></i>
+          <i id="hide_section_title" class="fa <%= icon %> show-hide"></i>
         </span>
       </div>
     </div>
   </div>
 
-  <div class="row-container">
-    <ul class="row rows-list"></ul>
-  </div>
+  <ul class="rows-list"></ul>
 
+  <!--
   <div class="row">
     <div class="col-md-3 col-md-offset-9 btn-group">
       <button type="button"
@@ -39,4 +34,5 @@
               class="btn btn-danger destroy-section">remove section</button>
     </div>
   </div>
+  -->
 </section>

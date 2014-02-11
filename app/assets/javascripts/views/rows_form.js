@@ -1,9 +1,8 @@
 Glossy.Views.RowsForm = Backbone.View.extend({
   template: JST['rows/form'],
 
-  tagName: 'li',
-
-  className: 'col-md-12',
+  tagName: 'div',
+  className: 'rows-row-container',
 
   events: {
   },
