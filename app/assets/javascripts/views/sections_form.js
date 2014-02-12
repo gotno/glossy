@@ -61,7 +61,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
     this.$rowsList.sortable({
       axis: 'y',
-      connectWith: '.rows-list'
+      //connectWith: '.rows-list'
     });
   },
 

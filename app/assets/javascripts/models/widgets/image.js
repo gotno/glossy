@@ -3,7 +3,7 @@ Glossy.Models.WidgetImage = Backbone.Model.extend({
 
   toJSON: function() {
     var json = _.clone(this.attributes);
-    
+
     delete json.image_url_original;
     delete json.image_url_big;
     delete json.image_url_med;

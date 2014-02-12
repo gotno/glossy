@@ -27,9 +27,10 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     });
 
     this.$widgetsList.sortable({
-      connectWith: '.widgets-list',
+      //connectWith: '.widgets-list',
       cursorAt: { top: 8, left: 8 },
       tolerance: 'pointer',
+      axis: "x",
 
       activate: function(event, ui) {
         if (view.familySize === 4) {
