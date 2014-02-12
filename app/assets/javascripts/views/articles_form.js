@@ -33,7 +33,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.$sectionsList = this.$('ul.sections-list');
     this.renderSections();
-    this.setupUI();
+    //this.setupUI();
 
     return this;
   },
@@ -41,7 +41,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   setupUI: function() {
     $(".sections-list").sortable({
       axis: 'y',
-      toleranceElement: '> section'
+      toleranceElement: '> section',
     });
 
     $(".rows-list").sortable({
@@ -50,28 +50,12 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     });
 
     $(".widgets-list").sortable({
-      axis: 'y',
-      connectWith: '.widgets-list'
+      //almost works (offset)
+      //containment: 'section',
+      connectWith: '.widgets-list',
+      tolerance: 'pointer',
+      cursorAt: { top: 5, left: 5 }
     });
-    /*
-    this.$sectionsList.sortable({
-      scroll: true,
-      scrollSensitivity: 100,
-      scrollSpeed: 50,
-      axis: 'y'
-    });
-
-    this.$('div.create-section').draggable({
-
-      helper: 'clone',
-      connectToSortable: this.$sectionsList,
-      appendTo: $('div.create-section'),
-      axis: 'y',
-      revert: 'invalid',
-      snap: false,
-      zIndex: 100
-    });
-    */
   },
 
   submit: function(event) {

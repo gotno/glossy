@@ -183,16 +183,16 @@ section {
 
 .rows-list > div {
   &:last-child {
-    margin-bottom: 0;
+    //margin-bottom: 0;
   }
 }
 
 .rows-row-container {
   background-color: $o4;
-  padding-top: 10px;
+  padding-top: 2px;
 
-  padding-bottom: 10px;
-  margin-bottom: -10px;
+  padding-bottom: 2px;
+  margin-bottom: -2px;
 
   padding-left: 15px;
   margin-left: -15px;
@@ -202,6 +202,10 @@ section {
 }
 
 .widgets-list {
+  &:hover {
+    padding-top: 18px;
+    cursor: move;
+  }
   li {
     padding-top: 1.4em;
     padding-bottom: 1.4em;
@@ -220,6 +224,9 @@ section {
     }
     &:nth-child(5) {
       background-color: $b5;
+    }
+    &:hover {
+      border-top: 4px solid $b5;
     }
   }
 }
