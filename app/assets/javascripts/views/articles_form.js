@@ -4,11 +4,10 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   tagName: 'article',
 
   events: {
-    'submit': 'submit',
+    'click button': 'submit',
     'click #hide_article_title': 'toggleTitle',
     'click #hide_article_body': 'toggleBody',
-    'sortstop': 'reorderSections',
-    'dragstop': 'addSection'
+    //'sortstop': 'reorderSections'
   },
 
   initialize: function() {
@@ -33,29 +32,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.$sectionsList = this.$('ul.sections-list');
     this.renderSections();
-    //this.setupUI();
 
     return this;
-  },
-
-  setupUI: function() {
-    $(".sections-list").sortable({
-      axis: 'y',
-      toleranceElement: '> section',
-    });
-
-    $(".rows-list").sortable({
-      axis: 'y',
-      connectWith: '.rows-list',
-    });
-
-    $(".widgets-list").sortable({
-      //almost works (offset)
-      //containment: 'section',
-      connectWith: '.widgets-list',
-      tolerance: 'pointer',
-      cursorAt: { top: 5, left: 5 }
-    });
   },
 
   submit: function(event) {
@@ -63,6 +41,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.collect();
 
+    var view = this;
     Glossy.article.save({}, {
       success: function() {
         console.log('successful save.');
@@ -113,6 +92,11 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       view.$sectionsList.append(sectionView.render().$el);
 
       view.sectionViews.push(sectionView);
+    });
+
+    this.$('.sections-list').sortable({
+      axis: 'y',
+      toleranceElement: '> section'
     });
 
     this.reorderSections();

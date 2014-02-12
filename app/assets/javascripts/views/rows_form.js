@@ -26,6 +26,47 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       view.renderWidget(widget.get('widget_type'), widget);
     });
 
+    this.$widgetsList.sortable({
+      connectWith: '.widgets-list',
+      cursorAt: { top: 8, left: 8 },
+      tolerance: 'pointer',
+
+      activate: function(event, ui) {
+        if (view.familySize === 4) {
+          view.$widgetsList.sortable('disable');
+          console.log('disabled', view.familySize);
+        }
+      },
+
+      deactivate: function(event, ui) {
+        view.$widgetsList.sortable('enable');
+        console.log('enabled');
+      },
+      
+      receive: function(event, ui) {
+        if (view.familySize === 4) {
+          console.log('cancel sort');
+          $(ui.sender).sortable('cancel');
+        }
+      },
+      /*
+      out: function(event, ui) {
+        view.familySize--;
+      },
+      over: function(event, ui) {
+        view.familySize++;
+      }
+      */
+    });
+
+    /*
+    if (this.familySize >= 4) {
+      this.$widgetsList.sortable('disable');
+    } else if (this.$widgetsList.sortable) {
+      this.$widgetsList.sortable('enable');
+    }
+    */
+
     return this;
   },
 

@@ -164,11 +164,18 @@ article {
   }
 }
 
-section {
+.sections-list {
 }
 
 .section-row {
   background-color: $o3;
+
+  &:hover {
+    border-top: 16px solid $o2;
+    cursor: move;
+  }
+
+  @include transition(border-top, 0.2s, ease-out);
 }
 
 .section-title {
@@ -207,7 +214,7 @@ section {
     cursor: move;
   }
 
-  @include transition(all, 0.2s, ease-out);
+  @include transition(padding-top, 0.2s, ease-out);
 
   li {
     padding-top: 1.4em;
