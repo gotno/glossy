@@ -231,7 +231,7 @@ section {
     }
 
     &:hover {
-      border-top: 12px solid $b5;
+      border-top: 12px solid $b7;
     }
 
     @include transition(border-top, 0.2s, ease-out);
