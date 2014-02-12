@@ -1,6 +1,6 @@
 /*
  *= require_self
- *= require jquery-ui
+ *= require jquery-ui-1.10.4.custom
  *= require font-awesome
  *= require_tree .
  */
@@ -15,8 +15,32 @@ $serif: "EB Garamond", serif;
 $sans: "quicksand", sans-serif;
 $sans-bold: "quicksand-bold", sans-serif;
 
+// colors
+$bone: #F0EAD1;
+$darkgray: #31302F;
+$lightgray: #52504E;
+$lightred: #6F0909;
+$greeny: #C0D8C0;
+
+$o1: #14080a;
+$o2: #241518;
+$o3: #7c2a1f;
+$o4: #c24c1c;
+$o5: #df7424;
+$o6: #ee9958;
+$o7: #ffe0b2;
+$b7: #f8f8f6;
+$b6: #e4f8ff;
+$b5: #b5e7fe;
+$b4: #83c5f9;
+$b3: #5ca1d8;
+$b2: #2b78ae;
+$b1: #002949;
+$b0: #010715;
+
 body {
   font-family: $serif;
+  background-color: $b6;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,12 +53,6 @@ ul {
 }
 
 // header stolen from old glossy
-$bone: #F0EAD1;
-$darkgray: #31302F;
-$lightgray: #52504E;
-$lightred: #6F0909;
-$greeny: #C0D8C0;
-
 @mixin transition($transition-property, $transition-time, $method) {
   -webkit-transition: $transition-property $transition-time $method;
   -moz-transition: $transition-property $transition-time $method;
@@ -45,7 +63,7 @@ $greeny: #C0D8C0;
 
 header {
   height: 100px;
-  background-color: $darkgray;
+  background-color: $o1;
   a {
     color: $bone;
     &:hover {
@@ -56,13 +74,13 @@ header {
       font-size: 5em;
       float: left;
       height: 100%;
-      background-color: $darkgray;
+      background-color: $o1;
       font-family: $sans-bold;
       
       @include transition(all, 0.2s, ease-out);
 
       &:hover {
-        background-color: $lightgray;
+        background-color: $o2;
       }
     }
     li { 
@@ -71,12 +89,12 @@ header {
       height: 100%;
       padding: 1em .35em;
       text-align: center;
-      background-color: $darkgray;
+      background-color: $o1;
 
       @include transition(all, 0.2s, ease-out);
 
       &:hover {
-        background-color: $lightgray;
+        background-color: $o2;
       }
     }
     li.warning {
@@ -110,28 +128,57 @@ header {
 .container-fluid {
 }
 
+/*
 .article-title,
 .article-body,
 .section-title,
 .widget-col {
   text-align: center;
 }
+*/
 
 article {
   margin-bottom: -10px;
 }
 
 .article-row {
-  //height: 3em;
-  background-color: #ababab;
+  background-color: $o2;
+}
+
+.article-title {
+  padding-top: 1.4em;
+  padding-bottom: 1.4em;
+  input[type="text"] {
+    text-align: center;
+    font-family: $sans-bold;
+    font-size: 2em;
+  }
+}
+
+.article-body {
+  padding-bottom: 1.4em;
+  textarea {
+    text-align: center;
+    font-family: $serif;
+    resize: vertical;
+  }
 }
 
 section {
 }
 
 .section-row {
-  //height: 3em;
-  background-color: #bcbcbc;
+  background-color: $o3;
+}
+
+.section-title {
+  padding-top: 1.4em;
+  padding-bottom: 1.4em;
+  input[type="text"] {
+    text-align: center;
+    font-family: $sans-bold;
+    font-size: 1.6em;
+  }
 }
 
 .rows-list > div {
@@ -141,7 +188,7 @@ section {
 }
 
 .rows-row-container {
-  background-color: #000000;
+  background-color: $o4;
   padding-top: 10px;
 
   padding-bottom: 10px;
@@ -155,35 +202,29 @@ section {
 }
 
 .widgets-list {
-  //height: 3em;
   li {
-    border: 1px solid black;
-    //height: 100%;
+    padding-top: 1.4em;
+    padding-bottom: 1.4em;
+    height: 200px;
     &:first-child {
-      background-color: red;
+      background-color: $b1;
     }
     &:nth-child(2) {
-      background-color: yellow;
+      background-color: $b2;
     }
     &:nth-child(3) {
-      background-color: orange;
+      background-color: $b3;
     }
     &:nth-child(4) {
-      background-color: pink;
+      background-color: $b4;
     }
-    &:last-child {
-      background-color: grey;
+    &:nth-child(5) {
+      background-color: $b5;
     }
   }
 }
 
 /*
-.container {
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 3px solid black;
-}
-
 // article
 article {
   h1 {
@@ -304,34 +345,5 @@ input[type=date].image-widget-date {
   text-align: center;
   font-family: $sans;
   font-size: 1.2em;
-}
-
-body.dragging, body.dragging * {
-  cursor: move !important;
-}
-
-.dragged {
-  position: absolute;
-  opacity: 0.9;
-  z-index: 2000;
-}
-
-li.placeholder {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  border: none;
-  &:before {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 0;
-    margin-top: -5px;
-    left: -5px;
-    top: -4px;
-    border: 5px solid transparent;
-    border-left-color: red;
-    border-right: none;
-  }
 }
 */

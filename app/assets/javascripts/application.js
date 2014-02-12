@@ -1,8 +1,7 @@
 //= require jquery
 //= require jquery_ujs
-// require jquery-ui
+//= require jquery-ui-1.10.4.custom
 //= require jquery.serializeJSON
-//= require jquery-sortable
 //= require underscore
 //= require backbone
 //= require bootstrap

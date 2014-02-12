@@ -39,6 +39,20 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   setupUI: function() {
+    $(".sections-list").sortable({
+      axis: 'y',
+      toleranceElement: '> section'
+    });
+
+    $(".rows-list").sortable({
+      axis: 'y',
+      connectWith: '.rows-list',
+    });
+
+    $(".widgets-list").sortable({
+      axis: 'y',
+      connectWith: '.widgets-list'
+    });
     /*
     this.$sectionsList.sortable({
       scroll: true,
