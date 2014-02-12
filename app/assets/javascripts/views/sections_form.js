@@ -58,31 +58,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       view.$rowsList.append(rowView.render().$el);
       view.rowViews.push(rowView);
     });
-
-    this.$rowsList.sortable({
-      verticle: true,
-      nested: false,
-      group: 'rows',
-
-      onDragStart: function ($item, container, _super) {
-        var offset = $item.offset(),
-            pointer = container.rootGroup.pointer
-
-        adjustment = {
-          left: pointer.left - offset.left,
-          top: pointer.top - offset.top
-        };
-        
-        _super($item, container);
-      },
-
-      onDrag: function ($item, position) {
-        $item.css({
-          left: position.left - adjustment.left,
-          top: position.top - adjustment.top
-        })
-      }
-    });
   },
 
   reorderRows: function() {
