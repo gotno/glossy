@@ -226,7 +226,7 @@ section {
     &:nth-child(4) {
       background-color: $b4;
     }
-    &:nth-child(5) {
+    &:last-child {
       background-color: $b5;
     }
 
