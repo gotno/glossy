@@ -206,10 +206,14 @@ section {
     padding-top: 18px;
     cursor: move;
   }
+
+  @include transition(all, 0.2s, ease-out);
+
   li {
     padding-top: 1.4em;
     padding-bottom: 1.4em;
     height: 200px;
+
     &:first-child {
       background-color: $b1;
     }
@@ -225,9 +229,12 @@ section {
     &:nth-child(5) {
       background-color: $b5;
     }
+
     &:hover {
-      border-top: 4px solid $b5;
+      border-top: 12px solid $b5;
     }
+
+    @include transition(border-top, 0.2s, ease-out);
   }
 }
 
