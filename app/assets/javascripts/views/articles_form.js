@@ -18,6 +18,12 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model, 'sync', this.render);
+
+    var oldMouseStart = $.ui.sortable.prototype._mouseStart;
+    $.ui.sortable.prototype._mouseStart = function(event, overrideHandle, noActivation) {
+       this._trigger("beforeStart", event, this._uiHash());
+       oldMouseStart.apply(this, [event, overrideHandle, noActivation]);
+    };
   },
 
   render: function() {
@@ -98,16 +104,17 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$('.sections-list').sortable({
       axis: 'y',
       toleranceElement: '> section',
-      forceHelperSize: true
+      cursorAt: { top: 8 },
+
+      beforeStart: function(event, ui) {
+        view.sectionViews.forEach(function(sview) {
+          sview.rollUp();
+        });
+      }
     });
   },
 
   sortStart: function(event, ui) {
-    if ($(ui.helper[0]).hasClass('section-edit')) {
-      this.sectionViews.forEach(function(view) {
-        view.rollUp();
-      });
-    }
   },
 
   sortBeforeStop: function(event, ui) {
@@ -115,6 +122,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       this.sectionViews.forEach(function(view) {
         view.rollDown();
       });
+
+      $(window).scrollTop($(ui.helper[0]).position()['top'] - 50);
     }
   },
 
