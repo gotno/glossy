@@ -7,7 +7,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     'click button': 'submit',
     'click #hide_article_title': 'toggleTitle',
     'click #hide_article_body': 'toggleBody',
-    //'sortstop': 'reorderSections'
+    'sortstop': 'reorderSections'
   },
 
   initialize: function() {
@@ -23,8 +23,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.stopListening(this.model.get('sections'));
     this.listenTo(this.model.get('sections'), 'add', this.renderSections);
-
-    this.sectionViews = [];
 
     this.$el.html(this.template({
       article: this.model
@@ -50,13 +48,13 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   addSection: function(event, ui) {
-    var $draggedEl = $($('.ui-draggable')[1]);
+    //var $draggedEl = $($('.ui-draggable')[1]);
 
     var section = new Glossy.Models.Section({
       ord: 10//(Math.floor($draggedEl.position()['top']) - 1),
     });
 
-    $draggedEl.remove();
+    //$draggedEl.remove();
 
     this.model.get('sections').add(section);
   },
@@ -70,12 +68,9 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   reorderSections: function(event, ui) {
-    console.log('reordering');
-
     var view = this;
 
     this.sectionViews.forEach(function(view) {
-      console.log(view.$el.position()['top']);
       view.model.set({
         ord: Math.floor(view.$el.position()['top'])
       });
@@ -83,9 +78,9 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   renderSections: function() {
-    this.collect(); // make sure we don't obliterate data on re-render
     this.$sectionsList.empty();
     this.sectionViews = []
+    this.collect(); // make sure we don't obliterate data on re-render
 
     var view = this;
     this.model.get('sections').each(function(section) {
@@ -101,10 +96,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$('.sections-list').sortable({
       axis: 'y',
       toleranceElement: '> section',
-      stop: this.reorderSections
     });
-
-    this.reorderSections();
   },
 
   toggleTitle: function(event) {
