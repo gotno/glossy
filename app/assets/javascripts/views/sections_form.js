@@ -73,6 +73,18 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     });
   },
 
+  rollUp: function() {
+    this.rowViews.forEach(function(view) {
+      view.$el.toggleClass('hidden');
+    });
+  },
+
+  rollDown: function() {
+    this.rowViews.forEach(function(view) {
+      view.$el.toggleClass('hidden');
+    });
+  },
+
   collect: function() {
     this.model.set({
       title:      this.$('#section_title').val(),

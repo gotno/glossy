@@ -70,9 +70,12 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   reorderSections: function(event, ui) {
+    console.log('reordering');
+
     var view = this;
 
     this.sectionViews.forEach(function(view) {
+      console.log(view.$el.position()['top']);
       view.model.set({
         ord: Math.floor(view.$el.position()['top'])
       });
@@ -82,6 +85,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   renderSections: function() {
     this.collect(); // make sure we don't obliterate data on re-render
     this.$sectionsList.empty();
+    this.sectionViews = []
 
     var view = this;
     this.model.get('sections').each(function(section) {
@@ -96,7 +100,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     this.$('.sections-list').sortable({
       axis: 'y',
-      toleranceElement: '> section'
+      toleranceElement: '> section',
+      stop: this.reorderSections
     });
 
     this.reorderSections();

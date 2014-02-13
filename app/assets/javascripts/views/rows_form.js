@@ -31,7 +31,9 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       cursorAt: { top: 8, left: 8 },
       tolerance: 'pointer',
       axis: "x",
+      containment: 'section',
 
+      /*
       activate: function(event, ui) {
         if (view.familySize === 4) {
           view.$widgetsList.sortable('disable');
@@ -50,10 +52,11 @@ Glossy.Views.RowsForm = Backbone.View.extend({
           $(ui.sender).sortable('cancel');
         }
       },
-      /*
+
       out: function(event, ui) {
         view.familySize--;
       },
+
       over: function(event, ui) {
         view.familySize++;
       }
