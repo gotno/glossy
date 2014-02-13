@@ -132,15 +132,6 @@ header {
 .container-fluid {
 }
 
-/*
-.article-title,
-.article-body,
-.section-title,
-.widget-col {
-  text-align: center;
-}
-*/
-
 article {
   margin-bottom: -10px;
 }
@@ -227,6 +218,7 @@ section {
     padding-top: 1.4em;
     padding-bottom: 1.4em;
     height: 200px;
+    overflow: hidden;
 
     &:first-child {
       background-color: $b1;
