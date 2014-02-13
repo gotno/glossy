@@ -2,12 +2,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   template: JST['sections/form'],
 
   tagName: 'li',
-
-  attributes: {
-    class: 'section-edit'
-  },
+  className: 'section-edit',
 
   events: {
+    'sortstop': 'sortStop',
+    'sortstart': 'sortStart',
     'click #hide_section_title': 'toggleTitle',
     //* these should go away for d+d
     'click button.section-add-text':  'addTextWidget',
@@ -74,15 +73,24 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   rollUp: function() {
+    this.$el.toggleClass('rolled-up');
     this.rowViews.forEach(function(view) {
       view.$el.toggleClass('hidden');
     });
   },
 
   rollDown: function() {
+    this.$el.toggleClass('rolled-up');
     this.rowViews.forEach(function(view) {
       view.$el.toggleClass('hidden');
     });
+  },
+
+  sortStart: function(event, ui) {
+  },
+
+  sortStop: function(event, ui) {
+    this.reorderRows();
   },
 
   collect: function() {

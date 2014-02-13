@@ -5,6 +5,8 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   className: 'rows-row-container',
 
   events: {
+    'sortstart': 'sortStart',
+    'sortstop': 'sortStop'
   },
 
   initialize: function() {
@@ -32,44 +34,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       tolerance: 'pointer',
       axis: "x",
       containment: 'section',
-
-      /*
-      activate: function(event, ui) {
-        if (view.familySize === 4) {
-          view.$widgetsList.sortable('disable');
-          console.log('disabled', view.familySize);
-        }
-      },
-
-      deactivate: function(event, ui) {
-        view.$widgetsList.sortable('enable');
-        console.log('enabled');
-      },
-      
-      receive: function(event, ui) {
-        if (view.familySize === 4) {
-          console.log('cancel sort');
-          $(ui.sender).sortable('cancel');
-        }
-      },
-
-      out: function(event, ui) {
-        view.familySize--;
-      },
-
-      over: function(event, ui) {
-        view.familySize++;
-      }
-      */
     });
-
-    /*
-    if (this.familySize >= 4) {
-      this.$widgetsList.sortable('disable');
-    } else if (this.$widgetsList.sortable) {
-      this.$widgetsList.sortable('enable');
-    }
-    */
 
     return this;
   },
@@ -104,6 +69,21 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.widgetOrder++;
 
     this.$widgetsList.append(newWidgetView.render().$el);
+  },
+
+  sortStart: function(event, ui) {
+  },
+
+  sortStop: function(event, ui) {
+    this.reorderWidgets();
+  },
+
+  reorderWidgets: function() {
+    this.widgetViews.forEach(function(view) {
+      view.model.set({
+        ord: Math.floor(view.$el.position()['left'])
+      });
+    });
   },
 
   getSortedWidgets: function() {

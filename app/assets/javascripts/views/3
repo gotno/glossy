@@ -8,7 +8,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     'click #hide_article_title': 'toggleTitle',
     'click #hide_article_body': 'toggleBody',
     'sortstart': 'sortStart',
-    'sortbeforestop': 'sortBeforeStop',
     'sortstop': 'sortStop',
   },
 
@@ -98,27 +97,27 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$('.sections-list').sortable({
       axis: 'y',
       toleranceElement: '> section',
-      forceHelperSize: true
     });
   },
 
   sortStart: function(event, ui) {
-    if ($(ui.helper[0]).hasClass('section-edit')) {
-      this.sectionViews.forEach(function(view) {
-        view.rollUp();
-      });
-    }
-  },
-
-  sortBeforeStop: function(event, ui) {
-    if ($(ui.helper[0]).hasClass('section-edit')) {
-      this.sectionViews.forEach(function(view) {
-        view.rollDown();
-      });
-    }
+    console.log('article sortStart');
+    console.log('event: ', event);
+    console.log('ui: ', ui);
+    console.log('ui: ', ui.helper);
+    this.sectionViews.forEach(function(view) {
+      // fires on any sort, even rows and widgets.
+      // no es bueno.
+      //view.rollUp();
+    });
   },
 
   sortStop: function(event, ui) {
+    console.log('article sortStop');
+    this.sectionViews.forEach(function(view) {
+      //view.rollDown();
+    });
+
     this.reorderSections();
   },
 
