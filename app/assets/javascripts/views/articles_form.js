@@ -10,6 +10,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     'sortstart': 'sortStart',
     'sortbeforestop': 'sortBeforeStop',
     'sortstop': 'sortStop',
+    'sortreceive': 'sortReceive'
   },
 
   initialize: function() {
@@ -18,7 +19,11 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model, 'sync', this.render);
+    //this.listenTo(this.model.get('sections'), 'add', this.renderSections);
 
+    this.sectionViews = [];
+
+    // ugly beforeStart hack
     var oldMouseStart = $.ui.sortable.prototype._mouseStart;
     $.ui.sortable.prototype._mouseStart = function(event, overrideHandle, noActivation) {
        this._trigger("beforeStart", event, this._uiHash());
@@ -29,8 +34,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   render: function() {
     this.$el.empty();
 
-    this.stopListening(this.model.get('sections'));
-    this.listenTo(this.model.get('sections'), 'add', this.renderSections);
 
     this.$el.html(this.template({
       article: this.model
@@ -55,40 +58,47 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     });
   },
 
-  addSection: function(event, ui) {
-    //var $draggedEl = $($('.ui-draggable')[1]);
-
+  addSection: function(ord) {
     var section = new Glossy.Models.Section({
-      ord: 10//(Math.floor($draggedEl.position()['top']) - 1),
+      ord: ord
     });
-
-    //$draggedEl.remove();
 
     this.model.get('sections').add(section);
-  },
 
-  createDummySection: function() {
-    var section = new Glossy.Models.Section;
-    var sectionView = new Glossy.Views.SectionsForm({
-      model: section 
-    });
-    return sectionView.render().$el;
-  },
+    var view = new Glossy.Views.SectionsForm({ model: section });
+    this.sectionViews.push(view);
 
-  reorderSections: function(event, ui) {
-    var view = this;
+    if (this.model.get('sections').length === 1) {
+      this.$sectionsList.append(view.render().$el);
+    } else {
+      this.$('li.section-edit').each(function(idx, li) {
+        var $li = $(li);
 
-    this.sectionViews.forEach(function(view) {
-      view.model.set({
-        ord: Math.floor(view.$el.position()['top'])
+        if ($li.attr('data-ord') > section.get('ord')) {
+          $li.before(view.render().$el);
+          return false;
+        } else if (idx == $('li.section-edit').length - 1) {
+          $li.after(view.render().$el);
+          return false;
+        }
       });
+    }
+
+    this.reorderSections();
+  },
+
+  reorderSections: function() {
+    this.sectionViews.forEach(function(view) {
+      var newOrd = Math.floor(view.$el.position()['top']);
+      view.model.set('ord', newOrd);
+      view.$el.attr('data-ord', newOrd);
     });
   },
 
   renderSections: function() {
+    this.collect(); // make sure we don't obliterate data on re-render
     this.$sectionsList.empty();
     this.sectionViews = []
-    this.collect(); // make sure we don't obliterate data on re-render
 
     var view = this;
     this.model.get('sections').each(function(section) {
@@ -112,6 +122,17 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
         });
       }
     });
+  },
+
+  sortReceive: function(event, ui) {
+    var ord = $(ui.item[0]).position()['top'] - 20;
+    $(ui.item[0]).remove();
+
+    this.addSection(ord);
+
+    var $el = $('<li id="sidebar-section-item">')
+    $el.append($('<a href="#">SECTION</a>'));
+    $('#sidebar-section').append($el);
   },
 
   sortStart: function(event, ui) {

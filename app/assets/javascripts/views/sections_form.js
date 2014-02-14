@@ -20,6 +20,8 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.$el.html(this.template({
       section: this.model
     }));
+
+    this.$el.attr('data-ord', this.model.get('ord'));
     
     this.rowViews = [];
     this.$rowsList = this.$('ul.rows-list')
@@ -45,23 +47,25 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   renderRows: function() {
-    this.collect();
-    this.$rowsList.empty();
+    if (this.model.has('rows')) {
+      this.collect();
+      this.$rowsList.empty();
 
-    var view = this;
-    this.model.get('rows').each(function(row) {
-      var rowView = new Glossy.Views.RowsForm({
-        model: row
+      var view = this;
+      this.model.get('rows').each(function(row) {
+        var rowView = new Glossy.Views.RowsForm({
+          model: row
+        });
+
+        view.$rowsList.append(rowView.render().$el);
+        view.rowViews.push(rowView);
       });
 
-      view.$rowsList.append(rowView.render().$el);
-      view.rowViews.push(rowView);
-    });
-
-    this.$rowsList.sortable({
-      axis: 'y',
-      //connectWith: '.rows-list'
-    });
+      this.$rowsList.sortable({
+        axis: 'y',
+        //connectWith: '.rows-list'
+      });
+    }
   },
 
   reorderRows: function() {
