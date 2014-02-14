@@ -19,9 +19,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model, 'sync', this.render);
-    //this.listenTo(this.model.get('sections'), 'add', this.renderSections);
-
-    this.sectionViews = [];
+    this.listenTo(this.model.get('sections'), 'add', this.appendSection);
 
     // ugly beforeStart hack
     var oldMouseStart = $.ui.sortable.prototype._mouseStart;
@@ -33,7 +31,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   render: function() {
     this.$el.empty();
-
 
     this.$el.html(this.template({
       article: this.model
@@ -58,13 +55,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     });
   },
 
-  addSection: function(ord) {
-    var section = new Glossy.Models.Section({
-      ord: ord
-    });
-
-    this.model.get('sections').add(section);
-
+  appendSection: function(section) {
     var view = new Glossy.Views.SectionsForm({ model: section });
     this.sectionViews.push(view);
 
@@ -96,7 +87,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   renderSections: function() {
-    this.collect(); // make sure we don't obliterate data on re-render
     this.$sectionsList.empty();
     this.sectionViews = []
 
@@ -125,10 +115,12 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   sortReceive: function(event, ui) {
-    var ord = $(ui.item[0]).position()['top'] - 20;
-    $(ui.item[0]).remove();
+    var section = new Glossy.Models.Section({
+      ord: $(ui.item[0]).position()['top'] - 20
+    });
+    this.model.get('sections').add(section);
 
-    this.addSection(ord);
+    $(ui.item[0]).remove();
 
     var $el = $('<li id="sidebar-section-item">')
     $el.append($('<a href="#">SECTION</a>'));
