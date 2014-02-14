@@ -100,7 +100,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       view.sectionViews.push(sectionView);
     });
 
-    this.$('.sections-list').sortable({
+    this.$sectionsList.sortable({
       axis: 'y',
       toleranceElement: '> section',
       cursorAt: { top: 8 },
@@ -111,10 +111,18 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
         });
       }
     });
+
+    if (this.model.get('sections').length == 0) {
+      var placeholder = $('<li id="sections-list-placeholder">');
+      placeholder.text('drop you a section');
+      this.$sectionsList.append(placeholder);
+    }
   },
 
   sortReceive: function(event, ui) {
     if ($(ui.item[0]).attr('id') == 'sidebar-section-item') {
+      this.$('#sections-list-placeholder').remove();
+
       var section = new Glossy.Models.Section({
         ord: $(ui.item[0]).position()['top'] - 20
       });

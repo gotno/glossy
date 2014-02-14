@@ -2,6 +2,7 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
   template: JST['widgets/image_form'],
 
   tagName: 'li',
+  className: 'widget-edit',
 
   events: {
     'change input[type=file]': 'encodeFile',

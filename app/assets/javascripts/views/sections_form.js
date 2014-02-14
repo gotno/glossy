@@ -24,10 +24,18 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     
     this.rowViews = [];
     this.$rowsList = this.$('ul.rows-list')
+    this.$rowsList.sortable({
+      axis: 'y',
+      //connectWith: '.rows-list'
+    });
+
     this.renderRows();
 
     if (this.model.has('rows')) {
       this.stopListening(this.model.get('rows'));
+      this.listenTo(this.model.get('rows'), 'add', this.appendRow);
+    } else {
+      this.model.set('rows', new Glossy.Collections.Rows);
       this.listenTo(this.model.get('rows'), 'add', this.appendRow);
     }
     
@@ -66,15 +74,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
         view.$rowsList.append(el);
         view.rowViews.push(rowView);
       });
-
-      this.$rowsList.sortable({
-        axis: 'y',
-        //connectWith: '.rows-list'
-      });
     }
   },
 
   appendRow: function(row) {
+    this.$('#rows-list-placeholder').remove();
     this.reorderRows();
 
     var view = new Glossy.Views.RowsForm({ model: row });
@@ -144,6 +148,8 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       var $el = $('<li id="sidebar-row-item">')
       $el.append($('<a href="#">ROW</a>'));
       $('#sidebar-row').append($el);
+
+      console.log('received');
     }
   },
 

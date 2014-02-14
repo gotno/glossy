@@ -6,7 +6,10 @@ Glossy.Views.RowsForm = Backbone.View.extend({
 
   events: {
     'sortstart': 'sortStart',
-    'sortstop': 'sortStop'
+    'sortstop': 'sortStop',
+    //'sortover': 'sortOver',
+    //'sortout': 'sortOut',
+    'sortreceive': 'sortReceive'
   },
 
   initialize: function() {
@@ -61,7 +64,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   },
 
   renderWidget: function(type, widget) {
-    this.$('li#widget-list-placeholder').remove();
+    this.$('#widgets-list-placeholder').remove();
 
     var newWidgetView = new Glossy.Views["Widget" + type + "Form"]({
       model: widget,
@@ -74,18 +77,130 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.$widgetsList.append(newWidgetView.render().$el);
   },
 
-  sortStart: function(event, ui) {
+  appendWidget: function(widget) {
+    var type = widget.get('widget_type');
+
+    var view = new Glossy.Views['Widget' + type + 'Form']({
+      model: widget
+    });
+    this.widgetViews.push(view);
+
+    if (this.model.get('widget' + type + 's').length === 1) {
+      this.$widgetsList.append(view.render().$el);
+    } else {
+      this.$('li.widget-edit').each(function(idx, li) {
+        var $li = $(li);
+
+        if ($li.attr('data-ord') > widget.get('ord')) {
+          $li.before(view.render().$el);
+          return false;
+        } else if (idx == $('li.widget-edit').length - 1) {
+          $li.after(view.render().$el);
+          return false;
+        }
+      });
+    }
+
+    this.getSortedWidgets();
+    this.reorderWidgets();
+    this.resizeWidgets();
   },
 
-  sortStop: function(event, ui) {
-    this.reorderWidgets();
+  resizeWidgets: function() {
+    var fs = this.familySize;
+    this.$('li.widget-edit').each(function(idx, li) {
+      var $li = $(li);
+
+      if ($li.hasClass('col-md-' + (12/(fs - 1)))) {
+        $li.removeClass('col-md-' + 12/(fs - 1));
+      }
+
+      $li.addClass('col-md-' + 12/fs);
+    });
+  },
+
+  sortReceive: function(event, ui) {
+    this.$('#widgets-list-placeholder').remove();
+    var $item = $(ui.item[0]);
+    var iid = $item.attr('id')
+
+    switch (iid) {
+    case 'sidebar-text-item':
+      if (this.familySize === 4) {
+        $item.remove();
+
+        var $el = $('<li id="' + iid + '">')
+        $el.append($('<a href="#">TEXT</a>'));
+        $('#sidebar-text').append($el);
+        return false;
+      }
+
+      var widget = new Glossy.Models.WidgetText({
+        ord: $item.position()['left'] - 20,
+        widget_type: 'Text'
+      });
+      this.model.get('widgetTexts').add(widget);
+
+      $item.remove();
+
+      var $el = $('<li id="' + iid + '">')
+      $el.append($('<a href="#">TEXT</a>'));
+      $('#sidebar-text').append($el);
+      break;
+
+    case 'sidebar-image-item':
+      if (this.familySize === 4) {
+        $item.remove();
+
+        var $el = $('<li id="' + iid + '">')
+        $el.append($('<a href="#">IMAGE</a>'));
+        $('#sidebar-image').append($el);
+        return false;
+      }
+
+      var widget = new Glossy.Models.WidgetImage({
+        ord: $item.position()['left'] - 20,
+        widget_type: 'Image'
+      });
+      this.model.get('widgetImages').add(widget);
+
+      $item.remove();
+
+      var $el = $('<li id="' + iid + '">')
+      $el.append($('<a href="#">IMAGE</a>'));
+      $('#sidebar-image').append($el);
+      break;
+
+    case 'sidebar-placeholder-item': 
+      if (this.familySize === 4) {
+        $item.remove();
+
+        var $el = $('<li id="' + iid + '">')
+        $el.append($('<a href="#">PLACEHOLDER</a>'));
+        $('#sidebar-placeholder').append($el);
+        return false;
+      }
+
+      var widget = new Glossy.Models.WidgetPlaceholder({
+        ord: $item.position()['left'] - 20,
+        widget_type: 'Placeholder'
+      });
+      this.model.get('widgetPlaceholders').add(widget);
+
+      $item.remove();
+
+      var $el = $('<li id="' + iid + '">')
+      $el.append($('<a href="#">PLACEHOLDER</a>'));
+      $('#sidebar-placeholder').append($el);
+      break;
+    }
   },
 
   reorderWidgets: function() {
     this.widgetViews.forEach(function(view) {
-      view.model.set({
-        ord: Math.floor(view.$el.position()['left'])
-      });
+      var newOrd = Math.floor(view.$el.position()['left']);
+      view.model.set({ ord: newOrd });
+      view.$el.attr('data-ord', newOrd);
     });
   },
 
@@ -111,9 +226,13 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     }
     this.widgetTexts = this.model.get('widgetTexts');
 
+    /*
     this.listenTo(this.widgetTexts, 'add', function() {
       view.renderWidget('Text', view.widgetTexts.last());
     });
+    */
+
+    this.listenTo(this.widgetTexts, 'add', this.appendWidget);
 
     // image widgets
     if (!this.model.has('widgetImages')) {
@@ -121,9 +240,13 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     }
     this.widgetImages = this.model.get('widgetImages');
 
+    /*
     this.listenTo(this.widgetImages, 'add', function() {
       view.renderWidget('Image', view.widgetImages.last());
     });
+    */
+
+    this.listenTo(this.widgetImages, 'add', this.appendWidget);
   },
 
   collect: function() {
