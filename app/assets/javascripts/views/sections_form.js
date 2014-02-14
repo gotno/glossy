@@ -7,12 +7,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   events: {
     'sortstop': 'sortStop',
     'sortstart': 'sortStart',
-    'click #hide_section_title': 'toggleTitle',
-    //* these should go away for d+d
-    'click button.section-add-text':  'addTextWidget',
-    'click button.section-add-image': 'addImageWidget',
-    'click button.destroy-section':   'destroySection'
-    // */
+    'sortreceive': 'sortReceive',
+    'click #hide_section_title': 'toggleTitle'
+  },
+
+  initialize: function() {
   },
 
   render: function() {
@@ -27,6 +26,11 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     this.$rowsList = this.$('ul.rows-list')
     this.renderRows();
 
+    if (this.model.has('rows')) {
+      this.stopListening(this.model.get('rows'));
+      this.listenTo(this.model.get('rows'), 'add', this.appendRow);
+    }
+    
     return this;
   },
 
@@ -57,7 +61,9 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
           model: row
         });
 
-        view.$rowsList.append(rowView.render().$el);
+        var el = rowView.render().$el;
+        el.attr('data-ord', row.get('ord'));
+        view.$rowsList.append(el);
         view.rowViews.push(rowView);
       });
 
@@ -68,11 +74,40 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
     }
   },
 
-  reorderRows: function() {
-    this.rowViews.forEach(function(view) {
-      view.model.set({
-        ord: Math.floor(view.$el.position()['top'])
+  appendRow: function(row) {
+    this.reorderRows();
+
+    var view = new Glossy.Views.RowsForm({ model: row });
+    this.rowViews.push(view);
+
+    if (this.model.get('rows').length === 1) {
+      this.$rowsList.append(view.render().$el);
+    } else {
+      var listItems = this.$rowsList.find('li.row-edit');
+
+      listItems.each(function(idx, li) {
+        var $li = $(li);
+
+        if ($li.attr('data-ord') > row.get('ord')) {
+          $li.parent().before(view.render().$el);
+          return false;
+        } else if (idx == listItems.length - 1) {
+          $li.parent().after(view.render().$el);
+          return false;
+        }
       });
+    }
+  },
+
+  reorderRows: function() {
+    this.$rowsList.find('li.row-edit').each(function(idx, li) {
+      var $li = $(li);
+      var newOrd = Math.floor($li.position()['top']);
+      $li.attr('data-ord', newOrd);
+    });
+
+    this.rowViews.forEach(function(view) {
+      view.model.set('ord', view.$el.position()['top']);
     });
   },
 
@@ -95,6 +130,21 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
   sortStop: function(event, ui) {
     this.reorderRows();
+  },
+
+  sortReceive: function(event, ui) {
+    if ($(ui.item[0]).attr('id') == 'sidebar-row-item') {
+      var row = new Glossy.Models.Row({
+        ord: $(ui.item[0]).position()['top'] - 20
+      });
+      this.model.get('rows').add(row);
+
+      $(ui.item[0]).remove();
+
+      var $el = $('<li id="sidebar-row-item">')
+      $el.append($('<a href="#">ROW</a>'));
+      $('#sidebar-row').append($el);
+    }
   },
 
   collect: function() {

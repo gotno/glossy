@@ -24,6 +24,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.$widgetsList = this.$('.widgets-list');
 
     var view = this;
+
     this.getSortedWidgets().forEach(function(widget) {
       view.renderWidget(widget.get('widget_type'), widget);
     });
@@ -60,6 +61,8 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   },
 
   renderWidget: function(type, widget) {
+    this.$('li#widget-list-placeholder').remove();
+
     var newWidgetView = new Glossy.Views["Widget" + type + "Form"]({
       model: widget,
       className: "col-md-" + (12/this.familySize)

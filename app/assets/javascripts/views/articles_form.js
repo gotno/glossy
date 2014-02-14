@@ -18,7 +18,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
       Glossy.article.set('sections', new Glossy.Collections.Sections());
     }
 
-    this.listenTo(this.model, 'sync', this.render);
     this.listenTo(this.model.get('sections'), 'add', this.appendSection);
 
     // ugly beforeStart hack
@@ -115,16 +114,18 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   },
 
   sortReceive: function(event, ui) {
-    var section = new Glossy.Models.Section({
-      ord: $(ui.item[0]).position()['top'] - 20
-    });
-    this.model.get('sections').add(section);
+    if ($(ui.item[0]).attr('id') == 'sidebar-section-item') {
+      var section = new Glossy.Models.Section({
+        ord: $(ui.item[0]).position()['top'] - 20
+      });
+      this.model.get('sections').add(section);
 
-    $(ui.item[0]).remove();
+      $(ui.item[0]).remove();
 
-    var $el = $('<li id="sidebar-section-item">')
-    $el.append($('<a href="#">SECTION</a>'));
-    $('#sidebar-section').append($el);
+      var $el = $('<li id="sidebar-section-item">')
+      $el.append($('<a href="#">SECTION</a>'));
+      $('#sidebar-section').append($el);
+    }
   },
 
   sortStart: function(event, ui) {
