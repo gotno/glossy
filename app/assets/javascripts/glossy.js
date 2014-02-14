@@ -26,56 +26,47 @@ window.Glossy = {
 
       start: function(event, ui) {
         $('#sidebar-section').find('li:hidden').show();
-      },
-
-      beforeStart: function() {
-        //window.Glossy.articleView.sectionViews.forEach(function(view) {
-          //view.rollUp();
-        //}
-      },
-
-      beforeStop: function(event, ui) {
-        //console.log('event: ', event);
-        //console.log('ui: ', ui);
-        //$(event.target).sortable('cancel');
       }
     });
 
-    /*
-    $('#sidebar-section').draggable({
+    $('#sidebar-row').sortable({
       helper: 'clone',
+      connectWith: '.rows-list',
       scroll: false,
-      cursorAt: { top: 8, left: 8 },
-      connectToSortable: '.sections-list'
+
+      start: function(event, ui) {
+        $('#sidebar-row').find('li:hidden').show();
+      }
     });
 
-    $('#sidebar-row').draggable({
+    $('#sidebar-text').sortable({
       helper: 'clone',
+      connectWith: '.widgets-list',
       scroll: false,
-      cursorAt: { top: 8, left: 8 },
-      connectToSortable: 'ul.rows-list'
+
+      start: function(event, ui) {
+        $('#sidebar-text').find('li:hidden').show();
+      }
     });
 
-    $('#sidebar-image').draggable({
+    $('#sidebar-image').sortable({
       helper: 'clone',
+      connectWith: '.widgets-list',
       scroll: false,
-      cursorAt: { top: 8, left: 8 },
-      connectToSortable: '.widgets-list'
+
+      start: function(event, ui) {
+        $('#sidebar-image').find('li:hidden').show();
+      }
     });
 
-    $('#sidebar-text').draggable({
+    $('#sidebar-placeholder').sortable({
       helper: 'clone',
+      connectWith: '.widgets-list',
       scroll: false,
-      cursorAt: { top: 8, left: 8 },
-      connectToSortable: '.widgets-list'
-    });
 
-    $('#sidebar-placeholder').draggable({
-      helper: 'clone',
-      scroll: false,
-      cursorAt: { top: 8, left: 8 },
-      connectToSortable: '.widgets-list'
+      start: function(event, ui) {
+        $('#sidebar-placeholder').find('li:hidden').show();
+      }
     });
-    */
   }
 }
