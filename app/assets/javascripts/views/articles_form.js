@@ -4,7 +4,8 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   tagName: 'article',
 
   events: {
-    'click button': 'submit',
+    'click .preview': 'preview',
+    'click .save': 'submit',
     'click #hide_article_title': 'toggleTitle',
     'click #hide_article_body': 'toggleBody',
     'sortstart': 'sortStart',
@@ -44,14 +45,17 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
   submit: function(event) {
     event.preventDefault();
 
-    this.collect();
-
     var view = this;
     Glossy.article.save({}, {
       success: function() {
         console.log('successful save.');
       }
     });
+  },
+
+  preview: function(event) {
+    this.collect();
+    Backbone.history.navigate('edit', { trigger: true });
   },
 
   appendSection: function(section) {
@@ -114,7 +118,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     if (this.model.get('sections').length == 0) {
       var placeholder = $('<li id="sections-list-placeholder">');
-      placeholder.text('drop you a section');
+      placeholder.text('Drop a Section here to get started.');
       this.$sectionsList.append(placeholder);
     }
   },

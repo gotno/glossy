@@ -1,0 +1,15 @@
+<div class="row text-widget-show">
+  <div class="col-md-12">
+    <% if (widget.has('title') && !widget.get('hide_title')) { %>
+      <h3><%= widget.escape('title') %></h3>
+    <% } %>
+  </div>
+</div>
+
+<div class="row text-widget-show">
+  <div class="col-md-12">
+    <% if (widget.has('body') && !widget.get('hide_body')) { %>
+      <p><%= widget.escape('body') %></p>
+    <% } %>
+  </div>
+</div>

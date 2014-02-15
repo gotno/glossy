@@ -1,10 +1,22 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
-    '': 'form',
+    '': 'show',
+    'edit': 'form'
   },
 
   form: function() {
+    console.log('form');
+    $('#sidebar-wrapper').show();
     var articleView = Glossy.articleView = new Glossy.Views.ArticlesForm({
+      model: Glossy.article
+    });
+    this._swapViews(articleView);
+  },
+
+  show: function() {
+    console.log('show');
+    $('#sidebar-wrapper').hide();
+    var articleView = Glossy.articleView = new Glossy.Views.ArticlesShow({
       model: Glossy.article
     });
     this._swapViews(articleView);

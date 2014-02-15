@@ -7,7 +7,7 @@ window.Glossy = {
   initialize: function(options) {
     Glossy.article = new Glossy.Models.Article(options.article);
 
-    Glossy.router = new Glossy.Routers.ArticlesRouter;
+    new Glossy.Routers.ArticlesRouter;
     Backbone.history.start();
 
     $("i.show-hide").click(function(){
