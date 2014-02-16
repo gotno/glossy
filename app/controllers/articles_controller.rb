@@ -26,5 +26,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @article_json = render_to_string template: '/api/articles/article',
+                                     layout: false,
+                                     locals: { article: @article } 
   end
 end

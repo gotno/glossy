@@ -1,6 +1,7 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
     '': 'show',
+    'preview': 'show',
     'edit': 'form'
   },
 

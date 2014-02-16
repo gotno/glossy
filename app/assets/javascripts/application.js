@@ -5,6 +5,7 @@
 //= require underscore
 //= require backbone
 //= require bootstrap
+//= require bootstrap-checkbox
 //= require glossy
 //= require_tree ../templates
 //= require_tree ./models
