@@ -14,7 +14,12 @@
       <span class="input-group-addon">
         <% var icon = (article.get('hide_title')) ? "fa-eye-slash" : "fa-eye" %>
         <i id="hide_article_title" class="fa <%= icon %> show-hide"></i>
-        <!--<input type="checkbox" class="checkbox eyebox"/>-->
+
+        <!-- almost works
+        <label>
+          <input type="checkbox" class="eyebox"/><i class="fa <%= icon %>"></i>
+        </label>
+        -->
       </span>
     </div>
   </div>

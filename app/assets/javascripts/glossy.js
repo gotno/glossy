@@ -10,14 +10,19 @@ window.Glossy = {
     new Glossy.Routers.ArticlesRouter;
     Backbone.history.start();
 
-    $('.eyebox').checkbox({
-      checkedClass: 'eye-slash',
-      uncheckedClass: 'eye',
-      //checked: false,
-      //enabled: true,
-      indeterminate: true
-    });
+    /* this almost works, but misaligns the form-group
+    $('.eyebox').change(function() {
+      $checkbox = $(this);
+      $icon = $checkbox.siblings("[class*=fa-]");
 
+      var checked = $checkbox.is(":checked");
+
+      $icon.toggleClass('fa-eye-slash', checked)
+           .toggleClass('fa-eye', !checked);
+    });
+    // */
+
+    // hacky fake checkbox
     $("i.show-hide").click(function(){
       if($(this).hasClass('fa-eye')){
         $(this).removeClass('fa-eye').addClass('fa-eye-slash');

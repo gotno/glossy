@@ -390,3 +390,17 @@ section {
   color: #fff;
   background: none;
 }
+
+$padding-large-vertical: -9px;
+
+.eyebox {
+  display: none;
+}
+
+[class*=fa-] {
+}
+
+label {
+  cursor: pointer;
+  top: -9px;
+}
