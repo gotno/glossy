@@ -10,7 +10,7 @@
 .bootstrap-checkbox > button.btn.displayAsButton > span.label-checkbox{
 	padding:0 8px 0 4px;
 }
-.bootstrap-checkbox > button.btn.displayAsButton > span.icon{
+.bootstrap-checkbox > button.btn.displayAsButton > span.fa{
 	margin: 2px 4px;
 }
 .bootstrap-checkbox > button.btn.displayAsButton > span.label-prepend-checkbox{

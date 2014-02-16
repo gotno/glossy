@@ -10,9 +10,12 @@ window.Glossy = {
     new Glossy.Routers.ArticlesRouter;
     Backbone.history.start();
 
-    $('.checkbox').checkbox({
-      checkedClass: 'fa-eye',
-      uncheckedClass: 'fa-eye-slash'
+    $('.eyebox').checkbox({
+      checkedClass: 'eye-slash',
+      uncheckedClass: 'eye',
+      //checked: false,
+      //enabled: true,
+      indeterminate: true
     });
 
     $("i.show-hide").click(function(){

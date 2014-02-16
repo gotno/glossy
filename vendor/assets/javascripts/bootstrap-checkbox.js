@@ -89,9 +89,9 @@
             	'<span class="button-checkbox bootstrap-checkbox">' +
             		'<button type="button" class="btn clearfix'+additionalButtonStyle+'">' +
             			((this.$element.data('label-prepend') && this.displayAsButton) ? labelPrepend : '')+
-	                    '<span class="icon '+this.options.checkedClass+'" style="display:none;"></span>' +
-	                    '<span class="icon '+this.options.uncheckedClass+'"></span>' +
-	                    '<span class="icon '+this.options.indeterminateClass+'" style="display:none;"></span>' +
+	                    '<span class="fa fa-'+this.options.checkedClass+'" style="display:none;"></span>' +
+	                    '<span class="fa fa-'+this.options.uncheckedClass+'"></span>' +
+	                    '<span class="fa fa-'+this.options.indeterminateClass+'" style="display:none;"></span>' +
 	                    ((this.$element.data('label') && this.displayAsButton) ? label : '')+
 	                '</button>' +
 	            '</span>';
