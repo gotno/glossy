@@ -13,5 +13,6 @@ Glossy::Application.routes.draw do
     resources :widget_images, only: [:create, :update, :destroy]
   end
 
+  get '/:id', to: 'users#show'
   root to: 'root#root'
 end

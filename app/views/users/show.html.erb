@@ -1,6 +1,11 @@
-<%= render @article %>
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
-    <%= paginate @article %>
-  </div>
-</div>
+<script type="application/json" id="article_json">
+  { "article": <%== @article_json %> }
+</script>
+
+<script>
+  $(function() {
+    var article_json = JSON.parse($('#article_json').html());
+
+    Glossy.initialize(article_json);
+  });
+</script>

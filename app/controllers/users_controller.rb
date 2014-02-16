@@ -29,9 +29,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @article = @user.articles
                     .order("created_at DESC")
-                    .includes(:sections)
-                    .page(params[:page])
-                    .per(1)
+                    .first
+#                    .includes(:sections)
+#                    .page(params[:page])
+#                    .per(1)
+
+    @article_json = render_to_string template: '/api/articles/article',
+                                     layout: false,
+                                     locals: { article: @article } 
     render :show
   end
 end

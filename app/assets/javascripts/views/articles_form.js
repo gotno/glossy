@@ -44,10 +44,12 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
   submit: function(event) {
     event.preventDefault();
+    this.collect();
 
     var view = this;
     Glossy.article.save({}, {
       success: function() {
+        Backbone.history.navigate('', { trigger: true });
         console.log('successful save.');
       }
     });
