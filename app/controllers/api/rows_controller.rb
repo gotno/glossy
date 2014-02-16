@@ -1,4 +1,4 @@
-class Api:RowsController < ApplicationController
+class Api::RowsController < ApplicationController
   def destroy
     @row = Row.find(params[:id])
     @row.widgets.each do |w|
