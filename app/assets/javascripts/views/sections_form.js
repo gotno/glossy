@@ -43,7 +43,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   toggleTitle: function(event) {
-    var $input = this.$('input[type=text]');
+    var $input = this.$('input[type=text]').first();
     $input.prop('disabled', (!$input.prop('disabled')));
   },
 
