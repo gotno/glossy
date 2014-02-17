@@ -51,9 +51,11 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
     reader.onload = function(e) {
       view.model.set('img', e.target.result);
 
-      Glossy.article.save(null, {
+      view.model.save(null, {
+      //Glossy.article.save(null, {
         success: function() {
           console.log('image saved');
+          console.log(arguments);
         }
       });
     };

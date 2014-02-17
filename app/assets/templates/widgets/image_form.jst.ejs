@@ -7,14 +7,14 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 image-widget-file-input">
     <input type="file"><br>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <div class="input-group image-widget-title">
+    <div class="input-group image-widget-title-container">
       <input type="text"
              class="image-widget-title form-control"
              id="iw_title"
@@ -38,9 +38,9 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="input-group">
+    <div class="input-group image-widget-date-container">
       <input type="date"
-             class="image-widget-date form-control"
+             class="form-control image-widget-date"
              id="iw_date"
              <% if (widget.has('date')) { %>
                value="<%= widget.escape('date') %>"

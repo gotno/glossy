@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="input-group text-widget-title">
+    <div class="input-group text-widget-title-container">
       <input type="text"
              placeholder="heading"
-             class="text-widget-title form-control"
+             class="form-control text-widget-title"
              id="tw_title"
              <% if (widget.has('title')) { %>
                value="<%= widget.escape('title') %>"
@@ -24,10 +24,11 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="input-group">
-      <textarea class="text-widget-body form-control" 
+    <div class="input-group text-widget-body-container">
+      <textarea class="form-control text-widget-body" 
                 placeholder="body"
                 id="tw_body"
+                rows="8"
                 <% if (widget.get('hide_body')) { %>
                   disabled
                 <% } %>
