@@ -44,7 +44,7 @@ Glossy.Views.WidgetTextForm = Backbone.View.extend({
       title:      this.$('#tw_title').val(),
       hide_title: this.$('#tw_hide_title').hasClass('fa-eye-slash'),
       body:       this.$('#tw_body').val(),
-      hide_body:  this.$('#tw_hide_title').hasClass('fa-eye-slash')
+      hide_body:  this.$('#tw_hide_body').hasClass('fa-eye-slash')
     });
   }
 });

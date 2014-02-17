@@ -14,7 +14,7 @@ Glossy.Views.RowsShow = Backbone.View.extend({
 
     this.widgetViews = [];
 
-    this.$widgetsContainer = this.$('.widget-container');
+    this.$widgetsContainer = this.$('.widget-show-container');
 
     var view = this;
 
