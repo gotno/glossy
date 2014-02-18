@@ -35,7 +35,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       cursorAt: { top: 8, left: 8 },
       tolerance: 'pointer',
       axis: "x",
-      containment: 'section',
+      containment: 'section'
     });
 
     return this;
