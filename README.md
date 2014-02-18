@@ -23,6 +23,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
     + create seperate heading/body widgets
   + widget weight and centerability
     + use placeholder widget for now
+    + which needs to be added
   + more widget types
     + audio
     + video
