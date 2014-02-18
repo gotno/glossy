@@ -28,7 +28,8 @@ Glossy.Views.RowsShow = Backbone.View.extend({
   renderWidget: function(type, widget) {
     var newWidgetView = new Glossy.Views["Widget" + type + "Show"]({
       model: widget,
-      className: "col-md-" + (12/this.familySize)
+      className: "col-md-" + (12/this.familySize),
+      familySize: this.familySize
     });
 
     this.widgetViews.push(newWidgetView);

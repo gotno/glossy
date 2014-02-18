@@ -1,7 +1,15 @@
 <div class="row widget-image-show">
   <div class="col-md-12">
-    <% if (widget.has('image_url_smallest')) { %>
-      <img src="<%= widget.escape('image_url_smallest') %>">
+    <% if (widget.has('image_url_thumb')) { %>
+      <% if (familySize == 1) { %>
+        <img src="<%= widget.escape('image_url_big') %>">
+      <% } else if (familySize == 2) { %>
+        <img src="<%= widget.escape('image_url_med') %>">
+      <% } else if (familySize == 3) { %>
+        <img src="<%= widget.escape('image_url_small') %>">
+      <% } else if (familySize == 4) { %>
+        <img src="<%= widget.escape('image_url_smallest') %>">
+      <% } %>
     <% } %>
   </div>
 </div>

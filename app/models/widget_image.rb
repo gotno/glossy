@@ -4,10 +4,10 @@ class WidgetImage < ActiveRecord::Base
                   :img, :ord, :widget_type
 
   has_attached_file :img, styles: {
-    :big => "1170x1170>", 
-    :med => "970x970>", 
-    :small => "750x750>", 
-    :smallest => "480x480>", 
+    :big => "960x960>", 
+    :med => "480x480>", 
+    :small => "320x320>", 
+    :smallest => "240x240>", 
     :thumb => "150x150>"  
   }
 end

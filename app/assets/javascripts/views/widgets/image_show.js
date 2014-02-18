@@ -3,9 +3,14 @@ Glossy.Views.WidgetImageShow = Backbone.View.extend({
 
   tagName: 'div',
 
+  initialize: function(options) {
+    this.familySize = options.familySize;
+  },
+
   render: function() {
     this.$el.html(this.template({
-      widget: this.model
+      widget: this.model,
+      familySize: this.familySize
     }));
 
     return this;

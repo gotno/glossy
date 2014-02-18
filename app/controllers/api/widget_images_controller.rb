@@ -3,7 +3,8 @@ class Api::WidgetImagesController < ApplicationController
     @widget = WidgetImage.new(params[:widget_image]);
 
     if @widget.save
-      render json: @widget
+      render :show
+#      render json: @widget
     else
       render json: @widget.errors.full_messages, status: 422
     end

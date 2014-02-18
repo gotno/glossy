@@ -4,7 +4,7 @@ class Api::ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(params[:article]);
     if @article.save
-      render :show
+      render @article 
     else
       render json: @article.errors.full_messages, status: 422
     end

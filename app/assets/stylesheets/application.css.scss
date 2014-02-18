@@ -250,7 +250,7 @@ section {
   li {
     padding-top: 1.4em;
     padding-bottom: 1.4em;
-    height: 330px;
+    min-height: 330px;
     overflow: hidden;
 
     &:first-child {
@@ -331,6 +331,7 @@ section {
 /// text widget
 .widget-show-container {
   h3 {
+    margin-top: .2em;
     font-size: 1.4em;
     text-align: center;
   }

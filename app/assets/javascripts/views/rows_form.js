@@ -68,7 +68,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
 
     var newWidgetView = new Glossy.Views["Widget" + type + "Form"]({
       model: widget,
-      className: "col-md-" + (12/this.familySize)
+      className: "widget-edit col-md-" + (12/this.familySize)
     });
 
     this.widgetViews.push(newWidgetView);
@@ -100,6 +100,15 @@ Glossy.Views.RowsForm = Backbone.View.extend({
         }
       });
     }
+
+    view.$el.find('i.show-hide').click(function() {
+      if($(this).hasClass('fa-eye')){
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+      }
+      else {
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
 
     this.getSortedWidgets();
     this.reorderWidgets();

@@ -48,16 +48,13 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
     var view = this;
     Glossy.article.save({}, {
-      success: function() {
-        Backbone.history.navigate('', { trigger: true });
+      success: function(model, response, options) {
         console.log('successful save.');
+        Glossy.article.id = model.id;
+        console.log((Glossy.article.id));
+        Backbone.history.navigate('', { trigger: true });
       }
     });
-  },
-
-  preview: function(event) {
-    this.collect();
-    Backbone.history.navigate('edit', { trigger: true });
   },
 
   appendSection: function(section) {
@@ -79,6 +76,15 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
         }
       });
     }
+
+    view.$el.find('i.show-hide').click(function() {
+      if($(this).hasClass('fa-eye')){
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+      }
+      else {
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
 
     this.reorderSections();
   },
