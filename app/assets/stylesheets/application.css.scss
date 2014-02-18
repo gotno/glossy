@@ -301,8 +301,16 @@ section {
   text-align: center;
 }
 
-.image-widget-upload-container {
-  margin: 0 auto;
+.image-widget-file-input {
+  input {
+    margin: 0 auto;
+  }
+}
+
+.image-widget-image {
+  img {
+    margin: 0 auto;
+  }
 }
 
 //-- SHOW
