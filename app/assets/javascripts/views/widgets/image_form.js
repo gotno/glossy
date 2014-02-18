@@ -11,7 +11,6 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
   },
 
   render: function() {
-    console.log('rendering image');
     this.$el.html(this.template({
       widget: this.model
     }));

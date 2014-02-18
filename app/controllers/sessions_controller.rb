@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @user
       login!(@user)
       flash[:success] = "Welcome back, #{@user.username}."
-      redirect_to user_url(@user)
+      redirect_to '/' + @user.slug
     else
       flash.now[:error] = ["Invalid Username/Password Combination"]
       render :new
