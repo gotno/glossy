@@ -7,7 +7,9 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   events: {
     'sortstart': 'sortStart',
     'sortstop': 'sortStop',
-    'sortreceive': 'sortReceive'
+    'sortreceive': 'sortReceive',
+    'click button.text-widget-remove': 'removeWidgetText',
+    'click button.image-widget-remove': 'removeWidgetImage'
   },
 
   initialize: function() {
@@ -19,7 +21,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       row: this.model
     }));
 
-    this.widgetOrder = 0;
     this.widgetViews = [];
 
     this.$widgetsList = this.$('.widgets-list');
@@ -41,26 +42,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     return this;
   },
 
-  addWidgetText: function(event) {
-    event.preventDefault();
-
-    var widgetText = new Glossy.Models.WidgetText({
-      ord: this.widgetOrder
-    });
-
-    this.widgetTexts.add(widgetText);
-  },
-
-  addWidgetImage: function(event) {
-    event.preventDefault();
-
-    var widgetImage = new Glossy.Models.WidgetImage({
-      ord: this.widgetOrder
-    });
-
-    this.widgetImages.add(widgetImage);
-  },
-
   renderWidget: function(type, widget) {
     this.$('#widgets-list-placeholder').remove();
 
@@ -70,7 +51,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     });
 
     this.widgetViews.push(newWidgetView);
-    this.widgetOrder++;
 
     this.$widgetsList.append(newWidgetView.render().$el);
   },
@@ -239,6 +219,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.widgetTexts = this.model.get('widgetTexts');
 
     this.listenTo(this.widgetTexts, 'add', this.appendWidget);
+    this.listenTo(this.widgetTexts, 'remove', this.render);
 
     // image widgets
     if (!this.model.has('widgetImages')) {
@@ -247,6 +228,21 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     this.widgetImages = this.model.get('widgetImages');
 
     this.listenTo(this.widgetImages, 'add', this.appendWidget);
+    this.listenTo(this.widgetImages, 'remove', this.render);
+  },
+
+  removeWidgetText: function(event) {
+    event.preventDefault();
+    var wt = this.model.get('widgetTexts');
+    var widget = wt.get({ cid: $(event.target).attr('data-cid') });
+    widget.destroy();
+  },
+
+  removeWidgetImage: function(event) {
+    event.preventDefault();
+    var wi = this.model.get('widgetImages');
+    var widget = wi.get({ cid: $(event.target).attr('data-cid') });
+    widget.destroy();
   },
 
   collect: function() {
