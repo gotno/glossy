@@ -237,14 +237,16 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     event.preventDefault();
     var wt = this.model.get('widgetTexts');
     var widget = wt.get({ cid: $(event.target).attr('data-cid') });
-    widget.destroy();
+    wt.remove(widget);
+    //widget.destroy();
   },
 
   removeWidgetImage: function(event) {
     event.preventDefault();
     var wi = this.model.get('widgetImages');
     var widget = wi.get({ cid: $(event.target).attr('data-cid') });
-    widget.destroy();
+    wi.remove(widget);
+    //widget.destroy();
   },
 
   collect: function() {
