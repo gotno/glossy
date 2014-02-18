@@ -7,8 +7,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   events: {
     'sortstart': 'sortStart',
     'sortstop': 'sortStop',
-    //'sortover': 'sortOver',
-    //'sortout': 'sortOut',
     'sortreceive': 'sortReceive'
   },
 
@@ -68,7 +66,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
 
     var newWidgetView = new Glossy.Views["Widget" + type + "Form"]({
       model: widget,
-      className: "widget-edit col-md-" + (12/this.familySize)
+      className: "nopadding widget-edit col-md-" + (12/this.familySize)
     });
 
     this.widgetViews.push(newWidgetView);
@@ -88,6 +86,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     if (this.model.get('widget' + type + 's').length === 1) {
       this.$widgetsList.append(view.render().$el);
     } else {
+      var that = this;
       this.$('li.widget-edit').each(function(idx, li) {
         var $li = $(li);
 
@@ -205,6 +204,10 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     }
   },
 
+  sortStop: function() {
+    this.reorderWidgets();
+  },
+
   reorderWidgets: function() {
     this.widgetViews.forEach(function(view) {
       var newOrd = Math.floor(view.$el.position()['left']);
@@ -235,12 +238,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
     }
     this.widgetTexts = this.model.get('widgetTexts');
 
-    /*
-    this.listenTo(this.widgetTexts, 'add', function() {
-      view.renderWidget('Text', view.widgetTexts.last());
-    });
-    */
-
     this.listenTo(this.widgetTexts, 'add', this.appendWidget);
 
     // image widgets
@@ -248,12 +245,6 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       this.model.set('widgetImages', new Glossy.Collections.WidgetImages());
     }
     this.widgetImages = this.model.get('widgetImages');
-
-    /*
-    this.listenTo(this.widgetImages, 'add', function() {
-      view.renderWidget('Image', view.widgetImages.last());
-    });
-    */
 
     this.listenTo(this.widgetImages, 'add', this.appendWidget);
   },
