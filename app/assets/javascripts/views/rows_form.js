@@ -138,7 +138,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
         $item.remove();
 
         var $el = $('<li id="' + iid + '">')
-        $el.append($('<a href="#">TEXT</a>'));
+        $el.append($('<a href="#"><i class="fa fa-pencil"></i>&nbsp;&nbsp;TEXT</a>'));
         $('#sidebar-text').append($el);
         return false;
       }
@@ -152,7 +152,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       $item.remove();
 
       var $el = $('<li id="' + iid + '">')
-      $el.append($('<a href="#">TEXT</a>'));
+      $el.append($('<a href="#"><i class="fa fa-pencil"></i>&nbsp;&nbsp;TEXT</a>'));
       $('#sidebar-text').append($el);
       break;
 
@@ -161,7 +161,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
         $item.remove();
 
         var $el = $('<li id="' + iid + '">')
-        $el.append($('<a href="#">IMAGE</a>'));
+        $el.append($('<a href="#"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;IMAGE</a>'));
         $('#sidebar-image').append($el);
         return false;
       }
@@ -175,7 +175,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
       $item.remove();
 
       var $el = $('<li id="' + iid + '">')
-      $el.append($('<a href="#">IMAGE</a>'));
+      $el.append($('<a href="#"><i class="fa fa-picture-o"></i>&nbsp;&nbsp;IMAGE</a>'));
       $('#sidebar-image').append($el);
       break;
 
