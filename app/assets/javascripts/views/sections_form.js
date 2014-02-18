@@ -59,7 +59,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
   },
 
   renderRows: function() {
-    if (this.model.has('rows')) {
+    if (this.model.has('rows') && this.model.get('rows').length !== 0) {
       this.collect();
       this.$rowsList.empty();
 
@@ -148,8 +148,6 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
       var $el = $('<li id="sidebar-row-item">')
       $el.append($('<a href="#">ROW</a>'));
       $('#sidebar-row').append($el);
-
-      console.log('received');
     }
   },
 

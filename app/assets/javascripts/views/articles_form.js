@@ -42,9 +42,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     var view = this;
     Glossy.article.save({}, {
       success: function(model, response, options) {
-        console.log('successful save.');
-        Glossy.article.id = model.id;
-        console.log((Glossy.article.id));
         Backbone.history.navigate('', { trigger: true });
       }
     });
@@ -112,7 +109,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
       beforeStart: function(event, ui) {
         view.sectionViews.forEach(function(sview) {
-          console.log('before start');
           sview.rollUp();
         });
       }
