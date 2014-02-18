@@ -63,51 +63,44 @@ ul {
 
 header {
   height: 100px;
-  background-color: $o1;
+  background-color: $o2;
+  padding-right: 2em;
   a {
-    color: $bone;
+    color: $b6;
     &:hover {
       text-decoration: none;
-      color: $darkgray;
+      color: $b7;
     }
     .logo {
       font-size: 5em;
       float: left;
       height: 100%;
-      background-color: $o1;
+      background-color: $o2;
       font-family: $sans-bold;
+      padding-left: .2em;
+      padding-right: .2em;
       
       @include transition(all, 0.2s, ease-out);
 
       &:hover {
-        background-color: $o2;
+        background-color: $o3;
       }
     }
     li { 
       float: right;
-      font-size: 2em;
+      font-size: 3em;
       height: 100%;
-      padding: 1em .35em;
+      padding: .5em .35em;
       text-align: center;
-      background-color: $o1;
+      background-color: $o2;
+      margin-right: .1em;
+
+      &:hover {
+        background-color: $b6;
+        color: $o3;
+      }
 
       @include transition(all, 0.2s, ease-out);
-
-      &:hover {
-        background-color: $o2;
-      }
-    }
-    li.warning {
-      &:hover {
-        color: $bone;
-        background-color: $lightred;
-      }
-    }
-    li.good {
-      &:hover {
-        color: $bone;
-        background-color: $greeny;
-      }
     }
   }
   nav {
@@ -135,7 +128,7 @@ header {
 //-- EDIT
 article {
   margin-bottom: -10px;
-  background: $b6;
+  background: $b7;
 }
 
 .article-row {

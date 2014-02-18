@@ -6,29 +6,12 @@
     <nav>
       <ul>
         <% if logged_in? %>
-          <%= link_to session_url, title: "sign out", method: :delete do %>
-            <li><i class="fa fa-sign-out"></i></li>
-          <% end %>
-          
-          <% unless params[:action] == 'new' || params[:action] == 'edit' || params[:controller] == 'root' %>
-            <%= link_to edit_article_url(@article), title: "edit article" do %>
-              <li><i class="fa fa-edit"></i></li>
-            <% end %>
+          <%= link_to '#new', title: "new article" do %>
+            <li><i class="fa fa-plus"></i></li>
           <% end %>
 
-          <% unless params[:action] == 'new' || params[:action] == 'edit' || params[:controller] == 'root' %>
-            <%= link_to article_url(@article), title: "delete article", 
-                                               method: :delete do %>
-              <li class="warning"><i class="fa fa-times"></i></li>
-            <% end %>
-          <% end %>
-
-          <%= link_to new_user_article_url(current_user), title: "new article" do %>
-            <li class="good"><i class="fa fa-plus"></i></li>
-          <% end %>
-        <% else %>
-          <%= link_to new_session_url, title: "sign in" do %>
-            <li><i class="fa fa-sign-in"></i></li>
+          <%= link_to '#edit', title: "edit article" do %>
+            <li><i class="fa fa-edit"></i></li>
           <% end %>
         <% end %>
       </ul>
