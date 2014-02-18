@@ -1,10 +1,11 @@
 <div class="jumbotron">
-  <h1>Hello!</h1>
-  <h2>Welcome to Glossy.</h2>
+  <h1>Hello, beautiful.</h1>
+  <h2>Welcome to Glossy!</h2>
   <p>
     Glossy is an experimental blogging platform featuring a rich, interactive layout editor.<br>
     Glossy leverages the power of Twitter Bootstrap to acheive a grid based, mobile-friendly design.<br>
     Why not give the demo a try?
   </p>
-  <p><%= button_to "Try the Demo!", '/session/demo', class: 'btn btn-lg btn-primary' %></p>
+  <p><button class="btn btn-lg btn-primary">Try the Demo!</button></p>
+  <p><%= button_to "Try the Demo!", { controller: 'session', action: 'demo' }, class: 'btn btn-lg btn-primary' %></p>
 </div>

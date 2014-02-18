@@ -335,6 +335,16 @@ section {
 }
 
 //-- SHOW
+.jumbotron {
+  padding-top: 2em;
+  text-align: center;
+  color: $o2;
+  background: $b7;
+
+  h1 {
+  }
+}
+
 // article
 .article-show-title {
   h1 {

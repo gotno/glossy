@@ -3,7 +3,7 @@ Glossy::Application.routes.draw do
     resources :articles, only: [:new, :create, :index]
   end
   resources :articles, only: [:show, :edit, :update]
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: [:new, :create, :destroy, :demo]
 
   namespace :api, defaults: { format: :json } do
     resources :articles, except: [:new, :edit]
@@ -13,6 +13,7 @@ Glossy::Application.routes.draw do
     resources :widget_images, only: [:create, :update, :destroy]
   end
 
+  post '/session/demo', to: 'sessions#demo'
   get '/:id', to: 'users#show'
   root to: 'root#root'
 end

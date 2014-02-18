@@ -16,6 +16,12 @@ class SessionsController < ApplicationController
     end
   end
 
+  def demo
+    @user = User.find_by_username('demo')
+    login!(@user)
+    redirect_to '/' + @user.slug
+  end
+
   def destroy
     logout!(current_user)
     redirect_to new_session_url
