@@ -32,8 +32,8 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
   + widget sortable placeholder
     + possible to resize widgets on sortStart/Stop?
   + change id to name[whatev] on forms
+  + something is eating widgets when they aren't dropped properly from the panel
+  + add image gallery functionality
 + Design
-  + dummy content
-    + demo article
   + un-uglify the entire design
     + yes, the layout colors are hilarious, but they are also kind of hideous.
