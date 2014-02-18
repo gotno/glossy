@@ -289,9 +289,6 @@ section {
   text-align: center;
 }
 
-.text-widget-body-container {
-}
-
 .text-widget-body {
   font-family: $serif;
   font-size: 1.2em;
@@ -302,6 +299,10 @@ section {
   font-family: $serif;
   font-size: 1.2em;
   text-align: center;
+}
+
+.image-widget-upload-container {
+  margin: 0 auto;
 }
 
 //-- SHOW

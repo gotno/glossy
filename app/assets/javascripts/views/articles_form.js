@@ -20,13 +20,6 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model.get('sections'), 'add', this.appendSection);
-
-    // ugly beforeStart hack
-    var oldMouseStart = $.ui.sortable.prototype._mouseStart;
-    $.ui.sortable.prototype._mouseStart = function(event, overrideHandle, noActivation) {
-       this._trigger("beforeStart", event, this._uiHash());
-       oldMouseStart.apply(this, [event, overrideHandle, noActivation]);
-    };
   },
 
   render: function() {
@@ -119,6 +112,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
 
       beforeStart: function(event, ui) {
         view.sectionViews.forEach(function(sview) {
+          console.log('before start');
           sview.rollUp();
         });
       }

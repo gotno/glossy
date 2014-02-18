@@ -1,14 +1,16 @@
-<div class="row">
-  <div class="col-md-12">
-    <% if (widget.has('image_url_smallest')) { %>
-      <img src="<%= widget.escape('image_url_smallest') %>">
-    <% } %>
+<div class="image-widget-upload-container">
+  <div class="row">
+    <div class="col-md-12">
+      <% if (widget.has('image_url_smallest')) { %>
+        <img src="<%= widget.escape('image_url_smallest') %>">
+      <% } %>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-12 image-widget-file-input">
-    <input type="file"><br>
+  <div class="row">
+    <div class="col-md-12 image-widget-file-input">
+      <input type="file"><br>
+    </div>
   </div>
 </div>
 
