@@ -11,6 +11,7 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
   },
 
   render: function() {
+    console.log('rendering image');
     this.$el.html(this.template({
       widget: this.model
     }));
@@ -29,7 +30,9 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
   },
   
   encodeFile: function(event) {
-    console.log(this.$('input[type=file]'));
+    this.$('.image-widget-uploading').text('uploading...');
+    this.$('.image-widget-uploading').css('margin-bottom', '2em');
+
     var view = this;
     var file = event.currentTarget.files[0];
 
@@ -37,13 +40,12 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
     reader.onload = function(e) {
       view.model.set('img', e.target.result);
 
-      view.model.save(null, {
-      //Glossy.articleView.collect();
-      //Glossy.article.save(null, {
+      //view.model.save(null, {
+      Glossy.articleView.collect();
+      Glossy.article.save(null, {
         success: function() {
-          view.render();
-          console.log('image saved');
-          console.log(arguments);
+          //view.render();
+          console.log('article saved');
         }
       });
     };

@@ -271,6 +271,7 @@ section {
     }
     &:last-child {
       background: $b5;
+      color: $b1;
     }
 
     &:hover {
@@ -315,6 +316,13 @@ section {
   img {
     margin: 0 auto;
   }
+}
+
+.image-widget-uploading {
+  font-family: $sans-bold;
+  font-size: 1em;
+  text-align: center;
+  color: $o2;
 }
 
 .widget-controls {

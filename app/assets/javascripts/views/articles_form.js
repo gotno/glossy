@@ -19,6 +19,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     }
 
     this.listenTo(this.model.get('sections'), 'add', this.appendSection);
+    this.listenTo(this.model, 'sync', this.render);
   },
 
   render: function() {
