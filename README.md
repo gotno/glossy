@@ -16,7 +16,7 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
     + drag rows from section to section
     + drag widgets from row to row
   + add wysihtml5
-  + paperclip-uploader
+  + add paperclip-uploader for image preview/upload progress
   + sql cleanup and optimization
   + switch auth from hand-rolled to devise
   + nuke article/section headings
@@ -29,12 +29,11 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
     + blockquote
     + map
   + comments
-  + sortable list placeholders
-  + resize widgets on sortStart/Stop
+  + widget sortable placeholder
+    + possible to resize widgets on sortStart/Stop?
   + change id to name[whatev] on forms
 + Design
-  + front/landing page
-  + sign in
-    + demo button
   + dummy content
     + demo article
+  + un-uglify the entire design
+    + yes, the layout colors are hilarious, but they are also kind of hideous.
