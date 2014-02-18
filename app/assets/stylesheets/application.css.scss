@@ -356,7 +356,7 @@ section {
   }
 }
 
-#sidebar-wrapper {
+.sidebar-wrapper {
   top: 7%;
   right: 10px;
   width: 150px;
@@ -365,6 +365,10 @@ section {
   height: 86%;
   z-index: 1000;
   transition: all 0.4s ease 0s;
+}
+
+.sidebar-wrapper-back {
+  height: 180px;
 }
 
 .sidebar-nav {
@@ -411,6 +415,10 @@ section {
   padding-top: .6em;
   padding-bottom: .6em;
   border: 3px solid $o3;
+}
+
+.sidebar-nav > .sidebar-brand-back {
+  border: 3px solid $b6;
 }
 
 .sidebar-nav > .sidebar-brand a {

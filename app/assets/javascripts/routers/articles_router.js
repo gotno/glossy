@@ -1,32 +1,30 @@
 Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
   routes: {
     '': 'show',
-    'preview': 'show',
+    'preview': 'preview',
     'edit': 'form',
     'new': 'new'
   },
 
   form: function() {
-    $('#sidebar-wrapper').show();
-
     var articleView = Glossy.articleView = new Glossy.Views.ArticlesForm({
       model: Glossy.article
     });
 
     this._swapViews(articleView);
+    this._attachSidebarControls();
 
     this._setupUI();
   },
 
   new: function() {
-    $('#sidebar-wrapper').show();
-
     var article = Glossy.article = new Glossy.Models.Article;
     var articleView = Glossy.articleView = new Glossy.Views.ArticlesForm({
       model: article
     });
 
     this._swapViews(articleView);
+    this._attachSidebarControls();
 
     this._setupUI();
   },
@@ -36,35 +34,20 @@ Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
       Glossy.articleView.collect();
     }
 
-    $('#sidebar-wrapper').hide();
     var articleView = Glossy.articleView = new Glossy.Views.ArticlesShow({
       model: Glossy.article
     });
     this._swapViews(articleView);
   },
 
-  _setupUI: function() {
-    // hacky fake checkbox
-    $("i.show-hide").click(function(){
-      if($(this).hasClass('fa-eye')){
-        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-      }
-      else {
-        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-      }
-    });
+  preview: function() {
+    this.show();
+    this._attachSidebarBack();
+  },
 
-    /* this almost works, but misaligns the form-group
-    $('.eyebox').change(function() {
-      $checkbox = $(this);
-      $icon = $checkbox.siblings("[class*=fa-]");
-
-      var checked = $checkbox.is(":checked");
-
-      $icon.toggleClass('fa-eye-slash', checked)
-           .toggleClass('fa-eye', !checked);
-    });
-    // */
+  _attachSidebarControls: function() {
+    var sidebar = new Glossy.Views.SidebarControls;
+    $('#content').append(sidebar.render().$el);
 
     $('#sidebar-section').sortable({
       helper: 'clone',
@@ -115,6 +98,36 @@ Glossy.Routers.ArticlesRouter = Backbone.Router.extend({
         $('#sidebar-placeholder').find('li:hidden').show();
       }
     });
+  },
+
+  _attachSidebarBack: function() {
+    var sidebar = new Glossy.Views.SidebarBack;
+    $('#content').append(sidebar.render().$el);
+  },
+
+  _setupUI: function() {
+    // hacky fake checkbox
+    $("i.show-hide").click(function(){
+      if($(this).hasClass('fa-eye')){
+        $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+      }
+      else {
+        $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+      }
+    });
+
+    /* real checkbox hack
+    // this almost works, but misaligns the form-group
+    $('.eyebox').change(function() {
+      $checkbox = $(this);
+      $icon = $checkbox.siblings("[class*=fa-]");
+
+      var checked = $checkbox.is(":checked");
+
+      $icon.toggleClass('fa-eye-slash', checked)
+           .toggleClass('fa-eye', !checked);
+    });
+    // */
   },
 
   _swapViews: function(view) {
