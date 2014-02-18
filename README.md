@@ -14,24 +14,28 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 + Logic
   + change id to name[whatev] on forms
   + drag-and-dropability
-    + sections collapse on drag
-    + drag row to row, section to section
+    + drag rows from section to section
+    + drag widgets from row to row
   + add wysihtml5
-  + paperclip
-    + preview during upload
-    + progress for uploads
-    + image saving without full reload
+  + paperclip-uploader
   + sql cleanup and optimization
   + switch auth from hand-rolled to devise
-  + update button should go somewhere
-  + add preview and save draft
-  + widget weight? placeholder widget?
+  + nuke article/section headings
+    + create seperate heading/body widgets
+  + widget weight and centerability
+    + use placeholder widget for now
+  + more widget types
+    + audio
+    + video
+    + blockquote
+    + map
+  + comments
+  + sortable list placeholders
+  + move control panel to backbone side
+  + 'back to editing' floating button on preview
 + Design
   + front/landing page
   + sign in
     + demo button
   + dummy content
     + demo article
-  + clear up edit layout
-  + color scheme
-  + show/hide labels
