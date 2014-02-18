@@ -12,7 +12,6 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
 
 #### TODO
 + Logic
-  + change id to name[whatev] on forms
   + drag-and-dropability
     + drag rows from section to section
     + drag widgets from row to row
@@ -31,8 +30,8 @@ Glossy was born out of my desire for more control in a CMS. In all the major bra
     + map
   + comments
   + sortable list placeholders
-  + move control panel to backbone side
-  + 'back to editing' floating button on preview
+  + resize widgets on sortStart/Stop
+  + change id to name[whatev] on forms
 + Design
   + front/landing page
   + sign in
