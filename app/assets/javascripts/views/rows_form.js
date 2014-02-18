@@ -17,6 +17,10 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   },
 
   render: function() {
+    if (this.getSortedWidgets().length > 0) {
+      this.collect();
+    }
+
     this.$el.html(this.template({
       row: this.model
     }));
