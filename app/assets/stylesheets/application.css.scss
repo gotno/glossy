@@ -123,17 +123,19 @@ header {
   width: 80%;
   max-width: 960px;
   margin: 0 auto;
-  border: 2px solid $o2;
 }
 
 .container-fluid {
   background-color: $b7;
+  background: $o2;
+  border-bottom: 12px solid $o2;
 }
 
 
 //-- EDIT
 article {
   margin-bottom: -10px;
+  background: $b6;
 }
 
 .article-row {
