@@ -8,7 +8,6 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
     'change input[type=file]': 'encodeFile',
     'click #iw_hide_title': 'toggleTitle',
     'click #iw_hide_date': 'toggleBody',
-    'click a.image-widget-remove': 'destroyImageWidget'
   },
 
   render: function() {
@@ -28,22 +27,9 @@ Glossy.Views.WidgetImageForm = Backbone.View.extend({
     var $input = this.$('input[type="date"]#iw_date');
     $input.prop('disabled', (!$input.prop('disabled')));
   },
-
-  destroyWidgetImage: function(event) {
-    event.preventDefault();
-
-    this.$('a.image-widget-remove').prop('disabled', true);
-    this.$('a.image-widget-remove').text('deleting image...');
-
-    var view = this;
-    this.model.destroy({
-      success: function() {
-        view.remove();
-      }
-    });
-  },
   
   encodeFile: function(event) {
+    console.log(this.$('input[type=file]'));
     var view = this;
     var file = event.currentTarget.files[0];
 

@@ -17,9 +17,7 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   },
 
   render: function() {
-    if (this.getSortedWidgets().length > 0) {
-      this.collect();
-    }
+    this.collect();
 
     this.$el.html(this.template({
       row: this.model
@@ -250,8 +248,10 @@ Glossy.Views.RowsForm = Backbone.View.extend({
   },
 
   collect: function() {
-    this.widgetViews.forEach(function(widgetView) {
-      widgetView.collect();
-    });
+    if (this.widgetViews) {
+      this.widgetViews.forEach(function(widgetView) {
+        widgetView.collect();
+      });
+    }
   }
 });

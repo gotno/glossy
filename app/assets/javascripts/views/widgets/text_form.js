@@ -7,7 +7,6 @@ Glossy.Views.WidgetTextForm = Backbone.View.extend({
   events: {
     'click #tw_hide_title': 'toggleTitle',
     'click #tw_hide_body': 'toggleBody',
-    'click a.text-widget-remove': 'destroyTextWidget'
   },
 
   render: function() {
@@ -26,17 +25,6 @@ Glossy.Views.WidgetTextForm = Backbone.View.extend({
   toggleBody: function(event) {
     var $input = this.$('textarea#tw_body');
     $input.prop('disabled', (!$input.prop('disabled')));
-  },
-
-  destroyWidgetText: function(event) {
-    event.preventDefault();
-
-    var view = this;
-    this.model.destroy({
-      success: function() {
-        view.remove();
-      }
-    });
   },
 
   collect: function() {
