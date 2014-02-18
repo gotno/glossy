@@ -3,10 +3,6 @@ Glossy.Views.ArticlesShow = Backbone.View.extend({
 
   tagName: 'article',
 
-  //events: {
-    //'click button': 'edit'
-  //},
-
   initialize: function() {
     if (!Glossy.article.get('sections')) {
       Glossy.article.set('sections', new Glossy.Collections.Sections());
