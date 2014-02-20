@@ -21,6 +21,7 @@ Glossy.Views.SectionsShow = Backbone.View.extend({
 
   renderRows: function() {
     if (this.model.has('rows')) {
+      this.model.get('rows').sort();
       var view = this;
 
       this.model.get('rows').each(function(row) {

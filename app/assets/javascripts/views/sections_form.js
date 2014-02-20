@@ -60,6 +60,7 @@ Glossy.Views.SectionsForm = Backbone.View.extend({
 
   renderRows: function() {
     if (this.model.has('rows') && this.model.get('rows').length !== 0) {
+      this.model.get('rows').sort();
       this.collect();
       this.$rowsList.empty();
 

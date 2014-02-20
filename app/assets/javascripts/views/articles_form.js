@@ -90,6 +90,7 @@ Glossy.Views.ArticlesForm = Backbone.View.extend({
     this.$sectionsList.empty();
     this.sectionViews = []
 
+    this.model.get('sections').sort();
     var view = this;
     this.model.get('sections').each(function(section) {
       var sectionView = new Glossy.Views.SectionsForm({

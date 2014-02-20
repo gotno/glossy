@@ -39,6 +39,7 @@ Glossy.Views.ArticlesShow = Backbone.View.extend({
     this.sectionViews = []
 
     var view = this;
+    this.model.get('sections').sort();
     this.model.get('sections').each(function(section) {
       var sectionView = new Glossy.Views.SectionsShow({
         model: section
